@@ -14,28 +14,40 @@ export const TestimonialsSection: React.FC = () => {
 
   const testimonials: Testimonial[] = [
     {
-      name: "Maria Clara S.",
-      initials: "MC",
-      objective: "Medicina - UNICAMP",
-      content: "O método do professor Vitor Hugo mudou completamente minha forma de estudar Biologia. Antes eu decorava, agora eu entendo. Passei de média para uma das melhores notas da sala.",
+      name: "Ana",
+      initials: "A",
+      objective: "Aprovada em Medicina",
+      content: "Você se tornou um grande amigo que me mostrou, todos os dias, o meu potencial — até mesmo quando eu não acreditava nele. Meu carinho e admiração por você vão muito além de ver meu nome na lista de uma faculdade de medicina.",
     },
     {
-      name: "Pedro Henrique L.",
-      initials: "PH",
-      objective: "ENEM 2025",
-      content: "Estudando em casa, achei que seria impossível competir. O Bio em Casa me mostrou que com método certo, qualquer um pode ter resultado alto. Minha nota em Biologia no simulado subiu 40%.",
+      name: "Aluna UNIFESP",
+      initials: "U",
+      objective: "Vestibular UNIFESP",
+      content: "Ontem na UNIFESP caiu sobre splicing e eu lembrei na hora de você explicando! Muito obrigada, sua revisão foi incrível!",
     },
     {
-      name: "Ana Beatriz R.",
-      initials: "AB",
-      objective: "Medicina - USP",
-      content: "As Sinapses são incríveis. O professor conecta os conteúdos de um jeito que faz tudo fazer sentido. Nunca pensei que Biologia poderia ser tão lógica.",
+      name: "Aluna UFSC",
+      initials: "F",
+      objective: "Vestibular UFSC",
+      content: "PROF MAIS MARAVILHOSO DO MUNDO! Tive UFSC ontem — 8,35/10! Fiquei muito feliz!",
     },
     {
-      name: "Lucas Gabriel M.",
-      initials: "LG",
-      objective: "Ensino Médio",
-      content: "Comecei no DNA para acompanhar a escola e agora estou muito à frente da minha turma. O método funciona de verdade!",
+      name: "Aluna Sinapses",
+      initials: "S",
+      objective: "Med em Casa - Sinapses",
+      content: "Esse curso foi a MELHOR escolha que fiz esse ano, não só pelo conteúdo, que é incrível, mas por você! Queria te agradecer pela diferença que fez na minha vida esse ano!",
+    },
+    {
+      name: "Aluna UNESP",
+      initials: "N",
+      objective: "Vestibular UNESP",
+      content: "Prof, acabei de sair da prova da UNESP! Caiu sobre nucleotídeo e só lembrei da cabeça do pato, o corpo do pato! kkkkkk",
+    },
+    {
+      name: "Aluna Sinapses",
+      initials: "B",
+      objective: "Vestibulares 2026",
+      content: "Antes Biologia era uma das minhas matérias terroristas, agora faz parte das legais! Suas aulas ajudaram muito, não só no aprendizado, mas também nos resultados dos vestibulares. Levarei para a vida cada ensinamento!",
     },
   ];
 
