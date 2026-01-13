@@ -16,6 +16,7 @@ interface CourseCardProps {
   originalPrice: string;
   installmentPrice: string;
   discount: string;
+  checkoutUrl: string;
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({
@@ -29,6 +30,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
   originalPrice,
   installmentPrice,
   discount,
+  checkoutUrl,
 }) => (
   <div
     className={`relative p-6 lg:p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-1 flex flex-col h-full ${
@@ -96,9 +98,12 @@ const CourseCard: React.FC<CourseCardProps> = ({
       variant={featured ? "hero" : "default"}
       size="lg"
       className="w-full group mt-auto"
+      asChild
     >
-      {ctaText}
-      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+      <a href={checkoutUrl} target="_blank" rel="noopener noreferrer">
+        {ctaText}
+        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+      </a>
     </Button>
   </div>
 );
@@ -120,6 +125,7 @@ export const CoursesSection: React.FC = () => {
       originalPrice: "R$ 2.499,00",
       installmentPrice: "R$ 144,99",
       discount: "30%",
+      checkoutUrl: "https://bioemcasa.eveclass.com/pt/comprar/produto/med-em-casa-2026-sinapses-revisoes-1767888055866",
     },
     {
       icon: SynapseIcon,
@@ -140,6 +146,7 @@ export const CoursesSection: React.FC = () => {
       originalPrice: "R$ 1.899,00",
       installmentPrice: "R$ 119,99",
       discount: "24%",
+      checkoutUrl: "https://bioemcasa.eveclass.com/pt/comprar/produto/med-em-casa-2026-sinapses-1767888331309",
     },
     {
       icon: DNAIcon,
@@ -157,6 +164,7 @@ export const CoursesSection: React.FC = () => {
       originalPrice: "R$ 1.299,00",
       installmentPrice: "R$ 74,99",
       discount: "31%",
+      checkoutUrl: "https://bioemcasa.eveclass.com/pt/comprar/produto/med-em-casa-2026-dna-revisoes",
     },
     {
       icon: DNAIcon,
@@ -176,6 +184,7 @@ export const CoursesSection: React.FC = () => {
       originalPrice: "R$ 999,00",
       installmentPrice: "R$ 49,99",
       discount: "40%",
+      checkoutUrl: "https://bioemcasa.eveclass.com/pt/comprar/produto/med-em-casa-2026-dna-1767891008479",
     },
   ];
 
