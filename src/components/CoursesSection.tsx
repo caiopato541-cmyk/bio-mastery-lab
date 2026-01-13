@@ -13,6 +13,9 @@ interface CourseCardProps {
   features: string[];
   ctaText: string;
   featured?: boolean;
+  originalPrice: string;
+  installmentPrice: string;
+  discount: string;
 }
 
 const CourseCard: React.FC<CourseCardProps> = ({
@@ -23,9 +26,12 @@ const CourseCard: React.FC<CourseCardProps> = ({
   features,
   ctaText,
   featured = false,
+  originalPrice,
+  installmentPrice,
+  discount,
 }) => (
   <div
-    className={`relative p-6 lg:p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
+    className={`relative p-6 lg:p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-1 flex flex-col h-full ${
       featured
         ? "bg-primary text-primary-foreground border-primary elevated-shadow"
         : "bg-card border-border card-shadow hover:border-primary/30"
@@ -39,7 +45,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
       </div>
     )}
 
-    <div className="flex items-start gap-4 mb-6">
+    <div className="flex items-start gap-4 mb-4">
       <div
         className={`w-14 h-14 rounded-xl flex items-center justify-center shrink-0 ${
           featured ? "bg-primary-foreground/10" : "bg-primary/10"
@@ -55,14 +61,30 @@ const CourseCard: React.FC<CourseCardProps> = ({
       </div>
     </div>
 
-    <p className={`mb-6 ${featured ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
+    {/* Pricing */}
+    <div className={`mb-4 pb-4 border-b ${featured ? "border-primary-foreground/20" : "border-border"}`}>
+      <div className={`text-sm line-through ${featured ? "text-primary-foreground/50" : "text-muted-foreground"}`}>
+        {originalPrice}
+      </div>
+      <div className="flex items-baseline gap-1">
+        <span className={`text-sm ${featured ? "text-primary-foreground/70" : "text-muted-foreground"}`}>12x</span>
+        <span className={`text-3xl font-bold font-display ${featured ? "text-accent" : "text-primary"}`}>
+          {installmentPrice}
+        </span>
+      </div>
+      <div className={`text-xs font-semibold mt-1 ${featured ? "text-accent" : "text-green-600"}`}>
+        {discount} de desconto por tempo limitado!
+      </div>
+    </div>
+
+    <p className={`mb-4 text-sm ${featured ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
       {description}
     </p>
 
-    <ul className="space-y-3 mb-8">
+    <ul className="space-y-2 mb-6 flex-grow">
       {features.map((feature, index) => (
-        <li key={index} className="flex items-start gap-3">
-          <Check className={`w-5 h-5 shrink-0 mt-0.5 ${featured ? "text-accent" : "text-primary"}`} />
+        <li key={index} className="flex items-start gap-2">
+          <Check className={`w-4 h-4 shrink-0 mt-0.5 ${featured ? "text-accent" : "text-primary"}`} />
           <span className={`text-sm ${featured ? "text-primary-foreground/90" : "text-foreground"}`}>
             {feature}
           </span>
@@ -73,7 +95,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
     <Button
       variant={featured ? "hero" : "default"}
       size="lg"
-      className="w-full group"
+      className="w-full group mt-auto"
     >
       {ctaText}
       <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -95,6 +117,9 @@ export const CoursesSection: React.FC = () => {
         "Preparação completa para vestibulares",
       ],
       ctaText: "Quero o SINAPSES + Revisões",
+      originalPrice: "R$ 2.499,00",
+      installmentPrice: "R$ 144,99",
+      discount: "30%",
     },
     {
       icon: SynapseIcon,
@@ -112,6 +137,9 @@ export const CoursesSection: React.FC = () => {
         "Lives de revisão por módulo",
       ],
       ctaText: "Quero o SINAPSES",
+      originalPrice: "R$ 1.899,00",
+      installmentPrice: "R$ 119,99",
+      discount: "24%",
     },
     {
       icon: DNAIcon,
@@ -126,6 +154,9 @@ export const CoursesSection: React.FC = () => {
       ],
       ctaText: "Quero o DNA + Revisões",
       featured: true,
+      originalPrice: "R$ 1.299,00",
+      installmentPrice: "R$ 74,99",
+      discount: "31%",
     },
     {
       icon: DNAIcon,
@@ -142,6 +173,9 @@ export const CoursesSection: React.FC = () => {
         "Grupo de apoio no WhatsApp",
       ],
       ctaText: "Quero começar pelo DNA",
+      originalPrice: "R$ 999,00",
+      installmentPrice: "R$ 49,99",
+      discount: "40%",
     },
   ];
 
