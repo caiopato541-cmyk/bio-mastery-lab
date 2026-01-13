@@ -1,8 +1,9 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { DNAIcon } from "@/components/icons/DNAIcon";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import vitorHugoHero from "@/assets/vitor-hugo-hero.jpg";
+import logoTransparent from "@/assets/logo-bioemcasa-transparent.png";
 
 export const HeroSection: React.FC = () => {
   return (
@@ -30,14 +31,13 @@ export const HeroSection: React.FC = () => {
       <div className="container relative z-10 flex flex-col lg:flex-row items-center justify-center min-h-screen py-20 gap-8 lg:gap-12">
         {/* Content */}
         <div className="flex-1 text-center lg:text-left max-w-2xl">
-          {/* Authority badge */}
-          <div className="animate-slide-up opacity-0 mb-8 inline-block">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-dark border border-primary-foreground/20">
-              <Sparkles className="w-4 h-4 text-accent" />
-              <span className="text-sm font-medium text-primary-foreground/90">BIO EM CASA</span>
-              <span className="text-sm text-primary-foreground/60">•</span>
-              <span className="text-sm text-primary-foreground/70">Método do Prof. Vitor Hugo Rocha</span>
-            </div>
+          {/* Logo */}
+          <div className="animate-slide-up opacity-0 mb-8">
+            <img 
+              src={logoTransparent} 
+              alt="Bio em Casa" 
+              className="h-16 sm:h-20 w-auto mx-auto lg:mx-0 brightness-0 invert"
+            />
           </div>
 
           {/* Main headline */}
