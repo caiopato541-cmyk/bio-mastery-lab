@@ -5,8 +5,8 @@ import professorImage from "@/assets/vitor-hugo-professor.jpg";
 
 export const AboutProfessorSection: React.FC = () => {
   return (
-    <section id="professor" className="py-20 lg:py-32 bg-background">
-      <div className="container">
+    <section id="professor" className="py-20 lg:py-32 bg-background overflow-hidden">
+      <div className="container px-4 sm:px-6">
         <div className="text-center mb-12">
           <span className="text-sm font-semibold text-accent uppercase tracking-wider">
             Seu professor
@@ -18,7 +18,7 @@ export const AboutProfessorSection: React.FC = () => {
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
           {/* Professor image */}
-          <div className="relative order-2 lg:order-1">
+          <div className="relative order-2 lg:order-1 overflow-hidden">
             <div className="aspect-[4/5] rounded-2xl overflow-hidden elevated-shadow">
               <img 
                 src={professorImage} 
@@ -46,7 +46,7 @@ export const AboutProfessorSection: React.FC = () => {
 
           {/* Content */}
           <div className="space-y-6 order-1 lg:order-2">
-            <div className="prose prose-lg text-muted-foreground space-y-4">
+            <div className="prose prose-lg text-muted-foreground space-y-4 break-words">
               <p className="text-xl leading-relaxed">
                 Eu sou o <span className="text-foreground font-semibold">Vitor Hugo</span>, professor de Biologia há mais de <span className="text-primary font-semibold">10 anos</span> e fundador do Bio em Casa.
               </p>
@@ -67,7 +67,7 @@ export const AboutProfessorSection: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 pt-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
               <div className="p-4 rounded-xl bg-muted/50 border border-border hover:border-primary/30 transition-colors">
                 <GraduationCap className="w-6 h-6 text-primary mb-2" />
                 <p className="text-sm font-medium text-foreground">+10 anos de experiência</p>

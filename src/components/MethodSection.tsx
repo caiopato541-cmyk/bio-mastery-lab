@@ -35,13 +35,13 @@ export const MethodSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 lg:py-32 bg-muted/30">
-      <div className="container">
+    <section className="py-20 lg:py-32 bg-muted/30 overflow-hidden">
+      <div className="container px-4 sm:px-6">
         {/* Header with image */}
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 mb-16">
           {/* Professor Image */}
-          <div className="relative flex-shrink-0 order-1 lg:order-none">
-            <div className="absolute -inset-3 bg-primary/10 rounded-2xl blur-xl" />
+          <div className="relative flex-shrink-0 order-1 lg:order-none overflow-hidden">
+            <div className="absolute -inset-3 bg-primary/10 rounded-2xl blur-xl max-w-full" />
             <div className="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-2xl overflow-hidden border-2 border-primary/20 shadow-xl">
               <img
                 src={vitorHugoDna}
@@ -66,11 +66,11 @@ export const MethodSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
           {pillars.map((pillar, index) => (
             <div
               key={index}
-              className="group relative p-8 rounded-2xl bg-card card-shadow hover:elevated-shadow transition-all duration-300 hover:-translate-y-2 border border-border"
+              className="group relative p-6 sm:p-8 rounded-2xl bg-card card-shadow hover:elevated-shadow transition-all duration-300 hover:-translate-y-2 border border-border overflow-hidden"
             >
               {/* Icon */}
               <div className={`w-20 h-20 rounded-2xl ${pillar.bgColor} flex items-center justify-center mb-6 transition-transform group-hover:scale-110`}>
@@ -95,8 +95,8 @@ export const MethodSection: React.FC = () => {
         </div>
 
         {/* Reinforcement phrase */}
-        <div className="mt-16 text-center space-y-8">
-          <p className="text-xl lg:text-2xl font-medium text-foreground max-w-3xl mx-auto leading-relaxed">
+        <div className="mt-16 text-center space-y-8 px-2">
+          <p className="text-lg sm:text-xl lg:text-2xl font-medium text-foreground max-w-3xl mx-auto leading-relaxed break-words">
             <span className="text-primary font-semibold">Forte o suficiente para Medicina.</span>{" "}
             <span className="text-muted-foreground">Claro o suficiente para qualquer estudante dedicado.</span>
           </p>

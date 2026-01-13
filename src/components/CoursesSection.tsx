@@ -33,7 +33,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
   checkoutUrl,
 }) => (
   <div
-    className={`relative p-6 lg:p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-1 flex flex-col h-full ${
+    className={`relative p-5 sm:p-6 lg:p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-1 flex flex-col h-full overflow-hidden ${
       featured
         ? "bg-primary text-primary-foreground border-primary elevated-shadow"
         : "bg-card border-border card-shadow hover:border-primary/30"
@@ -204,8 +204,8 @@ export const CoursesSection: React.FC = () => {
   ];
 
   return (
-    <section id="cursos" className="py-20 lg:py-32 bg-background">
-      <div className="container">
+    <section id="cursos" className="py-20 lg:py-32 bg-background overflow-hidden">
+      <div className="container px-4 sm:px-6">
         {/* Header with image */}
         <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 mb-16">
           {/* Text */}
@@ -223,8 +223,8 @@ export const CoursesSection: React.FC = () => {
           </div>
 
           {/* Professor Image */}
-          <div className="relative flex-shrink-0">
-            <div className="absolute -inset-3 bg-secondary/20 rounded-2xl blur-xl" />
+          <div className="relative flex-shrink-0 overflow-hidden">
+            <div className="absolute -inset-3 bg-secondary/20 rounded-2xl blur-xl max-w-full" />
             <div className="relative w-48 h-56 sm:w-56 sm:h-64 lg:w-64 lg:h-72 rounded-2xl overflow-hidden border-2 border-secondary/20 shadow-xl">
               <img
                 src={vitorHugoTablet}

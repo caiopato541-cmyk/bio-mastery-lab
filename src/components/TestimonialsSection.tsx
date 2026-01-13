@@ -60,8 +60,8 @@ export const TestimonialsSection: React.FC = () => {
   };
 
   return (
-    <section className="py-20 lg:py-32 hero-gradient">
-      <div className="container">
+    <section className="py-20 lg:py-32 hero-gradient overflow-hidden">
+      <div className="container px-4 sm:px-6">
         <div className="text-center mb-12">
           <span className="text-sm font-semibold text-accent uppercase tracking-wider">
             Depoimentos
@@ -73,11 +73,11 @@ export const TestimonialsSection: React.FC = () => {
 
         <div className="max-w-4xl mx-auto">
           {/* Main testimonial */}
-          <div className="relative bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-8 lg:p-12 border border-primary-foreground/20">
+          <div className="relative bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 lg:p-12 border border-primary-foreground/20 overflow-hidden">
             <Quote className="absolute top-6 left-6 w-12 h-12 text-accent/30" />
             
             <div className="relative z-10">
-              <p className="text-xl lg:text-2xl text-primary-foreground/90 leading-relaxed mb-8 italic">
+              <p className="text-lg sm:text-xl lg:text-2xl text-primary-foreground/90 leading-relaxed mb-8 italic break-words">
                 "{testimonials[activeIndex].content}"
               </p>
 
