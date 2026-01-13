@@ -25,8 +25,8 @@ export const FinalCTASection: React.FC = () => {
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground font-display leading-tight">
-            Qualquer prova fica menor<br />
-            <span className="text-primary">quando sua base é forte</span>
+            Quando a Biologia faz sentido,<br />
+            <span className="text-primary">a prova muda</span>
           </h2>
 
           <p className="mt-6 text-lg text-muted-foreground max-w-xl mx-auto">

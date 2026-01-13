@@ -39,14 +39,13 @@ export const HeroSection: React.FC = () => {
 
         {/* Main headline */}
         <h1 className="animate-slide-up opacity-0 animate-delay-100 max-w-4xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight tracking-tight font-display">
-          Domine Biologia no nível que{" "}
+          Aprenda Biologia do zero ao nível que{" "}
           <span className="text-gradient">Medicina exige</span>
-          {" "}— mesmo estudando em casa
         </h1>
 
         {/* Subheadline */}
         <p className="animate-slide-up opacity-0 animate-delay-200 mt-6 max-w-2xl text-lg sm:text-xl text-primary-foreground/80 leading-relaxed">
-          Um método claro, estruturado e testado para quem quer resultados altos em Medicina, ENEM e vestibulares em geral.
+          Com método, clareza e acompanhamento — mesmo estudando em casa.
         </p>
 
         {/* CTA buttons */}
