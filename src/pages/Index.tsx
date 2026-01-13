@@ -12,7 +12,7 @@ import { MobileStickyCTA } from "@/components/MobileStickyCTA";
 
 const Index: React.FC = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <main>
         <HeroSection />
         <AboutProfessorSection />
