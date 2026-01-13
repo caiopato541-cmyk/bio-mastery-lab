@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { DNAIcon } from "@/components/icons/DNAIcon";
 import { SynapseIcon } from "@/components/icons/SynapseIcon";
 import { RevisionIcon } from "@/components/icons/RevisionIcon";
+import vitorHugoDna from "@/assets/vitor-hugo-dna.jpg";
 
 export const MethodSection: React.FC = () => {
   const pillars = [
@@ -36,14 +37,33 @@ export const MethodSection: React.FC = () => {
   return (
     <section className="py-20 lg:py-32 bg-muted/30">
       <div className="container">
-        <div className="text-center mb-16">
-          <span className="text-sm font-semibold text-accent uppercase tracking-wider">
-            O Método
-          </span>
-          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground font-display">
-            Um caminho claro,<br />
-            <span className="text-primary">do básico ao avançado</span>
-          </h2>
+        {/* Header with image */}
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16 mb-16">
+          {/* Professor Image */}
+          <div className="relative flex-shrink-0 order-1 lg:order-none">
+            <div className="absolute -inset-3 bg-primary/10 rounded-2xl blur-xl" />
+            <div className="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-2xl overflow-hidden border-2 border-primary/20 shadow-xl">
+              <img
+                src={vitorHugoDna}
+                alt="Prof. Vitor Hugo com modelo de DNA"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+          
+          {/* Text */}
+          <div className="text-center lg:text-left flex-1">
+            <span className="text-sm font-semibold text-accent uppercase tracking-wider">
+              O Método
+            </span>
+            <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground font-display">
+              Um caminho claro,<br />
+              <span className="text-primary">do básico ao avançado</span>
+            </h2>
+            <p className="mt-4 text-muted-foreground max-w-xl">
+              A Metodologia BC foi desenvolvida para ensinar Biologia de forma lógica e integrada, conectando conceitos para que você entenda o porquê antes de decorar o como.
+            </p>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
