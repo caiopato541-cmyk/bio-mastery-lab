@@ -1,0 +1,168 @@
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { Check, ArrowRight } from "lucide-react";
+import { DNAIcon } from "@/components/icons/DNAIcon";
+import { SynapseIcon } from "@/components/icons/SynapseIcon";
+
+interface CourseCardProps {
+  icon: React.FC<{ className?: string }>;
+  title: string;
+  subtitle: string;
+  description: string;
+  features: string[];
+  ctaText: string;
+  featured?: boolean;
+}
+
+const CourseCard: React.FC<CourseCardProps> = ({
+  icon: Icon,
+  title,
+  subtitle,
+  description,
+  features,
+  ctaText,
+  featured = false,
+}) => (
+  <div
+    className={`relative p-6 lg:p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-1 ${
+      featured
+        ? "bg-primary text-primary-foreground border-primary elevated-shadow"
+        : "bg-card border-border card-shadow hover:border-primary/30"
+    }`}
+  >
+    {featured && (
+      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+        <span className="px-4 py-1 text-xs font-bold uppercase tracking-wider bg-accent text-accent-foreground rounded-full">
+          Mais popular
+        </span>
+      </div>
+    )}
+
+    <div className="flex items-start gap-4 mb-6">
+      <div
+        className={`w-14 h-14 rounded-xl flex items-center justify-center shrink-0 ${
+          featured ? "bg-primary-foreground/10" : "bg-primary/10"
+        }`}
+      >
+        <Icon className={`w-8 h-8 ${featured ? "text-accent" : "text-primary"}`} />
+      </div>
+      <div>
+        <h3 className="text-xl font-bold font-display">{title}</h3>
+        <p className={`text-sm ${featured ? "text-primary-foreground/70" : "text-muted-foreground"}`}>
+          {subtitle}
+        </p>
+      </div>
+    </div>
+
+    <p className={`mb-6 ${featured ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
+      {description}
+    </p>
+
+    <ul className="space-y-3 mb-8">
+      {features.map((feature, index) => (
+        <li key={index} className="flex items-start gap-3">
+          <Check className={`w-5 h-5 shrink-0 mt-0.5 ${featured ? "text-accent" : "text-primary"}`} />
+          <span className={`text-sm ${featured ? "text-primary-foreground/90" : "text-foreground"}`}>
+            {feature}
+          </span>
+        </li>
+      ))}
+    </ul>
+
+    <Button
+      variant={featured ? "hero" : "default"}
+      size="lg"
+      className="w-full group"
+    >
+      {ctaText}
+      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+    </Button>
+  </div>
+);
+
+export const CoursesSection: React.FC = () => {
+  const courses: CourseCardProps[] = [
+    {
+      icon: DNAIcon,
+      title: "Med em Casa 2026 — DNA",
+      subtitle: "Base completa",
+      description: "Base completa em Biologia para quem está começando.",
+      features: [
+        "3 aulas gravadas semanais (Metodologia BC)",
+        "Material digital completo",
+        "Exercícios em 3 níveis (texto + vídeo)",
+        "Plantão de dúvidas semanal",
+        "Lives de revisão por módulo",
+        "Cronograma de estudos",
+        "Grupo de apoio no WhatsApp",
+      ],
+      ctaText: "Quero começar pelo DNA",
+    },
+    {
+      icon: DNAIcon,
+      title: "Med em Casa 2026 — DNA + Revisões",
+      subtitle: "Base + segurança",
+      description: "Base sólida + segurança até a prova.",
+      features: [
+        "Tudo do DNA incluído",
+        "Revisões de 1ª fase",
+        "Revisões de 2ª fase",
+        "Acompanhamento contínuo",
+      ],
+      ctaText: "Quero o DNA + Revisões",
+    },
+    {
+      icon: SynapseIcon,
+      title: "Med em Casa 2026 — SINAPSES",
+      subtitle: "Raciocínio avançado",
+      description: "Para quem já tem base e quer raciocínio avançado.",
+      features: [
+        "3 aulas ao vivo semanais",
+        "Material digital completo",
+        "Exercícios em 3 níveis",
+        "Resumos das aulas",
+        "Simulados modulares",
+        "Plantão de dúvidas 24h via WhatsApp",
+        "Acompanhamento do desempenho",
+        "Lives de revisão por módulo",
+      ],
+      ctaText: "Quero o SINAPSES",
+      featured: true,
+    },
+    {
+      icon: SynapseIcon,
+      title: "Med em Casa 2026 — SINAPSES + Revisões",
+      subtitle: "Alto desempenho",
+      description: "Alto desempenho com acompanhamento próximo até a prova.",
+      features: [
+        "Tudo do SINAPSES incluído",
+        "Revisões de 1ª fase",
+        "Revisões de 2ª fase",
+        "Preparação completa para vestibulares",
+      ],
+      ctaText: "Quero o SINAPSES + Revisões",
+    },
+  ];
+
+  return (
+    <section id="cursos" className="py-20 lg:py-32 bg-background">
+      <div className="container">
+        <div className="text-center mb-16">
+          <span className="text-sm font-semibold text-accent uppercase tracking-wider">
+            Cursos
+          </span>
+          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground font-display">
+            Escolha o curso ideal<br />
+            <span className="text-primary">para o seu momento</span>
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+          {courses.map((course, index) => (
+            <CourseCard key={index} {...course} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
