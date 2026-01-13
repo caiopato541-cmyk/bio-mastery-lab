@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import { DNAIcon } from "@/components/icons/DNAIcon";
 import { Menu, X } from "lucide-react";
+import logoImage from "@/assets/logo-bioemcasa.png";
 
 export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -32,19 +32,14 @@ export const Header: React.FC = () => {
     >
       <div className="container flex items-center justify-between">
         {/* Logo */}
-        <a href="/" className="flex items-center gap-2">
-          <DNAIcon
-            className={`w-8 h-8 transition-colors ${
-              isScrolled ? "text-primary" : "text-primary-foreground"
+        <a href="/" className="flex items-center">
+          <img 
+            src={logoImage} 
+            alt="Bio em Casa" 
+            className={`h-10 w-auto transition-all ${
+              isScrolled ? "brightness-100" : "brightness-0 invert"
             }`}
           />
-          <span
-            className={`font-bold text-lg font-display transition-colors ${
-              isScrolled ? "text-foreground" : "text-primary-foreground"
-            }`}
-          >
-            Bio em Casa
-          </span>
         </a>
 
         {/* Desktop nav */}
