@@ -32,20 +32,21 @@ const CourseCard: React.FC<CourseCardProps> = ({
   discount,
   checkoutUrl,
 }) => (
-  <div
-    className={`relative p-5 sm:p-6 lg:p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-1 flex flex-col h-full overflow-hidden ${
-      featured
-        ? "bg-primary text-primary-foreground border-primary elevated-shadow"
-        : "bg-card border-border card-shadow hover:border-primary/30"
-    }`}
-  >
-    {featured && (
-      <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-        <span className="px-4 py-1 text-xs font-bold uppercase tracking-wider bg-accent text-accent-foreground rounded-full">
-          Mais popular
-        </span>
-      </div>
-    )}
+  <div className={featured ? "pt-5" : ""}>
+    <div
+      className={`relative p-5 sm:p-6 lg:p-8 rounded-2xl border transition-all duration-300 hover:-translate-y-1 flex flex-col h-full overflow-hidden ${
+        featured
+          ? "bg-primary text-primary-foreground border-primary elevated-shadow"
+          : "bg-card border-border card-shadow hover:border-primary/30"
+      }`}
+    >
+      {featured && (
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 z-10">
+          <span className="px-4 py-1 text-xs font-bold uppercase tracking-wider bg-accent text-accent-foreground rounded-full whitespace-nowrap">
+            Mais popular
+          </span>
+        </div>
+      )}
 
     <div className="flex items-start gap-4 mb-4">
       <div
@@ -105,6 +106,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
         <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
       </a>
     </Button>
+    </div>
   </div>
 );
 
