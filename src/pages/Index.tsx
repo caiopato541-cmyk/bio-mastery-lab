@@ -1,11 +1,11 @@
 import React from "react";
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
-import { AuthoritySection } from "@/components/AuthoritySection";
+import { AboutProfessorSection } from "@/components/AboutProfessorSection";
 import { MethodSection } from "@/components/MethodSection";
+import { TargetAudienceSection } from "@/components/TargetAudienceSection";
 import { CoursesSection } from "@/components/CoursesSection";
 import { ComparisonTable } from "@/components/ComparisonTable";
-import { TargetAudienceSection } from "@/components/TargetAudienceSection";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { FinalCTASection } from "@/components/FinalCTASection";
 import { Footer } from "@/components/Footer";
@@ -17,13 +17,13 @@ const Index: React.FC = () => {
       <Header />
       <main>
         <HeroSection />
-        <AuthoritySection />
+        <AboutProfessorSection />
         <section id="metodo">
           <MethodSection />
         </section>
+        <TargetAudienceSection />
         <CoursesSection />
         <ComparisonTable />
-        <TargetAudienceSection />
         <section id="depoimentos">
           <TestimonialsSection />
         </section>

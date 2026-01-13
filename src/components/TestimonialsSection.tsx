@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface Testimonial {
@@ -119,6 +119,14 @@ export const TestimonialsSection: React.FC = () => {
               className="rounded-full"
             >
               <ChevronRight className="w-5 h-5" />
+            </Button>
+          </div>
+
+          {/* CTA after testimonials */}
+          <div className="mt-12 text-center">
+            <Button variant="hero" size="lg" className="group">
+              Se funcionou para eles, quero começar também
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
         </div>

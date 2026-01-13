@@ -1,4 +1,6 @@
 import React from "react";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
 import { DNAIcon } from "@/components/icons/DNAIcon";
 import { SynapseIcon } from "@/components/icons/SynapseIcon";
 import { RevisionIcon } from "@/components/icons/RevisionIcon";
@@ -9,7 +11,7 @@ export const MethodSection: React.FC = () => {
       icon: DNAIcon,
       title: "DNA",
       subtitle: "Base Completa",
-      description: "Base completa em Biologia, do zero, com clareza e segurança.",
+      description: "Constrói a base completa em Biologia, do zero, com clareza e segurança.",
       color: "text-primary",
       bgColor: "bg-primary/10",
     },
@@ -17,7 +19,7 @@ export const MethodSection: React.FC = () => {
       icon: SynapseIcon,
       title: "SINAPSES",
       subtitle: "Raciocínio Avançado",
-      description: "Conexão entre conteúdos, raciocínio biológico e nível avançado.",
+      description: "Desenvolve raciocínio biológico, conexão entre conteúdos e nível avançado.",
       color: "text-secondary",
       bgColor: "bg-secondary/10",
     },
@@ -39,8 +41,8 @@ export const MethodSection: React.FC = () => {
             O Método
           </span>
           <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground font-display">
-            Um método criado para o<br />
-            <span className="text-primary">cérebro aprender de verdade</span>
+            Um caminho claro,<br />
+            <span className="text-primary">do básico ao avançado</span>
           </h2>
         </div>
 
@@ -73,11 +75,16 @@ export const MethodSection: React.FC = () => {
         </div>
 
         {/* Reinforcement phrase */}
-        <div className="mt-16 text-center">
+        <div className="mt-16 text-center space-y-8">
           <p className="text-xl lg:text-2xl font-medium text-foreground max-w-3xl mx-auto leading-relaxed">
             <span className="text-primary font-semibold">Forte o suficiente para Medicina.</span>{" "}
             <span className="text-muted-foreground">Claro o suficiente para qualquer estudante dedicado.</span>
           </p>
+
+          <Button variant="default" size="lg" className="group">
+            Quero aprender com método
+            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          </Button>
         </div>
       </div>
     </section>
