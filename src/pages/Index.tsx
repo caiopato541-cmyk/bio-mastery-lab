@@ -1,12 +1,36 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React from "react";
+import { Header } from "@/components/Header";
+import { HeroSection } from "@/components/HeroSection";
+import { AuthoritySection } from "@/components/AuthoritySection";
+import { MethodSection } from "@/components/MethodSection";
+import { CoursesSection } from "@/components/CoursesSection";
+import { ComparisonTable } from "@/components/ComparisonTable";
+import { TargetAudienceSection } from "@/components/TargetAudienceSection";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
+import { FinalCTASection } from "@/components/FinalCTASection";
+import { Footer } from "@/components/Footer";
+import { MobileStickyCTA } from "@/components/MobileStickyCTA";
 
-const Index = () => {
+const Index: React.FC = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen">
+      <Header />
+      <main>
+        <HeroSection />
+        <AuthoritySection />
+        <section id="metodo">
+          <MethodSection />
+        </section>
+        <CoursesSection />
+        <ComparisonTable />
+        <TargetAudienceSection />
+        <section id="depoimentos">
+          <TestimonialsSection />
+        </section>
+        <FinalCTASection />
+      </main>
+      <Footer />
+      <MobileStickyCTA />
     </div>
   );
 };
