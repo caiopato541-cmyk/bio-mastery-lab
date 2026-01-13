@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { DNAIcon } from "@/components/icons/DNAIcon";
+import vitorHugoFocus from "@/assets/vitor-hugo-focus.jpg";
 
 export const FinalCTASection: React.FC = () => {
   return (
@@ -18,31 +19,46 @@ export const FinalCTASection: React.FC = () => {
       </div>
 
       <div className="container relative z-10">
-        <div className="max-w-3xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-8">
-            <Sparkles className="w-4 h-4 text-accent" />
-            <span className="text-sm font-medium text-accent">Comece agora sua jornada</span>
+        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16 max-w-5xl mx-auto">
+          {/* Professor Image */}
+          <div className="relative flex-shrink-0">
+            <div className="absolute -inset-4 bg-primary/10 rounded-3xl blur-2xl" />
+            <div className="relative w-48 h-64 sm:w-56 sm:h-72 lg:w-64 lg:h-80 rounded-2xl overflow-hidden border-2 border-primary/20 shadow-2xl">
+              <img
+                src={vitorHugoFocus}
+                alt="Prof. Vitor Hugo Rocha"
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground font-display leading-tight">
-            Quando a Biologia faz sentido,<br />
-            <span className="text-primary">a prova muda</span>
-          </h2>
+          {/* Content */}
+          <div className="text-center lg:text-left flex-1">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 mb-8">
+              <Sparkles className="w-4 h-4 text-accent" />
+              <span className="text-sm font-medium text-accent">Comece agora sua jornada</span>
+            </div>
 
-          <p className="mt-6 text-lg text-muted-foreground max-w-xl mx-auto">
-            Junte-se a centenas de alunos que já transformaram sua forma de estudar Biologia com o método Bio em Casa.
-          </p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground font-display leading-tight">
+              Quando a Biologia faz sentido,<br />
+              <span className="text-primary">a prova muda</span>
+            </h2>
 
-          <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="hero" size="xl" className="group">
-              Começar agora no Bio em Casa
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </Button>
+            <p className="mt-6 text-lg text-muted-foreground max-w-xl">
+              Junte-se a centenas de alunos que já transformaram sua forma de estudar Biologia com o método Bio em Casa.
+            </p>
+
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <Button variant="hero" size="xl" className="group">
+                Começar agora no Bio em Casa
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </div>
+
+            <p className="mt-6 text-sm text-muted-foreground">
+              Dúvidas? Entre em contato pelo WhatsApp
+            </p>
           </div>
-
-          <p className="mt-6 text-sm text-muted-foreground">
-            Dúvidas? Entre em contato pelo WhatsApp
-          </p>
         </div>
       </div>
     </section>

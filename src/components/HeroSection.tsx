@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { DNAIcon } from "@/components/icons/DNAIcon";
 import { ArrowRight, Sparkles } from "lucide-react";
+import vitorHugoHero from "@/assets/vitor-hugo-hero.jpg";
 
 export const HeroSection: React.FC = () => {
   return (
@@ -26,52 +27,77 @@ export const HeroSection: React.FC = () => {
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/20 rounded-full blur-3xl" />
       </div>
 
-      <div className="container relative z-10 flex flex-col items-center justify-center min-h-screen py-20 text-center">
-        {/* Authority badge */}
-        <div className="animate-slide-up opacity-0 mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-dark border border-primary-foreground/20">
-            <Sparkles className="w-4 h-4 text-accent" />
-            <span className="text-sm font-medium text-primary-foreground/90">BIO EM CASA</span>
-            <span className="text-sm text-primary-foreground/60">•</span>
-            <span className="text-sm text-primary-foreground/70">Método do Prof. Vitor Hugo Rocha</span>
+      <div className="container relative z-10 flex flex-col lg:flex-row items-center justify-center min-h-screen py-20 gap-8 lg:gap-12">
+        {/* Content */}
+        <div className="flex-1 text-center lg:text-left max-w-2xl">
+          {/* Authority badge */}
+          <div className="animate-slide-up opacity-0 mb-8 inline-block">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-dark border border-primary-foreground/20">
+              <Sparkles className="w-4 h-4 text-accent" />
+              <span className="text-sm font-medium text-primary-foreground/90">BIO EM CASA</span>
+              <span className="text-sm text-primary-foreground/60">•</span>
+              <span className="text-sm text-primary-foreground/70">Método do Prof. Vitor Hugo Rocha</span>
+            </div>
+          </div>
+
+          {/* Main headline */}
+          <h1 className="animate-slide-up opacity-0 animate-delay-100 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight tracking-tight font-display">
+            Aprenda Biologia do zero ao nível que{" "}
+            <span className="text-gradient">Medicina exige</span>
+          </h1>
+
+          {/* Subheadline */}
+          <p className="animate-slide-up opacity-0 animate-delay-200 mt-6 text-lg sm:text-xl text-primary-foreground/80 leading-relaxed">
+            Com método, clareza e acompanhamento — mesmo estudando em casa.
+          </p>
+
+          {/* CTA buttons */}
+          <div className="animate-slide-up opacity-0 animate-delay-300 mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <Button variant="hero" size="xl" className="group">
+              Quero dominar Biologia
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            </Button>
+            <Button variant="heroOutline" size="xl">
+              Conhecer o método
+            </Button>
+          </div>
+
+          {/* Trust indicators */}
+          <div className="animate-slide-up opacity-0 animate-delay-400 mt-12 flex flex-wrap justify-center lg:justify-start gap-6 text-sm text-primary-foreground/60">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-accent" />
+              <span>Preparação para Medicina</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-accent" />
+              <span>ENEM e vestibulares</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-accent" />
+              <span>Ensino médio</span>
+            </div>
           </div>
         </div>
 
-        {/* Main headline */}
-        <h1 className="animate-slide-up opacity-0 animate-delay-100 max-w-4xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-primary-foreground leading-tight tracking-tight font-display">
-          Aprenda Biologia do zero ao nível que{" "}
-          <span className="text-gradient">Medicina exige</span>
-        </h1>
+        {/* Professor Image */}
+        <div className="animate-slide-up opacity-0 animate-delay-200 flex-shrink-0 relative">
+          <div className="relative">
+            {/* Decorative glow */}
+            <div className="absolute -inset-4 bg-accent/20 rounded-full blur-2xl" />
+            
+            {/* Image container */}
+            <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary-foreground/20 shadow-2xl">
+              <img
+                src={vitorHugoHero}
+                alt="Prof. Vitor Hugo Rocha"
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
 
-        {/* Subheadline */}
-        <p className="animate-slide-up opacity-0 animate-delay-200 mt-6 max-w-2xl text-lg sm:text-xl text-primary-foreground/80 leading-relaxed">
-          Com método, clareza e acompanhamento — mesmo estudando em casa.
-        </p>
-
-        {/* CTA buttons */}
-        <div className="animate-slide-up opacity-0 animate-delay-300 mt-10 flex flex-col sm:flex-row gap-4">
-          <Button variant="hero" size="xl" className="group">
-            Quero dominar Biologia
-            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-          </Button>
-          <Button variant="heroOutline" size="xl">
-            Conhecer o método
-          </Button>
-        </div>
-
-        {/* Trust indicators */}
-        <div className="animate-slide-up opacity-0 animate-delay-400 mt-12 flex flex-wrap justify-center gap-6 text-sm text-primary-foreground/60">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-accent" />
-            <span>Preparação para Medicina</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-accent" />
-            <span>ENEM e vestibulares</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-accent" />
-            <span>Ensino médio</span>
+            {/* Badge */}
+            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full glass-dark border border-accent/30 whitespace-nowrap">
+              <span className="text-sm font-semibold text-accent">+500 alunos aprovados</span>
+            </div>
           </div>
         </div>
       </div>

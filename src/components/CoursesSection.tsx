@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Check, ArrowRight } from "lucide-react";
 import { DNAIcon } from "@/components/icons/DNAIcon";
 import { SynapseIcon } from "@/components/icons/SynapseIcon";
+import vitorHugoTablet from "@/assets/vitor-hugo-tablet.jpg";
 
 interface CourseCardProps {
   icon: React.FC<{ className?: string }>;
@@ -147,14 +148,33 @@ export const CoursesSection: React.FC = () => {
   return (
     <section id="cursos" className="py-20 lg:py-32 bg-background">
       <div className="container">
-        <div className="text-center mb-16">
-          <span className="text-sm font-semibold text-accent uppercase tracking-wider">
-            Cursos
-          </span>
-          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground font-display">
-            Escolha o curso ideal<br />
-            <span className="text-primary">para o seu momento</span>
-          </h2>
+        {/* Header with image */}
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12 mb-16">
+          {/* Text */}
+          <div className="text-center lg:text-left flex-1">
+            <span className="text-sm font-semibold text-accent uppercase tracking-wider">
+              Cursos
+            </span>
+            <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground font-display">
+              Escolha o curso ideal<br />
+              <span className="text-primary">para o seu momento</span>
+            </h2>
+            <p className="mt-4 text-muted-foreground max-w-xl">
+              Todos os cursos têm nível suficiente para Medicina. A diferença está no ponto de partida e no acompanhamento.
+            </p>
+          </div>
+
+          {/* Professor Image */}
+          <div className="relative flex-shrink-0">
+            <div className="absolute -inset-3 bg-secondary/20 rounded-2xl blur-xl" />
+            <div className="relative w-48 h-56 sm:w-56 sm:h-64 lg:w-64 lg:h-72 rounded-2xl overflow-hidden border-2 border-secondary/20 shadow-xl">
+              <img
+                src={vitorHugoTablet}
+                alt="Prof. Vitor Hugo planejando aulas"
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
         </div>
 
         <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
