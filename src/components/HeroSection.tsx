@@ -53,12 +53,14 @@ export const HeroSection: React.FC = () => {
 
           {/* CTA buttons */}
           <div className="animate-slide-up opacity-0 animate-delay-300 mt-10 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <Button variant="hero" size="xl" className="group">
-              Quero dominar Biologia
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            <Button variant="hero" size="xl" className="group" asChild>
+              <a href="#cursos">
+                Quero dominar Biologia
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </a>
             </Button>
-            <Button variant="heroOutline" size="xl">
-              Conhecer o método
+            <Button variant="heroOutline" size="xl" asChild>
+              <a href="#metodo">Conhecer o método</a>
             </Button>
           </div>
 

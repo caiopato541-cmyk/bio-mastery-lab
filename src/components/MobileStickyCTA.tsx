@@ -19,9 +19,11 @@ export const MobileStickyCTA: React.FC = () => {
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 p-4 glass border-t border-border lg:hidden">
-      <Button variant="hero" size="lg" className="w-full group">
-        Começar agora
-        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+      <Button variant="hero" size="lg" className="w-full group" asChild>
+        <a href="#cursos">
+          Começar agora
+          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+        </a>
       </Button>
     </div>
   );
