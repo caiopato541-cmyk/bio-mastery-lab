@@ -28,9 +28,9 @@ export const HeroSection: React.FC = () => {
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/20 rounded-full blur-3xl" />
       </div>
 
-      <div className="container relative z-10 flex flex-col lg:flex-row items-center justify-center min-h-screen py-20 gap-8 lg:gap-12">
+      <div className="container relative z-10 flex flex-col lg:flex-row items-center justify-center min-h-screen py-20 px-4 sm:px-6 gap-8 lg:gap-12">
         {/* Content */}
-        <div className="flex-1 text-center lg:text-left max-w-2xl">
+        <div className="flex-1 text-center lg:text-left max-w-2xl w-full">
           {/* Logo */}
           <div className="animate-slide-up opacity-0 mb-8">
             <img 
@@ -65,18 +65,18 @@ export const HeroSection: React.FC = () => {
           </div>
 
           {/* Trust indicators */}
-          <div className="animate-slide-up opacity-0 animate-delay-400 mt-12 flex flex-wrap justify-center lg:justify-start gap-6 text-sm text-primary-foreground/60">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-accent" />
-              <span>Preparação para Medicina</span>
+          <div className="animate-slide-up opacity-0 animate-delay-400 mt-12 flex flex-col sm:flex-row flex-wrap justify-center lg:justify-start gap-3 sm:gap-6 text-sm text-primary-foreground/60 px-4 sm:px-0">
+            <div className="flex items-center gap-2 justify-center sm:justify-start">
+              <div className="w-2 h-2 rounded-full bg-accent flex-shrink-0" />
+              <span className="whitespace-nowrap">Preparação para Medicina</span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-accent" />
-              <span>ENEM e vestibulares</span>
+            <div className="flex items-center gap-2 justify-center sm:justify-start">
+              <div className="w-2 h-2 rounded-full bg-accent flex-shrink-0" />
+              <span className="whitespace-nowrap">ENEM e vestibulares</span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-accent" />
-              <span>Ensino médio</span>
+            <div className="flex items-center gap-2 justify-center sm:justify-start">
+              <div className="w-2 h-2 rounded-full bg-accent flex-shrink-0" />
+              <span className="whitespace-nowrap">Ensino médio</span>
             </div>
           </div>
         </div>
