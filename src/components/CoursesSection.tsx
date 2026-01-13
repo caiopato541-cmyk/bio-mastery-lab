@@ -83,11 +83,11 @@ const CourseCard: React.FC<CourseCardProps> = ({
       {description}
     </p>
 
-    <ul className="space-y-2 mb-6 flex-grow">
+    <ul className="space-y-2.5 mb-6 flex-grow">
       {features.map((feature, index) => (
-        <li key={index} className="flex items-start gap-2">
+        <li key={index} className="flex items-start gap-3">
           <Check className={`w-4 h-4 shrink-0 mt-0.5 ${featured ? "text-accent" : "text-primary"}`} />
-          <span className={`text-sm ${featured ? "text-primary-foreground/90" : "text-foreground"}`}>
+          <span className={`text-sm break-words ${featured ? "text-primary-foreground/90" : "text-foreground"}`}>
             {feature}
           </span>
         </li>
