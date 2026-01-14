@@ -84,16 +84,19 @@ export const HeroSection: React.FC = () => {
         {/* Professor Image - integrated with background */}
         <div className="animate-slide-up opacity-0 animate-delay-200 flex-shrink-0 relative">
           <div className="relative">
-            {/* Subtle glow behind */}
-            <div className="absolute -inset-8 bg-accent/10 rounded-full blur-3xl" />
+            {/* Enhanced glow behind for white background integration */}
+            <div className="absolute -inset-12 bg-accent/20 rounded-full blur-3xl" />
+            <div className="absolute -inset-8 bg-primary-foreground/10 rounded-full blur-2xl" />
             
-            {/* Image container - no frame, transparent background integration */}
-            <div className="relative w-72 h-auto sm:w-96 lg:w-[450px]">
+            {/* Image container - larger size with blend effect */}
+            <div className="relative w-64 h-auto sm:w-80 lg:w-[420px]">
               <img
                 src={vitorHugoHero}
                 alt="Prof. Vitor Hugo Rocha"
-                className="w-full h-auto object-contain drop-shadow-2xl"
+                className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)] mix-blend-luminosity opacity-95 hover:mix-blend-normal hover:opacity-100 transition-all duration-500"
               />
+              {/* Overlay gradient for seamless integration */}
+              <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent pointer-events-none rounded-b-3xl" />
             </div>
           </div>
         </div>
