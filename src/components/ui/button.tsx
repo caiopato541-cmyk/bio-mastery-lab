@@ -15,8 +15,8 @@ const buttonVariants = cva(
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        // Premium hero CTA button
-        hero: "bg-accent text-accent-foreground font-bold hover:brightness-110 glow-accent hover:scale-[1.03] active:scale-[0.98] shadow-lg",
+        // Premium hero CTA button with enhanced glow on hover
+        hero: "bg-accent text-accent-foreground font-bold hover:brightness-110 glow-accent hover:scale-[1.03] active:scale-[0.98] shadow-lg hover:shadow-[0_0_40px_hsl(120_100%_62%/0.4)] transition-shadow",
         // Outlined hero variant
         heroOutline: "border-2 border-primary-foreground/30 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:border-primary-foreground/50",
         // Accent gradient button

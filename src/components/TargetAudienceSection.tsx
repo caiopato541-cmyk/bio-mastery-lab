@@ -1,5 +1,6 @@
 import React from "react";
 import { Check, Target } from "lucide-react";
+import { AnimateOnScroll } from "@/hooks/useScrollAnimation";
 
 export const TargetAudienceSection: React.FC = () => {
   const forWho = [
@@ -35,12 +36,14 @@ export const TargetAudienceSection: React.FC = () => {
             
             <ul className="space-y-4">
               {forWho.map((item, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                    <Check className="w-4 h-4 text-primary" />
-                  </div>
-                  <span className="text-foreground font-medium text-lg">{item}</span>
-                </li>
+                <AnimateOnScroll key={index} delay={index * 80}>
+                  <li className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <Check className="w-4 h-4 text-primary" />
+                    </div>
+                    <span className="text-foreground font-medium text-lg">{item}</span>
+                  </li>
+                </AnimateOnScroll>
               ))}
             </ul>
           </div>

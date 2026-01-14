@@ -8,18 +8,18 @@ import logoTransparent from "@/assets/logo-bioemcasa-transparent.png";
 export const HeroSection: React.FC = () => {
   return (
     <section className="relative min-h-screen hero-gradient overflow-hidden">
-      {/* Animated background elements */}
+      {/* Animated background elements with parallax effect */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-32 h-32 opacity-10 animate-float">
+        <div className="absolute top-20 left-10 w-32 h-32 opacity-10 animate-float-slow">
           <DNAIcon className="w-full h-full text-primary-foreground" />
         </div>
-        <div className="absolute top-40 right-20 w-24 h-24 opacity-10 animate-float animate-delay-200">
+        <div className="absolute top-40 right-20 w-24 h-24 opacity-10 animate-float-fast animate-delay-200">
           <DNAIcon className="w-full h-full text-primary-foreground" />
         </div>
         <div className="absolute bottom-32 left-1/4 w-20 h-20 opacity-10 animate-float animate-delay-300">
           <DNAIcon className="w-full h-full text-primary-foreground" />
         </div>
-        <div className="absolute bottom-20 right-1/3 w-28 h-28 opacity-10 animate-float animate-delay-100">
+        <div className="absolute bottom-20 right-1/3 w-28 h-28 opacity-10 animate-float-slow animate-delay-100">
           <DNAIcon className="w-full h-full text-primary-foreground" />
         </div>
         
