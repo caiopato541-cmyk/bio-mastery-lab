@@ -97,7 +97,7 @@ export const HeroSection: React.FC = () => {
             </div>
 
             {/* Badge */}
-            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-6 py-2 rounded-full glass-dark border border-accent/30 whitespace-nowrap">
+            <div className="absolute bottom-6 right-0 translate-x-4 sm:translate-x-6 px-4 py-2 rounded-full glass-dark border border-accent/30 whitespace-nowrap shadow-lg">
               <span className="text-sm font-semibold text-accent">+500 alunos aprovados</span>
             </div>
           </div>
