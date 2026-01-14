@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { DNAIcon } from "@/components/icons/DNAIcon";
 import { ArrowRight } from "lucide-react";
-import vitorHugoHero from "@/assets/vitor-hugo-hero.jpg";
+import vitorHugoHero from "@/assets/vitor-hugo-hero-new.png";
 import logoTransparent from "@/assets/logo-bioemcasa-transparent.png";
 
 export const HeroSection: React.FC = () => {
@@ -81,24 +81,19 @@ export const HeroSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Professor Image */}
+        {/* Professor Image - integrated with background */}
         <div className="animate-slide-up opacity-0 animate-delay-200 flex-shrink-0 relative">
           <div className="relative">
-            {/* Decorative glow */}
-            <div className="absolute -inset-4 bg-accent/20 rounded-full blur-2xl" />
+            {/* Subtle glow behind */}
+            <div className="absolute -inset-8 bg-accent/10 rounded-full blur-3xl" />
             
-            {/* Image container */}
-            <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-primary-foreground/20 shadow-2xl">
+            {/* Image container - no frame, transparent background integration */}
+            <div className="relative w-72 h-auto sm:w-96 lg:w-[450px]">
               <img
                 src={vitorHugoHero}
                 alt="Prof. Vitor Hugo Rocha"
-                className="w-full h-full object-cover object-top"
+                className="w-full h-auto object-contain drop-shadow-2xl"
               />
-            </div>
-
-            {/* Badge */}
-            <div className="absolute bottom-6 right-0 translate-x-4 sm:translate-x-6 px-4 py-2 rounded-full glass-dark border border-accent/30 whitespace-nowrap shadow-lg">
-              <span className="text-sm font-semibold text-accent">+500 alunos aprovados</span>
             </div>
           </div>
         </div>
