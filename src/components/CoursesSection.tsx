@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Check, ArrowRight } from "lucide-react";
 import { DNAIcon } from "@/components/icons/DNAIcon";
-import { SynapseIcon } from "@/components/icons/SynapseIcon";
+import { BrainIcon } from "@/components/icons/BrainIcon";
 import { AnimateOnScroll } from "@/hooks/useScrollAnimation";
 import vitorHugoTablet from "@/assets/vitor-hugo-tablet.jpg";
 
@@ -114,7 +114,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
 export const CoursesSection: React.FC = () => {
   const courses: CourseCardProps[] = [
     {
-      icon: SynapseIcon,
+      icon: BrainIcon,
       title: "Med em Casa 2026 — SINAPSES + Revisões",
       subtitle: "Alto desempenho",
       description: "Alto desempenho com acompanhamento próximo até a prova.",
@@ -139,7 +139,7 @@ export const CoursesSection: React.FC = () => {
       checkoutUrl: "https://bioemcasa.eveclass.com/pt/comprar/produto/med-em-casa-2026-sinapses-revisoes-1767888055866",
     },
     {
-      icon: SynapseIcon,
+      icon: BrainIcon,
       title: "Med em Casa 2026 — SINAPSES",
       subtitle: "Raciocínio avançado",
       description: "Para quem já tem base e quer raciocínio avançado.",
