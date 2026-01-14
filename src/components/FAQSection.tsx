@@ -93,7 +93,7 @@ export const FAQSection: React.FC = () => {
               Ainda tem dúvidas? Fale diretamente com o professor!
             </p>
             <a
-              href="https://wa.me/5500000000000"
+              href="https://wa.me/5519996212930"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-medium transition-colors"
