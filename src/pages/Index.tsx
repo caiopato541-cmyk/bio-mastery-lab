@@ -6,6 +6,7 @@ import { TargetAudienceSection } from "@/components/TargetAudienceSection";
 import { CoursesSection } from "@/components/CoursesSection";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
+import { FAQSection } from "@/components/FAQSection";
 import { FinalCTASection } from "@/components/FinalCTASection";
 import { Footer } from "@/components/Footer";
 import { MobileStickyCTA } from "@/components/MobileStickyCTA";
@@ -25,6 +26,7 @@ const Index: React.FC = () => {
         <section id="depoimentos">
           <TestimonialsSection />
         </section>
+        <FAQSection />
         <FinalCTASection />
       </main>
       <Footer />
