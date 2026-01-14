@@ -58,7 +58,7 @@ export const AnimateOnScroll: React.FC<AnimateOnScrollProps> = ({
     <div
       ref={ref}
       className={`animate-on-scroll ${isVisible ? "animate-in" : ""} ${className}`}
-      style={{ animationDelay: `${delay}ms` }}
+      style={{ animationDelay: `${delay}ms`, height: '100%' }}
     >
       {children}
     </div>

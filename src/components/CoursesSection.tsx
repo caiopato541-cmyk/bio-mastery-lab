@@ -33,7 +33,7 @@ const CourseCard: React.FC<CourseCardProps> = ({
   discount,
   checkoutUrl,
 }) => (
-    <div className={featured ? "pt-5 relative" : ""}>
+    <div className={`h-full ${featured ? "pt-5 relative" : ""}`}>
     {featured && (
       <div className="absolute top-0 left-1/2 -translate-x-1/2 z-10">
         <span className="px-4 py-1 text-xs font-bold uppercase tracking-wider bg-accent text-accent-foreground rounded-full whitespace-nowrap">
@@ -238,9 +238,9 @@ export const CoursesSection: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto items-stretch">
           {courses.map((course, index) => (
-            <AnimateOnScroll key={index} delay={index * 100}>
+            <AnimateOnScroll key={index} delay={index * 100} className="h-full">
               <CourseCard {...course} />
             </AnimateOnScroll>
           ))}
