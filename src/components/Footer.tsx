@@ -17,7 +17,7 @@ export const Footer: React.FC = () => {
 
           <div className="flex items-center gap-6">
             <a 
-              href="https://wa.me/5500000000000" 
+              href="https://wa.me/5519996212930" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors"

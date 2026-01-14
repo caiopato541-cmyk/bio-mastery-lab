@@ -60,7 +60,7 @@ export const FinalCTASection: React.FC = () => {
             <p className="mt-6 text-sm text-muted-foreground">
               Dúvidas?{" "}
               <a 
-                href="https://wa.me/5500000000000" 
+                href="https://wa.me/5519996212930" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-accent hover:underline font-medium"
