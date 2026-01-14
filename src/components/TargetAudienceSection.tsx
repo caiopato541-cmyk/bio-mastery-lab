@@ -12,7 +12,7 @@ export const TargetAudienceSection: React.FC = () => {
 
   return (
     <section className="py-20 lg:py-32 bg-background">
-      <div className="container">
+      <div className="container px-4 sm:px-6">
         <div className="text-center mb-12">
           <span className="text-sm font-semibold text-accent uppercase tracking-wider">
             Para quem é
