@@ -118,6 +118,11 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Space Grotesk', system-ui, sans-serif;
   }
+
+  p, span, li, h1, h2, h3, h4, h5, h6, td, th {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
 }
 
 @layer components {

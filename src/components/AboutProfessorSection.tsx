@@ -46,7 +46,7 @@ export const AboutProfessorSection: React.FC = () => {
 
           {/* Content */}
           <div className="space-y-6 order-1 lg:order-2">
-            <div className="prose prose-lg text-muted-foreground space-y-4 break-words max-w-full [&>p]:max-w-full overflow-hidden">
+            <div className="text-muted-foreground space-y-4">
               <p className="text-xl leading-relaxed">
                 Eu sou o <span className="text-foreground font-semibold">Vitor Hugo</span>, professor de Biologia há mais de <span className="text-primary font-semibold">10 anos</span> e fundador do Bio em Casa.
               </p>

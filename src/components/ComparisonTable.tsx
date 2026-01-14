@@ -26,7 +26,7 @@ export const ComparisonTable: React.FC = () => {
 
   return (
     <section className="py-16 lg:py-24 bg-muted/30">
-      <div className="container">
+      <div className="container px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <h3 className="text-2xl lg:text-3xl font-bold text-foreground text-center mb-8 font-display">
             Compare os cursos
