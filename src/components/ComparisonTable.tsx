@@ -38,7 +38,6 @@ export const ComparisonTable: React.FC = () => {
               <thead>
                 <tr className="hero-gradient text-primary-foreground">
                   <th className="text-left p-4 font-semibold">Curso</th>
-                  <th className="text-left p-4 font-semibold">Ideal para quem</th>
                   <th className="text-left p-4 font-semibold">Diferencial</th>
                 </tr>
               </thead>
@@ -49,7 +48,6 @@ export const ComparisonTable: React.FC = () => {
                     className="border-t border-border hover:bg-muted/50 transition-colors"
                   >
                     <td className="p-4 font-semibold text-foreground">{course.name}</td>
-                    <td className="p-4 text-muted-foreground">{course.idealFor}</td>
                     <td className="p-4">
                       <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
                         {course.differential}
@@ -64,12 +62,9 @@ export const ComparisonTable: React.FC = () => {
           {/* Mobile cards */}
           <div className="md:hidden space-y-4">
             {courses.map((course, index) => (
-              <div key={index} className="p-4 rounded-xl bg-card border border-border">
-                <h4 className="font-bold text-foreground mb-2">{course.name}</h4>
-                <p className="text-sm text-muted-foreground mb-2">
-                  <span className="font-medium">Para:</span> {course.idealFor}
-                </p>
-                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary">
+              <div key={index} className="p-4 rounded-xl bg-card border border-border flex items-center justify-between gap-4">
+                <h4 className="font-bold text-foreground">{course.name}</h4>
+                <span className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-primary/10 text-primary whitespace-nowrap">
                   {course.differential}
                 </span>
               </div>
