@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { DNAIcon } from "@/components/icons/DNAIcon";
 import { ArrowRight } from "lucide-react";
-import vitorHugoHero from "@/assets/vitor-hugo-hero-new.png";
+import vitorHugoHero from "@/assets/vitor-hugo-hero-tablet.png";
 import logoTransparent from "@/assets/logo-bioemcasa-transparent.png";
 
 export const HeroSection: React.FC = () => {
