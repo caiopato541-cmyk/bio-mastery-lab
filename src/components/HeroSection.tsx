@@ -88,15 +88,13 @@ export const HeroSection: React.FC = () => {
             <div className="absolute -inset-12 bg-accent/20 rounded-full blur-3xl" />
             <div className="absolute -inset-8 bg-primary-foreground/10 rounded-full blur-2xl" />
             
-            {/* Image container - larger size with blend effect */}
+            {/* Image container - larger size with enhanced shadows */}
             <div className="relative w-64 h-auto sm:w-80 lg:w-[420px]">
               <img
                 src={vitorHugoHero}
                 alt="Prof. Vitor Hugo Rocha"
-                className="w-full h-auto object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)] mix-blend-luminosity opacity-95 hover:mix-blend-normal hover:opacity-100 transition-all duration-500"
+                className="w-full h-auto object-contain drop-shadow-[0_25px_60px_rgba(0,0,0,0.4)]"
               />
-              {/* Overlay gradient for seamless integration */}
-              <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent pointer-events-none rounded-b-3xl" />
             </div>
           </div>
         </div>
