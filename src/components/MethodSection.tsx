@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import { DNAIcon } from "@/components/icons/DNAIcon";
 import { SynapseIcon } from "@/components/icons/SynapseIcon";
 import { RevisionIcon } from "@/components/icons/RevisionIcon";
+import { AnimateOnScroll } from "@/hooks/useScrollAnimation";
 import vitorHugoDna from "@/assets/vitor-hugo-dna.jpg";
 
 export const MethodSection: React.FC = () => {
@@ -68,29 +69,30 @@ export const MethodSection: React.FC = () => {
 
         <div className="grid md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
           {pillars.map((pillar, index) => (
-            <div
-              key={index}
-              className="group relative p-6 sm:p-8 rounded-2xl bg-card card-shadow hover:elevated-shadow transition-all duration-300 hover:-translate-y-2 border border-border overflow-hidden"
-            >
-              {/* Icon */}
-              <div className={`w-20 h-20 rounded-2xl ${pillar.bgColor} flex items-center justify-center mb-6 transition-transform group-hover:scale-110`}>
-                <pillar.icon className={`w-12 h-12 ${pillar.color}`} />
+            <AnimateOnScroll key={index} delay={index * 100}>
+              <div
+                className="group relative p-6 sm:p-8 rounded-2xl bg-card card-shadow hover:elevated-shadow transition-all duration-300 hover:-translate-y-2 border border-border overflow-hidden card-shine h-full"
+              >
+                {/* Icon */}
+                <div className={`w-20 h-20 rounded-2xl ${pillar.bgColor} flex items-center justify-center mb-6 transition-transform group-hover:scale-110`}>
+                  <pillar.icon className={`w-12 h-12 ${pillar.color}`} />
+                </div>
+
+                {/* Content */}
+                <h3 className="text-2xl font-bold text-foreground font-display mb-1">
+                  {pillar.title}
+                </h3>
+                <p className={`text-sm font-semibold ${pillar.color} mb-4`}>
+                  {pillar.subtitle}
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  {pillar.description}
+                </p>
+
+                {/* Decorative line */}
+                <div className={`absolute bottom-0 left-8 right-8 h-1 rounded-full ${pillar.bgColor} opacity-0 group-hover:opacity-100 transition-opacity`} />
               </div>
-
-              {/* Content */}
-              <h3 className="text-2xl font-bold text-foreground font-display mb-1">
-                {pillar.title}
-              </h3>
-              <p className={`text-sm font-semibold ${pillar.color} mb-4`}>
-                {pillar.subtitle}
-              </p>
-              <p className="text-muted-foreground leading-relaxed">
-                {pillar.description}
-              </p>
-
-              {/* Decorative line */}
-              <div className={`absolute bottom-0 left-8 right-8 h-1 rounded-full ${pillar.bgColor} opacity-0 group-hover:opacity-100 transition-opacity`} />
-            </div>
+            </AnimateOnScroll>
           ))}
         </div>
 

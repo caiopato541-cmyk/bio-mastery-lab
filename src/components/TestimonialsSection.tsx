@@ -76,13 +76,13 @@ export const TestimonialsSection: React.FC = () => {
           <div className="relative bg-primary-foreground/10 backdrop-blur-sm rounded-2xl p-6 sm:p-8 lg:p-12 border border-primary-foreground/20 overflow-hidden">
             <Quote className="absolute top-6 left-6 w-12 h-12 text-accent/30" />
             
-            <div className="relative z-10">
+            <div className="relative z-10 transition-opacity duration-300">
               <p className="text-lg sm:text-xl lg:text-2xl text-primary-foreground/90 leading-relaxed mb-8 italic break-words">
                 "{testimonials[activeIndex].content}"
               </p>
 
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center">
+                <div className="w-14 h-14 rounded-full bg-accent/20 flex items-center justify-center transition-transform duration-300 hover:scale-110">
                   <span className="text-lg font-bold text-accent">
                     {testimonials[activeIndex].initials}
                   </span>
