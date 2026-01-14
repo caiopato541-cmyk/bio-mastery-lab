@@ -16,7 +16,7 @@ export const AboutProfessorSection: React.FC = () => {
           </h2>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto w-full">
           {/* Professor image */}
           <div className="relative order-2 lg:order-1 overflow-hidden">
             <div className="aspect-[4/5] rounded-2xl overflow-hidden elevated-shadow">
@@ -45,7 +45,7 @@ export const AboutProfessorSection: React.FC = () => {
           </div>
 
           {/* Content */}
-          <div className="space-y-6 order-1 lg:order-2">
+          <div className="space-y-6 order-1 lg:order-2 min-w-0 overflow-hidden">
             <div className="text-muted-foreground space-y-4">
               <p className="text-xl leading-relaxed">
                 Eu sou o <span className="text-foreground font-semibold">Vitor Hugo</span>, professor de Biologia há mais de <span className="text-primary font-semibold">10 anos</span> e fundador do Bio em Casa.

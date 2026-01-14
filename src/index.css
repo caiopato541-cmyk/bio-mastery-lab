@@ -123,6 +123,10 @@
     overflow-wrap: break-word;
     word-wrap: break-word;
   }
+
+  .grid > * {
+    min-width: 0;
+  }
 }
 
 @layer components {
