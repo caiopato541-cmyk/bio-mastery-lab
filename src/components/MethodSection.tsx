@@ -101,9 +101,11 @@ export const MethodSection: React.FC = () => {
             <span className="text-muted-foreground">Claro o suficiente para qualquer estudante dedicado.</span>
           </p>
 
-          <Button variant="default" size="lg" className="group">
-            Quero aprender com método
-            <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+          <Button variant="default" size="lg" className="group" asChild>
+            <a href="#cursos">
+              Quero aprender com método
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </a>
           </Button>
         </div>
       </div>

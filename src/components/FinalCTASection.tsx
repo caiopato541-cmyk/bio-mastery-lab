@@ -58,7 +58,15 @@ export const FinalCTASection: React.FC = () => {
             </div>
 
             <p className="mt-6 text-sm text-muted-foreground">
-              Dúvidas? Entre em contato pelo WhatsApp
+              Dúvidas?{" "}
+              <a 
+                href="https://wa.me/5500000000000" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-accent hover:underline font-medium"
+              >
+                Entre em contato pelo WhatsApp
+              </a>
             </p>
           </div>
         </div>
