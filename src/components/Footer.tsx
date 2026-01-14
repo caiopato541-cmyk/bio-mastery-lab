@@ -12,10 +12,18 @@ export const Footer: React.FC = () => {
           </div>
 
           <p className="text-sm text-primary-foreground/70 text-center">
-            © 2024 Bio em Casa - Método do Prof. Vitor Hugo Rocha. Todos os direitos reservados.
+            © 2025 Bio em Casa - Método do Prof. Vitor Hugo Rocha. Todos os direitos reservados.
           </p>
 
           <div className="flex items-center gap-6">
+            <a 
+              href="https://wa.me/5500000000000" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+            >
+              WhatsApp
+            </a>
             <a href="#" className="text-sm text-primary-foreground/70 hover:text-primary-foreground transition-colors">
               Termos de Uso
             </a>

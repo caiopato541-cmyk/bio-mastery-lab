@@ -136,9 +136,11 @@ export const TestimonialsSection: React.FC = () => {
 
           {/* CTA after testimonials */}
           <div className="mt-12 text-center">
-            <Button variant="hero" size="lg" className="group">
-              Se funcionou para eles, quero começar também
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <Button variant="hero" size="lg" className="group" asChild>
+              <a href="#cursos">
+                Se funcionou para eles, quero começar também
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </a>
             </Button>
           </div>
         </div>

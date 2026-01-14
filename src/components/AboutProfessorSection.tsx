@@ -92,9 +92,11 @@ export const AboutProfessorSection: React.FC = () => {
               </p>
             </blockquote>
 
-            <Button variant="default" size="lg" className="w-full sm:w-auto group mt-6">
-              Quero estudar com o Prof. Vitor Hugo
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            <Button variant="default" size="lg" className="w-full sm:w-auto group mt-6" asChild>
+              <a href="#cursos">
+                Quero estudar com o Prof. Vitor Hugo
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </a>
             </Button>
           </div>
         </div>
