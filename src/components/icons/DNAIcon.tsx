@@ -7,106 +7,53 @@ interface DNAIconProps {
 export const DNAIcon: React.FC<DNAIconProps> = ({ className }) => (
   <svg
     className={className}
-    viewBox="0 0 100 200"
+    viewBox="0 0 40 100"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    {/* Top cap - curved ends */}
+    {/* Top cap */}
     <path
-      d="M20 20 C20 10 35 5 50 5 C65 5 80 10 80 20"
+      d="M8 12 C8 6 16 3 20 3 C24 3 32 6 32 12"
       stroke="currentColor"
-      strokeWidth="8"
+      strokeWidth="2.5"
       strokeLinecap="round"
       fill="none"
     />
     
-    {/* First X crossing */}
+    {/* Left helix strand */}
     <path
-      d="M20 20 C20 35 80 35 80 50"
+      d="M8 12 C8 22 32 22 32 32 C32 42 8 42 8 52 C8 62 32 62 32 72 C32 82 8 82 8 88"
       stroke="currentColor"
-      strokeWidth="8"
-      strokeLinecap="round"
-      fill="none"
-    />
-    <path
-      d="M80 20 C80 35 20 35 20 50"
-      stroke="currentColor"
-      strokeWidth="8"
+      strokeWidth="2.5"
       strokeLinecap="round"
       fill="none"
     />
     
-    {/* Second X crossing */}
+    {/* Right helix strand */}
     <path
-      d="M20 50 C20 65 80 65 80 80"
+      d="M32 12 C32 22 8 22 8 32 C8 42 32 42 32 52 C32 62 8 62 8 72 C8 82 32 82 32 88"
       stroke="currentColor"
-      strokeWidth="8"
-      strokeLinecap="round"
-      fill="none"
-    />
-    <path
-      d="M80 50 C80 65 20 65 20 80"
-      stroke="currentColor"
-      strokeWidth="8"
+      strokeWidth="2.5"
       strokeLinecap="round"
       fill="none"
     />
     
-    {/* Third X crossing */}
+    {/* Bottom cap */}
     <path
-      d="M20 80 C20 95 80 95 80 110"
+      d="M8 88 C8 94 16 97 20 97 C24 97 32 94 32 88"
       stroke="currentColor"
-      strokeWidth="8"
-      strokeLinecap="round"
-      fill="none"
-    />
-    <path
-      d="M80 80 C80 95 20 95 20 110"
-      stroke="currentColor"
-      strokeWidth="8"
+      strokeWidth="2.5"
       strokeLinecap="round"
       fill="none"
     />
     
-    {/* Fourth X crossing */}
-    <path
-      d="M20 110 C20 125 80 125 80 140"
-      stroke="currentColor"
-      strokeWidth="8"
-      strokeLinecap="round"
-      fill="none"
-    />
-    <path
-      d="M80 110 C80 125 20 125 20 140"
-      stroke="currentColor"
-      strokeWidth="8"
-      strokeLinecap="round"
-      fill="none"
-    />
-    
-    {/* Fifth X crossing */}
-    <path
-      d="M20 140 C20 155 80 155 80 170"
-      stroke="currentColor"
-      strokeWidth="8"
-      strokeLinecap="round"
-      fill="none"
-    />
-    <path
-      d="M80 140 C80 155 20 155 20 170"
-      stroke="currentColor"
-      strokeWidth="8"
-      strokeLinecap="round"
-      fill="none"
-    />
-    
-    {/* Bottom cap - curved ends */}
-    <path
-      d="M20 170 C20 180 35 185 50 185 C65 185 80 180 80 170"
-      stroke="currentColor"
-      strokeWidth="8"
-      strokeLinecap="round"
-      fill="none"
-    />
+    {/* Horizontal bars (base pairs) */}
+    <line x1="12" y1="22" x2="28" y2="22" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+    <line x1="10" y1="32" x2="30" y2="32" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+    <line x1="10" y1="42" x2="30" y2="42" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+    <line x1="10" y1="52" x2="30" y2="52" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+    <line x1="10" y1="62" x2="30" y2="62" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+    <line x1="10" y1="72" x2="30" y2="72" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+    <line x1="12" y1="82" x2="28" y2="82" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
   </svg>
 );
