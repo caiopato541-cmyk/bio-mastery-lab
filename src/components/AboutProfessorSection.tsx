@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, GraduationCap, BookOpen, Users, Brain, Award } from "lucide-react";
+import { ArrowRight, GraduationCap, BookOpen, Users, Brain } from "lucide-react";
 import professorImage from "@/assets/vitor-hugo-professor.jpg";
 
 export const AboutProfessorSection: React.FC = () => {
@@ -29,19 +29,6 @@ export const AboutProfessorSection: React.FC = () => {
             {/* Decorative elements */}
             <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-accent/20 rounded-2xl blur-xl" />
             <div className="absolute -top-6 -left-6 w-32 h-32 bg-secondary/20 rounded-full blur-2xl" />
-            
-            {/* Stats badge */}
-            <div className="absolute -bottom-4 -right-4 lg:bottom-8 lg:-right-8 bg-card border border-border rounded-xl p-4 shadow-lg">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Award className="w-6 h-6 text-primary" />
-                </div>
-                <div>
-                  <p className="text-2xl font-bold text-foreground">+500</p>
-                  <p className="text-sm text-muted-foreground">alunos aprovados</p>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Content */}
