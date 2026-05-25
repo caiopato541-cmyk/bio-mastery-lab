@@ -35,7 +35,7 @@ const CoursePage: React.FC = () => {
       canonical.rel = "canonical";
       document.head.appendChild(canonical);
     }
-    canonical.href = `${window.location.origin}/cursos/${course.slug}`;
+    canonical.href = `${window.location.origin}/curso/${course.slug}`;
 
     window.scrollTo(0, 0);
 
