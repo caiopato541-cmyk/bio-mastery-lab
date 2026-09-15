@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BIO em CASA — Biologia não se decora. Se conecta.</title>
+<meta name="description" content="Mentoria de Biologia para vestibulandos de Medicina, com o professor Vitor Hugo. Organizamos a Biologia para você entender, conectar e saber usar o que aprendeu.">
+<link rel="icon" href="favicon.png" type="image/png">
+<meta name="theme-color" content="#171717">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="preload" as="image" href="assets/img/professor/hero-vitor.jpg">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="stylesheet" href="assets/css/site.css?v=20260915b">
+<link rel="stylesheet" href="assets/css/home.css?v=20260915c">
+</head>
+<body>
+
+<div class="progresso" aria-hidden="true"></div>
+
+<svg class="grain" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <filter id="grao"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"/></filter>
+  <rect width="100%" height="100%" filter="url(#grao)"/>
+</svg>
+
+<!-- ======================================================= HEADER ======= -->
+<header class="topo" data-stuck="0">
+  <a class="marca" href="index.html" aria-label="BIO em CASA — início">
+    <img class="marca__icone" src="assets/img/marca/icone.png" alt="" width="312" height="300">
+    <img class="marca__wordmark" src="assets/img/marca/wordmark.png" alt="" width="1053" height="150">
+  </a>
+
+  <nav class="nav" aria-label="Principal">
+    <a class="nav__link" href="index.html" aria-current="page"><span data-txt="Home">Home</span></a>
+    <a class="nav__link" href="professor.html"><span data-txt="O Professor">O Professor</span></a>
+    <a class="nav__link" href="cursos.html"><span data-txt="Cursos">Cursos</span></a>
+    <a class="nav__link" href="enem.html"><span data-txt="ENEM">ENEM</span></a>
+    <a class="nav__link" href="blog.html"><span data-txt="Blog">Blog</span></a>
+    <a class="btn btn--pill" href="https://eveclass.com/pt" target="_blank" rel="noopener">Sou aluno</a>
+  </nav>
+
+  <button class="menu-btn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="gaveta">
+    <i></i><i></i>
+  </button>
+</header>
+
+<div class="gaveta" id="gaveta">
+  <a href="index.html"     style="--i:0">Home</a>
+  <a href="professor.html" style="--i:1">O Professor</a>
+  <a href="cursos.html"    style="--i:2">Cursos</a>
+  <a href="enem.html"      style="--i:3">ENEM</a>
+  <a href="blog.html"      style="--i:4">Blog</a>
+  <a href="https://eveclass.com/pt" target="_blank" rel="noopener"              style="--i:5">Sou aluno</a>
+</div>
+
+<main>
+
+<!-- ============================================ 01 · HERO / MOMENTO FOCAL -->
+<section class="hero-wrap" id="hero">
+  <div class="hero-palco">
+
+    <div class="ambient" aria-hidden="true"><span class="a1"></span><span class="a2"></span></div>
+
+    <!-- motivo orgânico: metade esquerda do MARK real (não aproximação
+         desenhada) — cortado em resolução nativa a partir do arquivo
+         original do logo (959×921px antes do corte), sangrando pela borda
+         direita, atrás da foto do professor. Aprovado pelo Caio depois de
+         um teste comparativo (opções A–D); esta é a opção B. -->
+    <img class="motivo" src="assets/img/marca/mark-metade.png" alt=""
+         width="479" height="921" aria-hidden="true">
+
+    <!-- A HÉLICE: nunca trocar por imagem — sempre redesenhada (helice.js) -->
+    <canvas id="helice" aria-hidden="true"></canvas>
+
+    <div class="hero-grade env">
+
+      <div class="hero-texto">
+
+        <!-- beat 01 -->
+        <div class="beat" data-ativo>
+          <span class="pilula">Para vestibulandos de Medicina</span>
+          <p class="beat__kicker">Chega de Biologia de Gavetas.</p>
+          <h1>Biologia não se decora. <b>Se conecta.</b></h1>
+          <p>Você já estuda muito, mas ainda trava nas questões. A gente organiza a Biologia
+             pra você entender, conectar e saber usar o que aprendeu, com o professor Vitor Hugo.</p>
+          <div class="beat__acoes">
+            <a class="btn btn--solido" href="cursos.html">Conhecer o Método BC <span class="seta" aria-hidden="true">→</span></a>
+            <a class="link-seta" href="cursos.html#calendario">Calendário de Revisões 2026 <i aria-hidden="true">→</i></a>
+          </div>
+          <p class="beat__aspas">“Quando a Biologia faz sentido, a prova muda.”</p>
+        </div>
+
+        <!-- beat 02 -->
+        <div class="beat">
+          <span class="olho">O inimigo</span>
+          <h2>O problema não é falta de estudo. É <span class="gaveta-termo">Biologia de Gavetas</span>.</h2>
+          <p>Bioquímica numa gaveta. Genética em outra. Fisiologia numa terceira. Cada assunto
+             guardado separado do outro. E a questão da prova, que cobra os três de uma vez,
+             não abre nenhuma delas.</p>
+          <div class="beat__acoes">
+            <a class="link-seta" href="#trilha">Ver a trilha de estudos <i aria-hidden="true">↓</i></a>
+          </div>
+        </div>
+
+        <!-- beat 03 -->
+        <div class="beat">
+          <span class="olho">A virada</span>
+          <h2>Não organizamos apenas o conteúdo. <b>Organizamos o caminho do aluno.</b></h2>
+          <p>Você não precisa de mais Biologia acumulada. Precisa que a Biologia que você já tem
+             pare de ficar solta, com o professor do seu lado, do primeiro assunto até a prova.</p>
+          <div class="beat__acoes">
+            <a class="btn btn--solido" href="cursos.html">Ver o Calendário 2026 <span class="seta" aria-hidden="true">→</span></a>
+            <a class="link-seta" href="professor.html">Conhecer o professor <i aria-hidden="true">→</i></a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="hero-obj">
+        <figure class="hero-foto">
+          <img src="assets/img/professor/hero-vitor.jpg" alt="O professor Vitor Hugo, de perfil, em estúdio"
+               width="900" height="1350" fetchpriority="high">
+          <figcaption>
+            <strong>Prof. Vitor Hugo</strong>
+            <span>Criador do Método BC</span>
+          </figcaption>
+        </figure>
+      </div>
+
+    </div>
+
+    <p class="hero-rolar">role e veja a Biologia se conectar <i aria-hidden="true">↓</i></p>
+  </div>
+</section>
+
+<!-- ==================================================== 02 · RESPIRO ===== -->
+<section class="respiro env">
+  <div>
+    <span class="olho" data-revelar>A pergunta</span>
+    <p data-revelar style="--atraso:120ms">Você sabe essa matéria.<br><b>Então por que errou essa questão?</b></p>
+  </div>
+</section>
+
+<!-- ======================================== 03 · TRILHA DE ESTUDOS ======= -->
+<section class="trilha-wrap" id="trilha" aria-labelledby="trilha-tit">
+  <div class="trilha-palco">
+    <div class="ambient" aria-hidden="true"><span class="a1"></span><span class="a2"></span></div>
+
+    <div class="trilha-topo">
+      <span class="olho">O conteúdo</span>
+      <h2 id="trilha-tit">Da célula ao vestibular, sem pular etapa.</h2>
+      <span class="subtit">Cada assunto conversa com o anterior — Biologia não se decora, se conecta.</span>
+    </div>
+
+    <!-- peças montadas por trilha.js (motor scroll-scene-build) -->
+    <div class="pecas" id="pecas"></div>
+  </div>
+</section>
+
+<!-- ================================================ 04 · DEPOIMENTOS ===== -->
+<section class="sec provas env" aria-labelledby="provas-tit">
+  <div class="provas__topo">
+    <div>
+      <span class="olho" data-revelar>Quem já passou por aqui</span>
+      <h2 id="provas-tit" data-revelar style="--atraso:80ms">O que muda não é só a nota.</h2>
+    </div>
+    <p class="texto medida-curta" data-revelar style="--atraso:160ms">
+      Mensagens reais que os alunos mandaram para o professor depois da prova.
+      Transcritas aqui sem nome, foto ou telefone.
+    </p>
+  </div>
+
+  <div class="provas__grade">
+
+    <div class="provas__col">
+      <blockquote class="balao balao--destaque" data-revelar>
+        <p>“Antes, Biologia era uma das minhas matérias <em>terroristas</em>. Agora faz parte das legais.”</p>
+        <footer class="balao__pe">Depois de um ano de curso</footer>
+      </blockquote>
+
+      <blockquote class="balao" data-revelar style="--atraso:120ms">
+        <p>“Prof, vc arrasa mesmo. Discursivas de Bio gabaritadas na Famema.”</p>
+        <p>“Nunca tinha me acontecido antes.”</p>
+        <footer class="balao__pe">FAMEMA</footer>
+      </blockquote>
+
+      <blockquote class="balao" data-revelar style="--atraso:200ms">
+        <p>“Caiu adaptações de plantas.”</p>
+        <p>“Coisa que você falou na aula de revisão.”</p>
+        <p>“Não foi problema biologia, não foi mesmo!”</p>
+        <footer class="balao__pe">Depois da prova</footer>
+      </blockquote>
+    </div>
+
+    <div class="provas__col">
+      <blockquote class="balao" data-revelar style="--atraso:60ms">
+        <p>“Eu revisei as anotações da Unicamp e gabaritei biologia na prova de ontem!”</p>
+        <p>“Fiquei com 76 acertos.”</p>
+        <footer class="balao__pe">UNICAMP</footer>
+      </blockquote>
+
+      <blockquote class="balao" data-revelar style="--atraso:140ms">
+        <p>“Caiu splicing alternativo na Famema. Só sabia por causa de você.”</p>
+        <p>“Caiu equilíbrio gênico, que revisamos semana passada.”</p>
+        <footer class="balao__pe">FAMEMA</footer>
+      </blockquote>
+
+      <blockquote class="balao" data-revelar style="--atraso:220ms">
+        <p>“Ontem na Unifesp caiu sobre splicing e eu lembrei na hora de você explicando. Sua revisão foi incrível!”</p>
+        <footer class="balao__pe">UNIFESP</footer>
+      </blockquote>
+    </div>
+
+    <div class="provas__col">
+      <blockquote class="balao balao--destaque" data-revelar style="--atraso:100ms">
+        <p>“É renovador, é contagiante e <em>transmite sentido</em> para a fase em que estamos vivendo.”</p>
+        <footer class="balao__pe">Fim do ano letivo</footer>
+      </blockquote>
+
+      <blockquote class="balao" data-revelar style="--atraso:180ms">
+        <p>“Sabe aquele esquema do nucleotídeo que vc jurava que ia cair? Caiu hj na Unesp.”</p>
+        <footer class="balao__pe">UNESP</footer>
+      </blockquote>
+
+      <blockquote class="balao" data-revelar style="--atraso:260ms">
+        <p>“Fiz Famema hoje e fiz todas de bio muito segura.”</p>
+        <footer class="balao__pe">FAMEMA</footer>
+      </blockquote>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================================================ FRASE-IMAGEM ========= -->
+<figure class="mood-banda" data-revelar-img>
+  <img src="assets/img/home/mood-biologia.jpg" alt="Folhas em close, com a frase: Biologia nunca fez tanto sentido." width="1920" height="1080" loading="lazy">
+</figure>
+
+<!-- ================================================ 05 · CALENDÁRIO ====== -->
+<section class="sec chamada env" aria-labelledby="chamada-tit">
+  <div class="chamada__caixa" data-revelar>
+    <div>
+      <span class="pilula">Planejamento de revisões</span>
+      <h2 id="chamada-tit" style="margin-top:1.1rem">Calendário das Revisões 2026</h2>
+      <p class="texto medida">
+        Setembro a dezembro, aulão por aulão, na data certa de cada vestibular.
+        Todos os pacotes incluem metodologia BC, guias de revisão, lista de exercícios
+        e análise de incidências dos últimos 5 anos.
+      </p>
+      <div class="chamada__acoes">
+        <a class="btn btn--solido" href="cursos.html#pacotes">Ver pacotes e datas <span class="seta" aria-hidden="true">→</span></a>
+        <a class="link-seta" href="cursos.html#legenda">Como ler o calendário <i aria-hidden="true">→</i></a>
+      </div>
+    </div>
+
+    <div class="chamada__meses">
+      <div class="mes"><b>Setembro</b><span>Início das revisões</span></div>
+      <div class="mes"><b>Outubro</b><span>Mês intenso de revisões</span></div>
+      <div class="mes"><b>Novembro</b><span>Objetivas, discursivas e 2ªs fases</span></div>
+      <div class="mes"><b>Dezembro</b><span>Fechamento das revisões</span></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ======================================================= RODAPÉ ======== -->
+<footer class="rodape">
+  <div class="env">
+    <div class="rodape__grade">
+      <div>
+        <a class="marca" href="index.html" aria-label="BIO em CASA — início">
+          <img class="marca__icone marca__icone--rodape" src="assets/img/marca/icone.png" alt="" width="312" height="300">
+          <img class="marca__wordmark marca__wordmark--rodape" src="assets/img/marca/wordmark.png" alt="" width="1053" height="150">
+        </a>
+        <p class="rodape__frase">Quando a Biologia faz sentido, <b>a prova muda.</b></p>
+      </div>
+
+      <nav aria-label="Navegação do rodapé">
+        <h4>Navegar</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="professor.html">O Professor</a></li>
+          <li><a href="cursos.html">Cursos</a></li>
+          <li><a href="enem.html">ENEM</a></li>
+          <li><a href="blog.html">Blog</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <h4>Conteúdo</h4>
+        <ul>
+          <li><a href="blog.html#conteudo">Conteúdo</a></li>
+          <li><a href="blog.html#duvidas">Dúvidas</a></li>
+          <li><a href="blog.html#curiosidades">Curiosidades</a></li>
+          <li><a href="blog.html#aprovados">Aprovados</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="rodape__base">
+      <span>© <span id="ano">2026</span> BIO em CASA · Prof. Vitor Hugo · Biologia em qualquer lugar.</span>
+      <img class="rodape__selo" src="assets/img/marca/selo-bc.png" alt="Selo Metodologia BC" width="420" height="419" loading="lazy">
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site.js?v=20260915b" defer></script>
+<script src="assets/js/helice.js?v=20260915b" defer></script>
+<script src="assets/js/trilha.js?v=20260915c" defer></script>
+</body>
+</html>

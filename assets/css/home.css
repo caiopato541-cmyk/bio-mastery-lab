@@ -1,0 +1,383 @@
+/* ==========================================================================
+   BIO em CASA — Home
+   Capítulo 01 · Hero (hélice redesenhada no scroll)
+   Capítulo 02 · Trilha de Estudos (motor scroll-scene-build)
+   ========================================================================== */
+
+/* ==========================================================================
+   01 · HERO — momento focal
+   Três beats de copy sobre um único objeto contínuo (a hélice), que nunca é
+   trocado por imagem: é sempre redesenhado no canvas.
+   ========================================================================== */
+
+.hero-wrap{ position:relative; height:290vh; }
+
+.hero-palco{
+  position:sticky; top:0; height:100vh; min-height:620px;
+  overflow:hidden; display:flex; align-items:center;
+}
+
+/* o canvas ocupa o palco inteiro: nos estados 2 e 3 a hélice precisa poder
+   crescer muito além da coluna da foto */
+#helice{ position:absolute; inset:0; width:100%; height:100%; z-index:1; }
+
+.hero-grade{
+  position:relative; z-index:3;
+  display:grid; grid-template-columns:minmax(0,1.02fr) minmax(0,1fr);
+  align-items:center; gap:var(--gut);
+  padding-top:var(--nav-h);
+}
+
+/* --- coluna de texto: os três beats ocupam o mesmo espaço --- */
+.hero-texto{ position:relative; }
+.beat{ display:flex; flex-direction:column; align-items:flex-start; gap:1.15rem; }
+.beat + .beat{ margin-top:3rem; }
+
+/* Com JS os três beats empilham na MESMA célula de grade (não em absolute):
+   a coluna passa a ter a altura do beat mais alto e o conteúdo fica centrado
+   de verdade. Sem JS eles continuam empilhados e todo o texto é legível. */
+.tem-js .hero-texto{ display:grid; }
+.tem-js .beat + .beat{ margin-top:0; }
+.tem-js .beat{
+  grid-area:1 / 1; align-self:center;
+  opacity:0; transform:translateY(26px); pointer-events:none;
+  transition:opacity .6s var(--ease), transform .7s var(--ease), filter .7s var(--ease);
+  filter:blur(6px);
+}
+.tem-js .beat[data-ativo]{ opacity:1; transform:none; filter:none; pointer-events:auto; }
+
+.beat__kicker{ font-size:var(--t-small); font-weight:600; color:var(--ink-3); }
+.beat h1{ font-size:var(--t-hero); max-width:15ch; }
+.beat h1 b{ color:var(--mint); font-weight:700; }
+.beat h2{ font-size:var(--t-h2); max-width:17ch; }
+.beat h2 b{ color:var(--mint); font-weight:700; }
+.beat p{ color:var(--ink-2); font-size:var(--t-lead); line-height:1.72; max-width:46ch; }
+.beat__acoes{ display:flex; flex-wrap:wrap; align-items:center; gap:1.5rem; margin-top:.35rem; }
+.beat__aspas{ font-style:italic; font-size:var(--t-small); color:var(--ink-3); }
+
+/* “Biologia de Gavetas” — o inimigo nomeado, tratado como termo técnico */
+.gaveta-termo{
+  display:inline-block; font-family:var(--display); font-weight:700;
+  color:var(--ink); border-bottom:2px solid var(--cal-vest);
+}
+
+/* --- coluna da foto --- */
+.hero-obj{ position:relative; display:flex; justify-content:center; align-items:center; }
+.hero-foto{
+  position:relative; margin:0; width:min(340px,76%); aspect-ratio:34/46;
+  margin-left:22%;
+  border-radius:18px; overflow:hidden;
+  border:1px solid var(--line-2);
+  box-shadow:0 30px 80px rgba(0,0,0,.5);
+  will-change:transform,opacity;
+}
+.hero-foto img{ width:100%; height:100%; object-fit:cover; }
+.hero-foto::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg,transparent 55%,rgba(23,23,23,.88) 100%);
+}
+.hero-foto figcaption{
+  position:absolute; left:1.15rem; right:1.15rem; bottom:1rem; z-index:2;
+  display:flex; flex-direction:column; gap:.1rem;
+}
+.hero-foto strong{ font-family:var(--display); font-weight:700; font-size:1rem; }
+.hero-foto span{
+  font-size:.72rem; font-weight:600; letter-spacing:.07em;
+  text-transform:uppercase; color:var(--mint);
+}
+
+.hero-rolar{
+  position:absolute; left:0; right:0; bottom:1.6rem; z-index:4; text-align:center;
+  font-size:var(--t-label); letter-spacing:.1em; color:var(--ink-3);
+}
+.hero-rolar i{ display:inline-block; font-style:normal; animation:respira 2.6s ease-in-out infinite; }
+@keyframes respira{ 0%,100%{ transform:translateY(0); opacity:.6 } 50%{ transform:translateY(5px); opacity:1 } }
+
+/* ==========================================================================
+   02 · RESPIRO — uma pergunta, muito preto em volta
+   ========================================================================== */
+
+.respiro{
+  position:relative; min-height:62vh; display:grid; place-items:center;
+  text-align:center; padding-block:var(--sec);
+}
+.respiro p{
+  font-family:var(--display); font-weight:600;
+  font-size:clamp(1.45rem,1rem + 2.1vw,2.6rem); line-height:1.3;
+  max-width:18ch; color:var(--ink);
+}
+.respiro p b{ color:var(--mint); font-weight:600; }
+.respiro .olho{ margin-bottom:1.4rem; }
+
+/* ==========================================================================
+   03 · TRILHA DE ESTUDOS
+   Motor de scroll reaproveitado de mecanismos-testados/scroll-scene-build.
+   A lógica de scrub não muda; só o conteúdo e o acabamento das peças.
+   ========================================================================== */
+
+.trilha-wrap{ position:relative; height:400vh; }
+.trilha-palco{
+  position:sticky; top:0; height:100vh; min-height:640px;
+  overflow:hidden; display:flex; align-items:center; justify-content:center;
+}
+
+.trilha-topo{
+  position:absolute; top:11vh; left:50%; transform:translateX(-50%);
+  width:min(90vw,820px); text-align:center; z-index:5; pointer-events:none;
+}
+.trilha-topo h2{ font-size:var(--t-h2); }
+.trilha-topo .subtit{ display:block; margin-top:.7rem; }
+
+/* posicionado em absoluto (e não centrado pelo flex) para o palco ter uma
+   geometria previsível: o título ocupa o topo, as peças a faixa de baixo */
+.pecas{
+  position:absolute; top:34vh; left:50%; transform:translateX(-50%);
+  width:min(88vw,1220px); height:56vh; z-index:2;
+}
+
+.js .peca{ opacity:0; }
+
+/* o fio que liga as peças — a tese da marca desenhada: cada assunto
+   conversa com o anterior. Desenha-se conforme as peças aparecem. */
+.fio{ position:absolute; inset:0; width:100%; height:100%; overflow:visible; z-index:1; pointer-events:none; }
+.fio path{
+  fill:none; stroke:var(--green); stroke-width:1.4; stroke-linecap:round;
+  opacity:.52; stroke-dasharray:1; stroke-dashoffset:1;
+}
+
+.peca{
+  position:absolute; width:210px;
+  display:flex; flex-direction:column; gap:.8rem;
+  will-change:transform,opacity,filter;
+}
+.peca[data-size="feature"]{ width:280px; align-items:center; text-align:center; }
+
+.peca__art{
+  position:relative; width:118px; aspect-ratio:1; border-radius:16px; overflow:hidden;
+  box-shadow:0 0 0 1px var(--line), 0 20px 50px rgba(0,0,0,.45);
+  transition:box-shadow .6s var(--ease);
+}
+.peca[data-size="feature"] .peca__art{ width:166px; border-radius:20px; }
+.peca__art img{ width:100%; height:100%; object-fit:cover; transition:transform 1.1s var(--ease); }
+.peca__art::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg,transparent 52%,rgba(23,23,23,.78) 100%);
+}
+.peca:hover .peca__art{ box-shadow:0 0 0 1px var(--green-line), 0 26px 60px rgba(0,0,0,.55); }
+.peca:hover .peca__art img{ transform:scale(1.06); }
+
+/* numeral fantasma dentro da moldura */
+.peca__n{
+  position:absolute; top:.2rem; left:.5rem; z-index:2;
+  font-family:var(--display); font-weight:700; font-size:1.6rem;
+  color:var(--ink); opacity:.35; line-height:1;
+  transition:opacity .6s var(--ease), transform .6s var(--ease);
+}
+.peca[data-size="feature"] .peca__n{ font-size:2.2rem; }
+.peca:hover .peca__n{ opacity:.6; transform:translateY(-2px); }
+
+.peca h3{ font-size:1.06rem; }
+.peca[data-size="feature"] h3{ font-size:1.28rem; }
+.peca p{ font-size:.78rem; line-height:1.55; color:var(--ink-2); max-width:27ch; }
+
+/* peça-selo: a metodologia aparece como selo e nome, nunca como explicação */
+.peca--selo .peca__art{
+  width:134px; display:grid; place-items:center; border-radius:50%;
+  background:radial-gradient(circle at 40% 32%,rgba(127,217,151,.14),transparent 70%);
+  box-shadow:0 0 46px rgba(127,217,151,.14);
+}
+.peca--selo .peca__art::after{ display:none; }
+.peca--selo .peca__art img{ width:100%; height:100%; object-fit:contain; }
+.peca--selo:hover .peca__art{ box-shadow:0 0 60px rgba(127,217,151,.26); }
+.peca--selo .peca__n{ display:none; }
+
+/* Composição em ARCO: os cinco assuntos sobem até a peça de destaque e
+   voltam a descer. Não é um espalhamento decorativo — é a forma da trilha,
+   e é ela que o fio percorre. O selo do Método BC fica FORA do arco, embaixo
+   do centro: ele está por trás de todos os capítulos, não é um deles. */
+.peca[data-pos="feature"]   { left:50%; top:0;    transform:translateX(-50%); }
+.peca[data-pos="left"]      { left:0;   top:52%; }
+.peca[data-pos="mid-left"]  { left:19%; top:31%; }
+.peca[data-pos="mid-right"] { right:19%; top:27%; align-items:flex-end; text-align:right; }
+.peca[data-pos="right"]     { right:0;  top:47%;  align-items:flex-end; text-align:right; }
+.peca[data-pos="mid-right"] .peca__n,
+.peca[data-pos="right"] .peca__n{ left:auto; right:.5rem; }
+.peca[data-pos="low-center"]{ left:50%; bottom:0; transform:translateX(-50%); align-items:center; text-align:center; width:190px; }
+
+/* ==========================================================================
+   04 · DEPOIMENTOS — mensagens reais, redesenhadas no sistema do site
+   (nunca o print inteiro: só o trecho, sem nome, foto ou telefone)
+   ========================================================================== */
+
+.provas{ position:relative; }
+.provas__topo{
+  display:grid; grid-template-columns:minmax(0,1fr) minmax(0,.85fr);
+  gap:var(--gut); align-items:end; margin-bottom:clamp(2.5rem,5vw,4rem);
+}
+.provas__topo h2{ font-size:var(--t-h2); max-width:15ch; }
+
+.provas__grade{
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(1rem,1.6vw,1.5rem); align-items:start;
+}
+.provas__col{ display:flex; flex-direction:column; gap:clamp(1rem,1.6vw,1.5rem); }
+.provas__col:nth-child(2){ margin-top:clamp(1.5rem,4vw,3.5rem); }
+
+/* balão: a forma vem do WhatsApp de origem, o acabamento é do site */
+.balao{
+  position:relative; padding:1.35rem 1.4rem 1.15rem;
+  background:var(--bg-raise); border:1px solid var(--line);
+  border-radius:16px 16px 16px 4px;
+  transition:transform .5s var(--ease), border-color .5s var(--ease), box-shadow .5s var(--ease);
+}
+.balao::before{
+  content:""; position:absolute; left:-1px; bottom:-1px; width:14px; height:14px;
+  background:var(--bg-raise);
+  border-left:1px solid var(--line); border-bottom:1px solid var(--line);
+  border-radius:0 0 0 3px;
+  clip-path:polygon(0 0,100% 100%,0 100%);
+  transition:border-color .5s var(--ease);
+}
+.balao:hover{
+  transform:translateY(-4px); border-color:var(--green-line);
+  box-shadow:0 18px 44px rgba(0,0,0,.4);
+}
+.balao:hover::before{ border-color:var(--green-line); }
+.balao p{ font-size:.92rem; line-height:1.62; color:var(--ink); }
+.balao p + p{ margin-top:.5rem; }
+.balao__pe{
+  display:flex; align-items:center; gap:.55rem; margin-top:1rem;
+  font-size:var(--t-label); letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3);
+}
+.balao__pe::before{
+  content:""; width:5px; height:5px; border-radius:50%; background:var(--green); flex:none;
+}
+
+/* o depoimento de transformação recebe peso de citação */
+.balao--destaque{
+  background:linear-gradient(160deg,rgba(63,94,91,.32),var(--bg-raise) 62%);
+  border-color:var(--green-line);
+}
+.balao--destaque p{
+  font-family:var(--body); font-weight:600;
+  font-size:clamp(1.05rem,.9rem + .6vw,1.35rem); line-height:1.42;
+}
+.balao--destaque em{ color:var(--mint); font-style:normal; }
+
+/* ==========================================================================
+   FRASE-IMAGEM — respiro fotográfico entre depoimentos e a chamada final
+   ========================================================================== */
+
+.mood-banda{ position:relative; overflow:hidden; margin:clamp(2rem,5vw,4rem) 0; }
+.mood-banda img{
+  width:100%; height:clamp(260px,40vw,480px); object-fit:cover; display:block;
+}
+
+/* ==========================================================================
+   05 · CALENDÁRIO 2026 — chamada para o produto
+   ========================================================================== */
+
+.chamada{ position:relative; overflow:hidden; }
+.chamada__caixa{
+  position:relative; z-index:2;
+  display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:clamp(2rem,4vw,4rem); align-items:center;
+  padding:clamp(2rem,4.5vw,4rem);
+  background:linear-gradient(150deg,rgba(63,94,91,.4),rgba(28,28,28,.7) 58%);
+  border:1px solid var(--green-line); border-radius:24px;
+}
+.chamada h2{ font-size:var(--t-h2); max-width:16ch; margin-bottom:1rem; }
+.chamada__acoes{ display:flex; flex-wrap:wrap; gap:1.35rem; align-items:center; margin-top:1.85rem; }
+
+.chamada__meses{
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:.65rem;
+}
+.mes{
+  padding:.9rem 1rem; border-radius:12px;
+  background:rgba(23,23,23,.5); border:1px solid var(--line);
+  transition:border-color .45s var(--ease), transform .45s var(--ease);
+}
+.mes:hover{ border-color:var(--green-line); transform:translateY(-3px); }
+.mes b{
+  display:block; font-family:var(--display); font-size:1.02rem;
+  font-weight:700; color:var(--ink);
+}
+.mes span{ display:block; font-size:.75rem; color:var(--ink-3); margin-top:.15rem; }
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+
+@media (max-width:1000px){
+  .hero-grade{ grid-template-columns:1fr; gap:2.5rem; }
+  .hero-obj{ order:-1; }
+  .hero-foto{ margin-left:0; width:min(230px,52vw); }
+  .beat h1{ max-width:none; }
+  .provas__topo{ grid-template-columns:1fr; }
+  .provas__grade{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .chamada__caixa{ grid-template-columns:1fr; }
+}
+
+@media (max-width:760px){
+  /* Hero no mobile: o pin continua — o que muda é a COMPOSIÇÃO.
+     A hélice ocupa a metade de cima da tela e os três beats trocam embaixo
+     dela; a foto do professor sai do hero (ela reaparece adiante e na página
+     O Professor) para não disputar espaço vertical com a hélice. */
+  .hero-wrap{ height:250vh; }
+  .hero-palco{ height:100svh; min-height:0; }
+  .hero-grade{
+    grid-template-columns:1fr; grid-template-rows:1fr;
+    gap:0; padding-top:44vh; height:100%; align-items:center;
+  }
+  .hero-obj{ display:none; }
+  .motivo{ display:none; }  /* some junto com a foto: sem foto, sem sentido de "atrás dela" */
+  .hero-texto{ align-self:center; }
+  #helice{ z-index:1; }
+  .beat{ gap:.9rem; }
+  .beat p{ font-size:.9rem; }
+  .beat__acoes{ gap:1rem; }
+  .hero-rolar{ display:none; }
+
+  /* Trilha: sem pin, composição empilhada (mesmo fallback do mecanismo) */
+  .trilha-wrap{ height:auto; }
+  .trilha-palco{ position:relative; height:auto; min-height:0; display:block; padding:5rem 0 3rem; }
+  .trilha-topo{ position:relative; top:auto; left:auto; transform:none; width:auto; padding:0 var(--gut); margin-bottom:3rem; }
+  /* .pecas é `position:absolute` no desktop — sem este reset o palco do
+     capítulo fica sem altura e as peças saem do fluxo. */
+  .pecas{
+    position:relative; top:auto; left:auto; transform:none;
+    width:min(88vw,420px); height:auto; margin:0 auto;
+    display:flex; flex-direction:column; align-items:center; gap:2.75rem;
+  }
+  .peca,.peca[data-pos]{
+    position:relative !important; inset:auto !important; transform:none !important;
+    opacity:1 !important; filter:none !important;
+    width:100% !important; align-items:center !important; text-align:center !important;
+  }
+  .peca[data-pos] .peca__n{ left:.5rem; right:auto; }
+  .peca p{ max-width:32ch; }
+  .provas__grade{ grid-template-columns:1fr; }
+  .provas__col:nth-child(2){ margin-top:0; }
+  .chamada__meses{ grid-template-columns:1fr; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hero-wrap,.trilha-wrap{ height:auto; }
+  /* sem pin o palco fica alto; a hélice é desenhada uma vez e precisa ficar
+     na faixa de cima, junto do primeiro bloco de texto e da foto */
+  #helice{ inset:0 0 auto; height:min(74vh,620px); }
+  .hero-palco,.trilha-palco{ position:relative; height:auto; min-height:0; display:block; padding-block:5rem; }
+  .tem-js .beat{ position:relative; inset:auto; opacity:1; transform:none; filter:none; pointer-events:auto; }
+  .tem-js .beat + .beat{ margin-top:2.5rem; }
+  .trilha-topo{ position:relative; top:auto; left:auto; transform:none; width:auto; margin:0 auto 3rem; }
+  .pecas{
+    position:relative; top:auto; left:auto; transform:none;
+    width:min(88vw,760px); height:auto; margin:0 auto;
+    display:flex; flex-wrap:wrap; justify-content:center; gap:2.5rem;
+  }
+  .peca,.peca[data-pos]{
+    position:relative !important; inset:auto !important; transform:none !important;
+    opacity:1 !important; filter:none !important; width:230px !important;
+  }
+  .hero-rolar{ display:none; }
+}

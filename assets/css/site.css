@@ -1,0 +1,478 @@
+/* ==========================================================================
+   BIO em CASA — sistema base (tokens, shell, header, footer, componentes)
+   Design system aprovado: fundo #171717, verde de marca #7FD997,
+   display Baloo 2 + corpo Inter.
+   ========================================================================== */
+
+:root{
+  /* --- superfícies --- */
+  --bg:        #171717;
+  --bg-raise:  #1c1c1c;
+  --bg-sink:   #121212;
+
+  /* --- tinta --- */
+  --ink:       #F0EFE1;
+  --ink-2:     #B5B5AF;
+  /* A escala dimmed aprovada é #B5B5AF / #83786E / #675B53. Em texto pequeno,
+     #83786E dá 4.16:1 e #675B53 dá 2.73:1 sobre #171717 — ambos abaixo do
+     mínimo AA (4.5:1). A escala foi deslocada um degrau: --ink-3 abre
+     #83786E o mínimo necessário para passar (5.1:1) e os dois tons
+     aprovados seguem no sistema, agora reservados a texto grande e a
+     elementos decorativos. */
+  --ink-3:     #918579;
+  --ink-4:     #83786E;
+  --ink-5:     #675B53;
+
+  /* --- verde de marca --- */
+  --green:     #7FD997;
+  --mint:      #9FF6B5;
+  --petrol:    #3F5E5B;
+
+  /* --- linhas --- */
+  --line:      rgba(240,239,225,.09);
+  --line-2:    rgba(240,239,225,.16);
+  --green-soft:rgba(127,217,151,.12);
+  --green-line:rgba(127,217,151,.28);
+
+  /* --- legenda do Calendário (cores reais do carrossel, só aqui) --- */
+  --cal-obj:   #5AC9FC;   /* revisões objetivas  */
+  --cal-disc:  #FEE254;   /* revisões discursivas */
+  --cal-ambas: #69E892;   /* ambas                */
+  --cal-vest:  #FD8639;   /* datas de vestibular  */
+
+  /* --- tipografia --- */
+  --display: 'Baloo 2', 'Trebuchet MS', sans-serif;
+  --body:    'Inter', -apple-system, 'Segoe UI', sans-serif;
+
+  --t-hero:  clamp(2.35rem, 1.15rem + 3.6vw, 4.1rem);
+  --t-h2:    clamp(1.75rem, 1.05rem + 2.1vw, 2.85rem);
+  --t-h3:    clamp(1.15rem, .95rem + .7vw, 1.5rem);
+  --t-lead:  clamp(.95rem, .88rem + .28vw, 1.1rem);
+  --t-body:  .94rem;
+  --t-small: .8rem;
+  --t-label: .688rem;
+
+  /* --- ritmo --- */
+  --gut:     clamp(1.25rem, .4rem + 3vw, 3.5rem);
+  --max:     1280px;
+  --sec:     clamp(4rem, 2rem + 6.5vw, 7.5rem);
+
+  /* --- movimento --- */
+  --ease:    cubic-bezier(.16,1,.3,1);
+  --ease-io: cubic-bezier(.5,0,.2,1);
+  --nav-h:   86px;
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+
+/* `overflow-x: clip` — NUNCA `hidden`: hidden cria um contêiner de scroll
+   implícito no <body> e quebra silenciosamente todo `position:sticky`. */
+html{ overflow-x:clip; scroll-behavior:smooth; scroll-padding-top:calc(var(--nav-h) + 1.5rem); }
+body{
+  margin:0; overflow-x:clip;
+  background:var(--bg); color:var(--ink);
+  font-family:var(--body); font-size:var(--t-body); line-height:1.65;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+}
+img,svg,canvas{ display:block; max-width:100%; }
+a{ color:inherit; text-decoration:none; }
+h1,h2,h3,h4{ font-family:var(--display); font-weight:700; line-height:1.14; margin:0; letter-spacing:-.012em; }
+p{ margin:0; }
+ul{ margin:0; padding:0; list-style:none; }
+button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; }
+::selection{ background:var(--green); color:var(--bg); }
+
+:focus-visible{
+  outline:2px solid var(--mint); outline-offset:3px; border-radius:4px;
+}
+
+/* ==========================================================================
+   Atmosfera — grão + glow ambiente que deriva sozinho
+   ========================================================================== */
+
+.grain{
+  position:fixed; inset:0; z-index:80; pointer-events:none;
+  opacity:.05; mix-blend-mode:overlay;
+}
+
+.ambient{ position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0; }
+.ambient span{ position:absolute; border-radius:50%; will-change:transform; }
+.ambient .a1{
+  width:min(620px,58vw); aspect-ratio:1; top:-18%; right:-10%;
+  background:radial-gradient(circle,var(--petrol),transparent 70%);
+  filter:blur(100px); opacity:.5; animation:driftA 26s ease-in-out infinite;
+}
+.ambient .a2{
+  width:min(470px,46vw); aspect-ratio:1; bottom:-16%; left:-9%;
+  background:radial-gradient(circle,var(--green),transparent 70%);
+  filter:blur(110px); opacity:.15; animation:driftB 32s ease-in-out infinite;
+}
+@keyframes driftA{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(2.4vw,1.6vh) scale(1.08)} }
+@keyframes driftB{ 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-2vw,-2.2vh) scale(1.05)} }
+
+/* motivo orgânico da marca — metade esquerda do MARK real (não aproximação
+   desenhada), ampliada e sangrando pela borda direita, atrás da foto do
+   professor. Opacidade baixa de propósito: é atmosfera que se funde com o
+   glow ambiente, não um segundo elemento disputando a hélice (o momento
+   focal do Hero). Só em desktop — some junto com a foto no breakpoint
+   mobile (ver home.css, onde .hero-obj também some). */
+.motivo{
+  position:absolute; z-index:0; pointer-events:none;
+  top:-4vh; right:-13vw; width:min(620px,52vw); height:auto;
+  opacity:.09;
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+/* A barra encolhe no scroll SEM animar `height`: a altura da caixa é fixa e
+   quem encolhe é a faixa pintada (::before, via scaleY) enquanto o conteúdo
+   sobe por translate. Animar `height` aqui custava um quadro de ~66ms
+   exatamente no início do scroll — o pior momento possível. */
+.topo{
+  position:fixed; inset:0 0 auto; z-index:60; height:var(--nav-h);
+  display:flex; align-items:center; justify-content:space-between;
+  padding:0 var(--gut);
+  pointer-events:none;   /* a faixa transparente abaixo não bloqueia cliques */
+}
+.topo > *{ pointer-events:auto; }
+.topo::before{
+  content:""; position:absolute; inset:0; z-index:-1;
+  transform-origin:50% 0; opacity:0;
+  background:rgba(23,23,23,.82);
+  backdrop-filter:blur(14px) saturate(140%);
+  border-bottom:1px solid var(--line);
+  transition:transform .45s var(--ease), opacity .45s var(--ease);
+}
+.topo[data-stuck="1"]::before{ opacity:1; transform:scaleY(.767); }
+.topo > *{ transition:transform .45s var(--ease); }
+.topo[data-stuck="1"] > *{ transform:translateY(-10px); }
+
+/* Ícone + wordmark, dois arquivos (nunca reconstruído em fonte): "BIO EM
+   CASA" na arte usa Scale VF (tipografia real da identidade), que não está
+   disponível pra texto vivo no navegador (ver paleta-e-tipografia.md).
+   Baloo 2 é a substituta só onde o texto PRECISA ser vivo (títulos, corpo)
+   — no logo em si, sempre a imagem. O wordmark foi recomposto a partir das
+   duas linhas reais do lockup original ("BIO EM" + "CASA"), recortadas e
+   religadas lado a lado — mesmas letras, mesma fonte, só a DIAGRAMAÇÃO
+   muda de empilhada pra uma linha só, igual ao cabeçalho anterior. */
+.marca{ display:flex; align-items:center; gap:10px; }
+.marca__icone,.marca__wordmark{
+  width:auto; transform-origin:0 50%;
+  transition:transform .45s var(--ease);
+}
+.marca__icone{ height:34px; }
+.marca__wordmark{ height:17px; }
+.topo[data-stuck="1"] .marca__icone,
+.topo[data-stuck="1"] .marca__wordmark{ transform:scale(.82); }
+.marca__icone--rodape{ height:30px; }
+.marca__wordmark--rodape{ height:15px; }
+
+.nav{ display:flex; align-items:center; gap:clamp(1.1rem,2.2vw,2.25rem); }
+.nav__link{
+  position:relative; display:block; overflow:hidden;
+  font-size:var(--t-label); font-weight:600; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--ink-2); padding:.35rem 0;
+}
+/* deslocamento de texto: o rótulo sobe e um duplicado entra por baixo */
+/* .22s, não .5s: esse efeito passa o texto por uma máscara (metade sobe,
+   metade entra por baixo) — em 500ms a meia-frase cortada fica visível por
+   tempo suficiente pra parecer quebrado; rápido, "pisca" como um flip de
+   painel de embarque e ninguém enxerga o corte. */
+.nav__link span{ display:block; transition:transform .22s var(--ease); }
+.nav__link span::after{
+  content:attr(data-txt); position:absolute; left:0; top:100%;
+  color:var(--ink); white-space:nowrap;
+}
+.nav__link:hover span,
+.nav__link:focus-visible span{ transform:translateY(-100%); }
+.nav__link[aria-current="page"]{ color:var(--ink); }
+.nav__link[aria-current="page"]::before{
+  content:""; position:absolute; left:0; bottom:0; width:100%; height:1px;
+  background:var(--green);
+}
+
+/* ==========================================================================
+   Botões
+   ========================================================================== */
+
+.btn{
+  --sweep:var(--mint);
+  position:relative; display:inline-flex; align-items:center; gap:.6rem;
+  padding:.92rem 1.65rem; border-radius:10px; overflow:hidden; isolation:isolate;
+  font-size:var(--t-small); font-weight:700; letter-spacing:.045em;
+  text-transform:uppercase; white-space:nowrap;
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+.btn::before{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:var(--sweep); transform:translateX(-101%);
+  transition:transform .55s var(--ease);
+}
+.btn:hover::before,.btn:focus-visible::before{ transform:translateX(0); }
+.btn .seta{ transition:transform .45s var(--ease); }
+.btn:hover .seta{ transform:translateX(4px); }
+
+.btn--solido{ background:var(--green); color:var(--bg); }
+.btn--solido:hover{ box-shadow:0 12px 34px rgba(127,217,151,.22); transform:translateY(-2px); }
+
+.btn--pill{
+  background:var(--green); color:var(--bg); border-radius:100px;
+  padding:.7rem 1.35rem; font-size:var(--t-label);
+}
+.btn--pill:hover{ box-shadow:0 10px 26px rgba(127,217,151,.24); transform:translateY(-2px); }
+
+.btn--fantasma{
+  color:var(--ink); border:1px solid var(--line-2); --sweep:rgba(127,217,151,.1);
+}
+.btn--fantasma:hover{ border-color:var(--green-line); }
+
+/* link de texto com seta */
+.link-seta{
+  display:inline-flex; align-items:center; gap:.45rem;
+  font-size:var(--t-small); font-weight:600; letter-spacing:.02em; color:var(--ink);
+}
+.link-seta i{ font-style:normal; color:var(--mint); transition:transform .45s var(--ease); }
+.link-seta:hover i{ transform:translateX(5px); }
+.link-seta:hover{ color:var(--mint); }
+
+/* ==========================================================================
+   Estruturas de seção
+   ========================================================================== */
+
+.env{ width:min(100% - var(--gut)*2, var(--max)); margin-inline:auto; }
+.sec{ position:relative; padding-block:var(--sec); }
+/* seções encostadas não somam dois respiros — o intervalo entre elas é um só */
+.sec + .sec{ padding-top:0; }
+
+.olho{
+  display:block; font-size:var(--t-label); font-weight:700;
+  letter-spacing:.24em; text-transform:uppercase; color:var(--mint);
+  margin-bottom:.85rem;
+}
+.subtit{ color:var(--ink-3); font-style:italic; font-size:var(--t-small); }
+.texto{ color:var(--ink-2); font-size:var(--t-lead); line-height:1.72; }
+.medida{ max-width:56ch; }
+.medida-curta{ max-width:44ch; }
+
+.regua{ height:1px; background:var(--line); border:0; margin:0; }
+
+/* pílula de rótulo */
+.pilula{
+  display:inline-flex; align-items:center; gap:.5rem; width:fit-content;
+  padding:.45rem .9rem; border-radius:100px;
+  background:var(--green-soft); border:1px solid var(--green-line);
+  font-size:var(--t-label); font-weight:700; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--mint);
+}
+
+/* barra de progresso da página */
+.progresso{
+  position:fixed; top:0; left:0; height:2px; width:0%; z-index:70;
+  background:linear-gradient(90deg,var(--petrol),var(--green),var(--mint));
+  transform-origin:0 50%;
+}
+
+/* ==========================================================================
+   Revelação de apoio — movimento SECUNDÁRIO (nunca o momento principal)
+   ========================================================================== */
+
+.js [data-revelar]{
+  opacity:0; transform:translateY(18px);
+  transition:opacity .85s var(--ease), transform .85s var(--ease);
+  transition-delay:var(--atraso,0ms);
+}
+[data-revelar].visivel{ opacity:1; transform:none; }
+
+/* imagens entram com blur + translateY (padrão do estúdio, nunca só opacidade) */
+.js [data-revelar-img]{
+  opacity:0; transform:translateY(26px) scale(1.02); filter:blur(14px);
+  transition:opacity 1s var(--ease), transform 1.1s var(--ease), filter 1.1s var(--ease);
+  transition-delay:var(--atraso,0ms);
+}
+[data-revelar-img].visivel{ opacity:1; transform:none; filter:blur(0); }
+
+/* ==========================================================================
+   Moldura de imagem — a "janela" da marca
+   ========================================================================== */
+
+.moldura{
+  position:relative; overflow:hidden; border-radius:18px;
+  box-shadow:0 0 0 1px var(--line), 0 26px 64px rgba(0,0,0,.5);
+  background:var(--bg-sink);
+}
+.moldura img{ width:100%; height:100%; object-fit:cover; transition:transform 1.1s var(--ease); }
+.moldura::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg,transparent 52%,rgba(23,23,23,.85) 100%);
+}
+.moldura--viva:hover img{ transform:scale(1.05); }
+.moldura--viva{ transition:box-shadow .6s var(--ease); }
+.moldura--viva:hover{ box-shadow:0 0 0 1px var(--green-line), 0 32px 74px rgba(0,0,0,.55); }
+
+/* ==========================================================================
+   Rodapé
+   ========================================================================== */
+
+.rodape{
+  position:relative; border-top:1px solid var(--line);
+  padding:clamp(3rem,6vw,5rem) 0 2.25rem; background:var(--bg-sink);
+}
+.rodape__grade{
+  display:grid; gap:2.75rem;
+  grid-template-columns:minmax(0,1.5fr) repeat(2,minmax(0,1fr));
+}
+.rodape__frase{
+  font-family:var(--display); font-weight:600;
+  font-size:clamp(1.3rem,1rem + 1.2vw,1.9rem); line-height:1.25; color:var(--ink);
+  max-width:20ch; margin-top:1.15rem;
+}
+.rodape__frase b{ color:var(--mint); font-weight:600; }
+.rodape h4{
+  font-family:var(--body); font-size:var(--t-label); font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--ink-3); margin-bottom:1rem;
+}
+.rodape li + li{ margin-top:.6rem; }
+.rodape li a{ color:var(--ink-2); font-size:var(--t-small); transition:color .3s var(--ease); }
+.rodape li a:hover{ color:var(--mint); }
+.rodape__base{
+  display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between;
+  align-items:center; margin-top:3.25rem; padding-top:1.5rem;
+  border-top:1px solid var(--line);
+  font-size:var(--t-label); letter-spacing:.06em; color:var(--ink-3);
+}
+.rodape__selo{ width:64px; height:auto; opacity:.85; }
+
+/* ==========================================================================
+   Menu mobile
+   ========================================================================== */
+
+.menu-btn{ display:none; width:40px; height:40px; position:relative; z-index:62; }
+.menu-btn i{
+  position:absolute; left:9px; width:22px; height:1.5px; background:var(--ink);
+  transition:transform .45s var(--ease), opacity .3s var(--ease);
+}
+.menu-btn i:nth-child(1){ top:15px; }
+.menu-btn i:nth-child(2){ top:23px; }
+[data-menu="aberto"] .menu-btn i:nth-child(1){ transform:translateY(4px) rotate(45deg); }
+[data-menu="aberto"] .menu-btn i:nth-child(2){ transform:translateY(-4px) rotate(-45deg); }
+
+.gaveta{
+  position:fixed; inset:0; z-index:59; display:none;
+  flex-direction:column; justify-content:center; gap:.4rem;
+  padding:0 var(--gut); background:var(--bg);
+}
+.gaveta::before{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(120% 80% at 80% 10%,rgba(63,94,91,.5),transparent 65%);
+  pointer-events:none;
+}
+.gaveta a{
+  position:relative; font-family:var(--display); font-weight:700;
+  font-size:clamp(1.9rem,10vw,2.9rem); color:var(--ink);
+  padding:.35rem 0; border-bottom:1px solid var(--line);
+  opacity:0; transform:translateY(22px);
+}
+[data-menu="aberto"] .gaveta{ display:flex; }
+[data-menu="aberto"] .gaveta a{
+  animation:entraMenu .6s var(--ease) forwards;
+  animation-delay:calc(var(--i) * 70ms + 60ms);
+}
+@keyframes entraMenu{ to{ opacity:1; transform:none; } }
+[data-menu="aberto"]{ overflow:hidden; }
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+
+@media (max-width:900px){
+  :root{ --nav-h:68px; }
+  .nav{ display:none; }
+  .menu-btn{ display:block; }
+  .rodape__grade{ grid-template-columns:1fr 1fr; }
+  .rodape__grade > :first-child{ grid-column:1 / -1; }
+}
+@media (max-width:560px){
+  .rodape__grade{ grid-template-columns:1fr; }
+  .btn{ padding:.85rem 1.3rem; }
+}
+
+/* ==========================================================================
+   Movimento reduzido — conteúdo sempre visível, sem deslocamento grande
+   ========================================================================== */
+
+@media (prefers-reduced-motion:reduce){
+  html{ scroll-behavior:auto; }
+  *,*::before,*::after{
+    animation-duration:.001ms !important; animation-iteration-count:1 !important;
+    transition-duration:.001ms !important; scroll-behavior:auto !important;
+  }
+  [data-revelar],[data-revelar-img]{ opacity:1 !important; transform:none !important; filter:none !important; }
+  .ambient span{ animation:none; }
+  .gaveta a{ opacity:1; transform:none; }
+}
+
+/* título de seção padrão das páginas internas */
+.tit-secao{
+  font-size:var(--t-h2); max-width:18ch;
+  margin-bottom:clamp(2rem,4vw,3rem);
+}
+
+/* ==========================================================================
+   Alvos de toque
+   Links de texto (rodapé, links com seta, logo) ganham área de toque real.
+   A medida de ~44px vem do dedo, não do texto: vale para qualquer aparelho
+   sem ponteiro fino e também para telas estreitas, onde o dedo é a regra.
+   ========================================================================== */
+
+@media (hover:none), (max-width:760px){
+  .rodape li a{ display:inline-block; padding-block:.9rem; }
+  .rodape li + li{ margin-top:0; }
+  .link-seta{ padding-block:.72rem; }
+  .marca{ padding-block:.45rem; }
+  .cat{ padding-block:.25rem; }
+}
+
+/* ==========================================================================
+   Transição entre páginas (View Transitions, cross-document)
+
+   As quatro páginas dividem header e rodapé. Nomeando os dois, eles
+   PERMANECEM na troca em vez de piscar junto com o resto — o site passa a
+   parecer um objeto só, não quatro documentos. Progressive enhancement puro:
+   onde não há suporte, a navegação é a de sempre e nada se perde.
+   ========================================================================== */
+
+@view-transition{ navigation: auto; }
+
+.topo{ view-transition-name: topo; }
+.rodape{ view-transition-name: rodape; }
+
+::view-transition-old(root),
+::view-transition-new(root){
+  animation-duration:.3s;
+  animation-timing-function:var(--ease);
+}
+/* header e rodapé têm view-transition-name pra não "saltar" durante a troca
+   de página, mas PRECISAM manter o cross-fade padrão do navegador — nunca
+   `animation:none` nos dois ao mesmo tempo. O link ativo muda de estado
+   (cor + sublinhado) entre a página antiga e a nova (ex: "Cursos" normal
+   numa página, em negrito/sublinhado na outra); sem cross-fade, as duas
+   versões renderizam sobrepostas e cheias, e a diferença aparece como um
+   "fantasma" cortado no texto do link ativo. O crossfade padrão resolve
+   isso suavizando a diferença em vez de empilhar as duas por cima. */
+::view-transition-old(topo),::view-transition-new(topo),
+::view-transition-old(rodape),::view-transition-new(rodape){
+  animation-duration:.18s;
+  /* NÃO forçar mix-blend-mode:normal aqui — o padrão do navegador é
+     plus-lighter, feito justamente pra crossfade de texto não virar
+     "fantasma" duplicado enquanto as duas camadas ainda estão semi-
+     transparentes ao mesmo tempo. Foi isso, não a duração, que causava
+     o corte visível. */
+}
+
+@media (prefers-reduced-motion:reduce){
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*){ animation:none !important; }
+}

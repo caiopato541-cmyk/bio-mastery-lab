@@ -1,0 +1,396 @@
+/* ==========================================================================
+   BIO em CASA — páginas internas (O Professor · Cursos · Blog)
+   Motion de apoio apenas: os picos autorais moram na Home.
+   ========================================================================== */
+
+/* ---------------------------------------------------------------- capa --- */
+
+.capa{
+  position:relative; overflow:hidden;
+  padding:calc(var(--nav-h) + clamp(3.5rem,7vw,6.5rem)) 0 clamp(3rem,6vw,5rem);
+}
+.capa__grade{
+  position:relative; z-index:2;
+  display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);
+  gap:clamp(2rem,5vw,4.5rem); align-items:center;
+}
+.capa h1{ font-size:var(--t-hero); max-width:16ch; }
+.capa h1 b{ color:var(--mint); font-weight:700; }
+.capa .texto{ margin-top:1.35rem; }
+.capa__grade--solo{ grid-template-columns:minmax(0,1fr); }
+.capa__acoes{ display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center; margin-top:2rem; }
+
+/* retrato grande com deslocamento suave dentro da moldura */
+.retrato{
+  position:relative; margin:0; aspect-ratio:3/4; border-radius:22px; overflow:hidden;
+  border:1px solid var(--line-2); box-shadow:0 34px 90px rgba(0,0,0,.55);
+}
+.retrato img{
+  width:100%; height:112%; object-fit:cover; object-position:50% 30%;
+  will-change:transform;
+}
+.retrato::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg,transparent 58%,rgba(23,23,23,.8) 100%);
+}
+.retrato figcaption{
+  position:absolute; left:1.3rem; right:1.3rem; bottom:1.15rem; z-index:2;
+  font-size:var(--t-label); letter-spacing:.14em; text-transform:uppercase; color:var(--mint);
+}
+
+/* --------------------------------------------------------- ficha (dados) -- */
+
+.ficha{ border-top:1px solid var(--line); margin-top:clamp(2rem,4vw,3rem); }
+.ficha div{
+  display:grid; grid-template-columns:minmax(0,10rem) minmax(0,1fr);
+  gap:1rem; padding:.95rem 0; border-bottom:1px solid var(--line);
+}
+.ficha dt{
+  font-size:var(--t-label); letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);
+}
+.ficha dd{ margin:0; font-size:var(--t-small); color:var(--ink); }
+
+/* A folha de dados se preenche linha a linha: a linha em si fica parada e
+   quem entra é o conteúdo — rótulo primeiro, valor logo atrás —, com o filete
+   de baixo se traçando da esquerda para a direita. */
+.ficha div[data-revelar]{ opacity:1; transform:none; position:relative; border-bottom:0; }
+.js .ficha div[data-revelar]::after{
+  content:""; position:absolute; left:0; right:0; bottom:0; height:1px;
+  background:var(--line); transform:scaleX(0); transform-origin:0 50%;
+  transition:transform .85s var(--ease);
+  transition-delay:calc(var(--atraso,0ms) + 140ms);
+}
+.ficha div[data-revelar].visivel::after{ transform:scaleX(1); }
+.js .ficha dt,.js .ficha dd{
+  opacity:0; transform:translateX(-10px);
+  transition:opacity .6s var(--ease), transform .7s var(--ease);
+  transition-delay:var(--atraso,0ms);
+}
+/* o valor chega depois do rótulo (precisa do `.js` para não perder
+   em especificidade para a regra acima) */
+.js .ficha dd{ transition-delay:calc(var(--atraso,0ms) + 130ms); }
+.ficha .visivel dt,.ficha .visivel dd{ opacity:1; transform:none; }
+/* lacuna factual: fica visível de propósito até o cliente confirmar o dado */
+.falta{
+  display:inline-block; padding:.1rem .5rem; border-radius:5px;
+  background:rgba(253,134,57,.12); border:1px dashed rgba(253,134,57,.5);
+  color:#FD8639; font-size:.75rem; font-weight:600; letter-spacing:.04em;
+}
+
+/* --------------------------------------------------------- prosa / texto -- */
+
+.prosa{ display:grid; grid-template-columns:minmax(0,.42fr) minmax(0,1fr); gap:var(--gut); }
+.prosa h2{ font-size:var(--t-h3); max-width:14ch; }
+.prosa p + p{ margin-top:1.15rem; }
+
+/* ------------------------------------------------------------ tira de fotos */
+
+.tira{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(.8rem,1.6vw,1.4rem); }
+.tira figure{ margin:0; }
+.tira .moldura{ aspect-ratio:4/5; }
+.tira figcaption{ margin-top:.75rem; font-size:var(--t-small); color:var(--ink-3); }
+.tira figure:nth-child(2){ margin-top:clamp(1.5rem,4vw,3rem); }
+
+/* ==========================================================================
+   CURSOS
+   ========================================================================== */
+
+/* --- atalhos (3 cards de navegação, logo após a capa — cada um rola até
+   sua seção correspondente mais abaixo na mesma página) --- */
+.atalhos{
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(.9rem,1.8vw,1.4rem);
+}
+.atalho{
+  display:flex; flex-direction:column; align-items:flex-start;
+  padding:clamp(1.4rem,2.4vw,1.75rem); border-radius:18px;
+  background:var(--bg-raise); border:1px solid var(--line);
+  transition:transform .5s var(--ease), border-color .5s var(--ease), box-shadow .5s var(--ease);
+}
+.atalho:hover{ transform:translateY(-4px); border-color:var(--green-line); box-shadow:0 20px 44px rgba(0,0,0,.38); }
+.atalho__icone{
+  display:flex; align-items:center; justify-content:center;
+  width:46px; height:46px; border-radius:13px; margin-bottom:1.1rem;
+  background:var(--bg-sink); border:1px solid var(--line);
+}
+.atalho__nome{ font-family:var(--display); font-size:1.12rem; font-weight:700; margin-bottom:.5rem; }
+.atalho__desc{ font-size:var(--t-small); color:var(--ink-2); line-height:1.55; margin-bottom:1.2rem; }
+.atalho .link-seta{ margin-top:auto; }
+
+/* --- módulos isolados --- */
+.modulos{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+  gap:clamp(.7rem,1.4vw,1rem);
+}
+.modulo{
+  display:flex; flex-direction:column; align-items:flex-start;
+  padding:1.3rem 1.3rem 1.5rem; border-radius:16px;
+  background:var(--bg-raise); border:1px solid var(--line);
+  transition:transform .5s var(--ease), border-color .5s var(--ease);
+}
+.modulo:hover{ transform:translateY(-4px); border-color:var(--line-2); }
+.modulo__num{
+  font-family:var(--display); font-size:.78rem; font-weight:700;
+  letter-spacing:.1em; color:var(--mint); margin-bottom:.65rem;
+}
+.modulo__nome{ font-family:var(--display); font-size:1.05rem; font-weight:700; line-height:1.25; margin-bottom:1.1rem; }
+.modulo__cta{ margin-top:auto; align-self:stretch; justify-content:center; padding:.6rem 1rem; font-size:.7rem; }
+
+/* --- legenda de cores (cores reais do carrossel do Calendário) --- */
+.legenda{
+  display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:clamp(.8rem,1.6vw,1.25rem);
+}
+.legenda div{
+  padding:1.1rem 1.2rem; border-radius:14px;
+  background:var(--bg-raise); border:1px solid var(--line);
+  transition:border-color .45s var(--ease), transform .45s var(--ease);
+}
+.legenda div:hover{ transform:translateY(-3px); border-color:var(--line-2); }
+.legenda i{
+  display:block; width:18px; height:18px; border-radius:50%; margin-bottom:.8rem;
+  box-shadow:0 0 22px currentColor;
+}
+.legenda b{ display:block; font-family:var(--display); font-size:1rem; font-weight:700; }
+.legenda span{ display:block; font-size:.78rem; color:var(--ink-3); margin-top:.15rem; }
+
+.inclui{ display:flex; flex-wrap:wrap; gap:.7rem; margin-top:clamp(1.5rem,3vw,2.25rem); }
+.inclui li{
+  display:flex; align-items:center; gap:.5rem;
+  padding:.6rem 1rem; border-radius:100px;
+  border:1px solid var(--green-line); background:var(--green-soft);
+  font-size:var(--t-small); color:var(--ink);
+}
+.inclui li::before{ content:"✓"; color:var(--mint); font-weight:700; }
+
+/* --- calendário mês a mês --- */
+.mes-bloco{
+  display:grid; grid-template-columns:minmax(0,14rem) minmax(0,1fr);
+  gap:clamp(1.25rem,3vw,2.5rem); padding:clamp(1.75rem,3.5vw,2.75rem) 0;
+  border-top:1px solid var(--line);
+}
+.mes-bloco:last-of-type{ border-bottom:1px solid var(--line); }
+.mes-bloco > header h3{ font-size:clamp(1.35rem,1rem + 1.4vw,2rem); }
+.mes-bloco > header p{ font-size:var(--t-small); color:var(--ink-3); margin-top:.35rem; }
+.mes-bloco > header span{
+  display:block; font-size:var(--t-label); letter-spacing:.18em;
+  text-transform:uppercase; color:var(--ink-3); margin-bottom:.6rem;
+}
+
+.vests{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:.85rem; }
+.vest{
+  position:relative; padding:1.1rem 1.2rem 1.1rem 1.55rem; border-radius:12px;
+  background:var(--bg-raise); border:1px solid var(--line);
+  transition:transform .45s var(--ease), border-color .45s var(--ease), box-shadow .45s var(--ease);
+}
+/* A barra do vestibular se DESENHA de cima para baixo quando o card chega,
+   logo depois dele assentar. É o que faz o mês parecer um cronograma sendo
+   preenchido em ordem de data, em vez de uma lista que apareceu inteira. */
+.vest::before{
+  content:""; position:absolute; left:.75rem; top:1.25rem; bottom:1.25rem;
+  width:3px; border-radius:3px; background:var(--marca,var(--cal-obj));
+}
+.js .vest::before{
+  transform:scaleY(0); transform-origin:50% 0;
+  transition:transform .75s var(--ease);
+  transition-delay:calc(var(--atraso,0ms) + 200ms);
+}
+.vest.visivel::before{ transform:scaleY(1); }
+.vest:hover{ transform:translateY(-3px); border-color:var(--line-2); box-shadow:0 16px 40px rgba(0,0,0,.36); }
+.vest b{ display:block; font-family:var(--display); font-size:1.08rem; font-weight:700; }
+.vest b em{ font-style:normal; font-size:.8em; font-weight:600; color:var(--ink-2); }
+.vest dl{ margin:.6rem 0 0; display:grid; gap:.3rem; }
+.vest dl > div{ display:flex; gap:.5rem; font-size:var(--t-small); }
+.vest dt{ color:var(--marca,var(--cal-obj)); font-weight:600; flex:none; }
+.vest dd{ margin:0; color:var(--ink-2); }
+
+.rodape-mes{ font-size:var(--t-small); color:var(--ink-3); margin-top:1rem; }
+.rodape-mes b{ color:var(--ink-2); font-weight:600; }
+
+/* --- cursos extensivos (planos anuais, ao vivo ou gravado) --- */
+.planos{
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(1rem,2vw,1.5rem); align-items:stretch;
+}
+.plano{
+  position:relative; display:flex; flex-direction:column;
+  padding:clamp(1.5rem,2.6vw,2rem); border-radius:20px;
+  background:var(--bg-raise); border:1px solid var(--line);
+  transition:transform .5s var(--ease), border-color .5s var(--ease), box-shadow .5s var(--ease);
+}
+.plano:hover{ transform:translateY(-4px); border-color:var(--line-2); box-shadow:0 20px 48px rgba(0,0,0,.4); }
+.plano--destaque{
+  background:linear-gradient(165deg,rgba(63,94,91,.42),var(--bg-raise) 62%);
+  border-color:var(--green-line);
+}
+.plano__badge{
+  position:absolute; top:-.75rem; left:clamp(1.5rem,2.6vw,2rem);
+  padding:.3rem .8rem; border-radius:100px; background:var(--green); color:var(--bg);
+  font-size:var(--t-label); font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+}
+.plano__cabeca{ display:flex; align-items:flex-start; gap:.85rem; margin-bottom:1.25rem; }
+.plano__icone{
+  flex:none; display:flex; align-items:center; justify-content:center;
+  width:44px; height:44px; border-radius:13px;
+  background:var(--bg-sink); border:1px solid var(--line);
+}
+.plano__icone--sinapses{ background:radial-gradient(circle at 30% 28%,rgba(63,94,91,.65),var(--bg-sink) 72%); }
+.plano__icone--dna{ background:radial-gradient(circle at 30% 28%,rgba(127,217,151,.24),var(--bg-sink) 72%); border-color:var(--green-line); }
+.plano__nome{ display:block; font-family:var(--display); font-size:1.05rem; font-weight:700; line-height:1.25; }
+.plano__sub{ display:block; font-size:var(--t-small); color:var(--ink-3); margin-top:.2rem; }
+.plano__preco{ padding-bottom:1.1rem; margin-bottom:1.1rem; border-bottom:1px solid var(--line); }
+.plano__de{ display:block; font-size:.82rem; color:var(--ink-4); text-decoration:line-through; }
+.plano__por{ display:block; font-family:var(--display); font-size:1.7rem; font-weight:700; color:var(--ink); margin-top:.15rem; }
+.plano__por b{ color:var(--mint); font-weight:800; }
+.plano__desconto{ display:block; font-size:.78rem; color:var(--mint); font-weight:600; margin-top:.3rem; }
+.plano__desc{ font-size:var(--t-small); color:var(--ink-2); margin-bottom:1.1rem; }
+.plano__lista{ display:flex; flex-direction:column; gap:.55rem; margin-bottom:1.4rem; flex:1; }
+.plano__lista li{
+  position:relative; padding-left:1.5rem; font-size:.85rem; color:var(--ink-2); line-height:1.4;
+}
+.plano__lista li::before{ content:"✓"; position:absolute; left:0; top:0; color:var(--mint); font-weight:700; }
+.plano__cta{ width:100%; justify-content:center; margin-top:auto; }
+
+/* --- vestibulares (um card por instituição/fase — nunca vários por preço,
+   pra não parecer um pacote combinado) --- */
+.vestibulares{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
+  gap:clamp(.7rem,1.4vw,1rem); align-items:stretch;
+}
+.vestibular{
+  position:relative; display:flex; flex-direction:column; align-items:flex-start;
+  padding:1.1rem 1.1rem 1.3rem; border-radius:16px; isolation:isolate;
+  background:var(--bg-raise); border:1px solid var(--line);
+  transition:transform .5s var(--ease), border-color .5s var(--ease), box-shadow .5s var(--ease);
+}
+.vestibular:hover{ transform:translateY(-4px); border-color:var(--green-line); box-shadow:0 20px 48px rgba(0,0,0,.42); }
+
+/* faixa clara atrás do logo: a maioria dos arquivos reais veio com fundo
+   branco opaco (não é decisão nossa, é o arquivo da instituição) — em vez
+   de tentar remover fundo de 10 logos diferentes (arriscado, cada um erra
+   de um jeito), a faixa clara resolve as 10 de uma vez só, sem tocar em
+   nenhum pixel da marca de ninguém. */
+.vestibular__logo{
+  width:100%; height:60px; margin-bottom:.9rem; padding:.5rem .7rem;
+  border-radius:10px; background:var(--ink);
+  display:flex; align-items:center; justify-content:center;
+}
+.vestibular__logo img{ max-width:100%; max-height:100%; object-fit:contain; }
+
+.vestibular__nome{ font-family:var(--display); font-size:1.02rem; font-weight:700; line-height:1.2; }
+.vestibular__nome em{ font-style:normal; font-weight:500; font-size:.72em; color:var(--ink-3); }
+.vestibular__aulas{ font-size:.74rem; color:var(--ink-3); margin-top:.25rem; }
+.vestibular__preco{
+  font-family:var(--display); font-size:1.55rem; font-weight:800;
+  color:var(--mint); line-height:1; margin:.55rem 0 0;
+}
+.vestibular__bonus{
+  display:inline-block; margin-top:.5rem; padding:.25rem .6rem; border-radius:100px;
+  background:var(--green-soft); border:1px solid var(--green-line);
+  font-size:.66rem; font-weight:700; color:var(--mint); letter-spacing:.01em; line-height:1.3;
+}
+
+.vestibular--destaque{ background:linear-gradient(165deg,rgba(63,94,91,.42),var(--bg-raise) 62%); border-color:var(--green-line); }
+
+.vestibular__cta{
+  margin-top:.9rem; align-self:stretch; justify-content:center;
+  padding:.62rem 1rem; font-size:.7rem;
+}
+.vestibular--destaque .vestibular__cta{ background:var(--green); color:var(--bg); border-color:transparent; --sweep:var(--mint); }
+
+/* --- fecho de conversão --- */
+.fecho{ text-align:center; }
+.fecho h2{ font-size:var(--t-h2); max-width:18ch; margin:1.1rem auto 1rem; }
+.fecho .texto{ margin-inline:auto; }
+.fecho .btn{ margin-top:2rem; }
+.fecho__assinatura{
+  display:block; margin-top:1.25rem; font-family:var(--display);
+  font-size:1.05rem; font-weight:600; color:var(--mint);
+}
+
+/* ==========================================================================
+   BLOG
+   ========================================================================== */
+
+.categorias{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:clamp(1rem,2vw,1.75rem); }
+.cat{ position:relative; display:block; }
+.cat .moldura{ aspect-ratio:5/4; }
+/* ícone provisório no lugar da foto de capa (o professor vai usar essas
+   fotos exclusivamente em outro lugar) — mesmo chip com glow radial dos
+   ícones de `.plano__icone`/`.atalho__icone`, só maior. Trocar de volta
+   por foto assim que houver uma nova disponível: remova `.cat__icone` e
+   volte a colocar a tag de imagem dentro do `.moldura`. */
+.cat__icone{
+  width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+  background:radial-gradient(circle at 32% 26%,rgba(63,94,91,.6),var(--bg-sink) 74%);
+}
+.cat__icone svg{ width:32%; height:32%; transition:transform .5s var(--ease); }
+.moldura--viva:hover .cat__icone svg{ transform:scale(1.08); }
+.cat h3{ font-size:var(--t-h3); margin-top:1.1rem; }
+.cat p{ font-size:var(--t-small); color:var(--ink-2); margin-top:.4rem; max-width:34ch; }
+.cat__tag{
+  position:absolute; top:.85rem; left:.85rem; z-index:2;
+  padding:.35rem .75rem; border-radius:100px;
+  background:rgba(23,23,23,.7); backdrop-filter:blur(8px);
+  border:1px solid var(--line-2);
+  font-size:var(--t-label); letter-spacing:.12em; text-transform:uppercase; color:var(--ink-2);
+}
+
+/* estado honesto: ainda não há textos publicados */
+.vazio{
+  display:grid; place-items:center; text-align:center; gap:1rem;
+  padding:clamp(2.5rem,5vw,4rem); border-radius:20px;
+  border:1px dashed var(--line-2); background:var(--bg-raise);
+}
+.vazio h2{ font-size:var(--t-h3); }
+.vazio p{ color:var(--ink-2); max-width:48ch; }
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+
+@media (max-width:1000px){
+  .capa__grade{ grid-template-columns:1fr; }
+  .capa__grade .retrato{ max-width:420px; }
+  .prosa{ grid-template-columns:1fr; gap:1.25rem; }
+  .legenda{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .mes-bloco{ grid-template-columns:1fr; }
+  .categorias{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .planos{ grid-template-columns:1fr; }
+  .atalhos{ grid-template-columns:1fr; }
+}
+@media (max-width:640px){
+  .tira{ grid-template-columns:1fr; }
+  .tira figure:nth-child(2){ margin-top:0; }
+  .legenda{ grid-template-columns:1fr; }
+  .categorias{ grid-template-columns:1fr; }
+  .ficha div{ grid-template-columns:1fr; gap:.25rem; }
+}
+
+/* ==========================================================================
+   Marca viva — o mark da BIO em CASA se monta e se desmonta no scroll
+
+   O mark não é uma imagem única: são as 7 formas orgânicas do logo original,
+   recortadas (`assets/img/marca/blobs/`) e posicionadas nas coordenadas
+   exatas em que elas estão no logo. Montado, é o logo pixel a pixel; solto,
+   cada forma sai pela sua própria direção radial. Nada foi redesenhado.
+   ========================================================================== */
+
+.marca-viva{
+  position:relative; width:min(200px,46vw); aspect-ratio:1.0409;
+  margin:0 auto clamp(1.75rem,4vw,2.5rem);
+}
+.marca-viva::after{                       /* respiro de luz atrás do mark */
+  content:""; position:absolute; inset:-38%; z-index:0; border-radius:50%;
+  background:radial-gradient(circle,rgba(127,217,151,.16),transparent 68%);
+  opacity:var(--formado,1); transition:opacity .4s var(--ease);
+}
+.marca-viva span{
+  position:absolute; z-index:1; display:block;
+  left:var(--l); top:var(--t); width:var(--w); height:var(--h);
+  will-change:transform,opacity,filter;
+}
+.marca-viva span img{ width:100%; height:100%; display:block; }
+
+/* Sem JS, com movimento reduzido ou antes do primeiro quadro: o logo já está
+   montado. A animação é um ganho, nunca a condição para o logo existir. */
+.marca-viva:not(.viva) span{ transform:none; opacity:1; filter:none; }

@@ -1,0 +1,235 @@
+/* ==========================================================================
+   BIO em CASA — página ENEM (Missão Fecha Bio)
+   Copy e estratégia da página vieram prontas de uma copywriter contratada
+   pelo professor (ver bio-em-casa-notas/pendencias-e-decisoes.md) — este
+   arquivo só dá a ela a "estrutura e aparência" do resto do site: os mesmos
+   tokens, os mesmos componentes de página interna (paginas.css) e alguns
+   componentes novos, no mesmo idioma visual, para os blocos que não têm
+   equivalente pronto (cards numerados, linha do tempo, comparativo, prints
+   de relato, investimento com contagem).
+   ========================================================================== */
+
+/* CTA de texto longo ("Quero entrar na Missão Fecha Bio") — o padrão do
+   site deixa botões em nowrap porque os rótulos são curtos; este é
+   propositalmente mais longo, então quebra em vez de estourar/cortar em
+   telas estreitas. Em telas largas cabe numa linha só, como os outros. */
+.btn--longo{ white-space:normal; text-align:center; line-height:1.3; }
+
+/* frase de impacto — o texto puxa pra fora do parágrafo (padrão que a copy
+   usa bastante: a virada da frase vem em display + mint) */
+.frase-forte{
+  font-family:var(--display); font-weight:700; color:var(--mint);
+  font-size:clamp(1.25rem,1rem + 1.1vw,1.7rem); line-height:1.28;
+  letter-spacing:-.008em;
+}
+.frase-forte + .frase-forte{ margin-top:.3rem; }
+/* único degrau maior, reservado às duas citações-âncora da página (dilema
+   e "só o essencial") — o resto usa o tamanho base, pra manter só dois
+   níveis de ênfase em vez de várias variações próximas demais. */
+.frase-forte--grande{ font-size:clamp(1.6rem,1.1rem + 2.2vw,2.3rem); }
+
+/* fileira de palavras soltas (ex.: "Eu localizo. Eu relaciono...") */
+.fileira{ display:flex; flex-wrap:wrap; gap:clamp(1rem,3vw,2.5rem); }
+
+/* -------------------------------------------------------------- citações -- */
+
+.citas{
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(.7rem,1.4vw,1rem);
+}
+.cita{
+  padding:1.2rem 1.4rem; border-radius:16px;
+  background:var(--bg-raise); border:1px solid var(--line);
+  font-family:var(--display); font-weight:600; font-size:1rem; line-height:1.34;
+  transition:transform .45s var(--ease), border-color .45s var(--ease);
+}
+.cita:hover{ transform:translateY(-3px); border-color:var(--line-2); }
+.cita:last-child{ grid-column:1 / -1; }
+
+/* -------------------------------------------------------------- dilema --- */
+
+.dilema{
+  position:relative; overflow:hidden;
+  background:var(--bg-sink); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+}
+.dilema .env{ position:relative; z-index:2; padding-block:var(--sec); }
+.dilema .frase-forte--grande{ max-width:16ch; }
+.tags{ display:flex; flex-wrap:wrap; gap:.6rem; margin:1.5rem 0 2rem; }
+.tags span{
+  padding:.42rem .9rem; border-radius:100px; border:1px solid var(--line-2);
+  font-size:var(--t-small); color:var(--ink-2);
+}
+
+/* -------------------------------------------------------------- método --- */
+
+.metodo-grade{
+  display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(.8rem,1.6vw,1.15rem); margin-bottom:clamp(2rem,4vw,2.75rem);
+}
+.metodo-card{
+  padding:1.5rem 1.4rem; border-radius:16px;
+  background:var(--bg-raise); border:1px solid var(--line);
+  transition:transform .45s var(--ease), border-color .45s var(--ease);
+}
+.metodo-card:hover{ transform:translateY(-3px); border-color:var(--green-line); }
+.metodo-card__num{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:30px; height:30px; border-radius:50%; margin-bottom:1rem;
+  background:var(--green); color:var(--bg);
+  font-family:var(--display); font-weight:700; font-size:.85rem;
+}
+.metodo-card h3{
+  font-size:1.05rem; text-transform:uppercase; letter-spacing:.02em; margin-bottom:.35rem;
+}
+.metodo-card p{ font-size:var(--t-small); color:var(--ink-3); }
+.metodo-card p.pergunta{ font-size:.85rem; font-weight:700; color:var(--mint); margin-bottom:.4rem; }
+
+/* -------------------------------------------------------------- recebe --- */
+
+.recebe{ display:grid; gap:.85rem; }
+.recebe__item{
+  padding:clamp(1.4rem,2.4vw,1.75rem) clamp(1.4rem,2.6vw,1.9rem);
+  border-radius:16px; background:var(--bg-raise); border:1px solid var(--line);
+  transition:border-color .45s var(--ease);
+}
+.recebe__item:hover{ border-color:var(--line-2); }
+.recebe__item span.num{
+  display:block; font-size:var(--t-label); letter-spacing:.14em; text-transform:uppercase;
+  color:var(--mint); margin-bottom:.5rem; font-weight:700;
+}
+.recebe__item h3{ font-size:1.15rem; text-transform:uppercase; letter-spacing:.015em; margin-bottom:.7rem; }
+.recebe__item .texto{ font-size:.88rem; max-width:64ch; }
+.recebe__item .texto p + p{ margin-top:.55rem; }
+.recebe__item .texto p{ margin:0; }
+
+/* -------------------------------------------------------------- linha ---- */
+
+.linha-grade{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(.8rem,1.6vw,1.15rem); }
+.linha-card{
+  padding:1.6rem; border-radius:16px; background:var(--bg-raise); border:1px solid var(--line);
+}
+.linha-card h3{ font-size:1.02rem; text-transform:uppercase; letter-spacing:.02em; color:var(--mint); margin-bottom:.75rem; }
+.linha-card .texto{ font-size:.88rem; }
+.linha-card .texto p{ margin:0 0 .55rem; }
+.linha-card .texto p:last-child{ margin-bottom:0; }
+.linha-card--destaque{
+  background:linear-gradient(160deg,rgba(63,94,91,.42),var(--bg-raise) 62%);
+  border:1px solid var(--green-line);
+}
+.linha-card--destaque h3{ color:var(--ink); }
+.linha-card--destaque .final{
+  font-family:var(--display); font-weight:700; text-transform:uppercase;
+  font-size:1.3rem; color:var(--mint); margin-top:.3rem;
+}
+
+/* -------------------------------------------------------------- compara -- */
+
+.compara{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(1rem,2vw,1.5rem); }
+.compara__col{ padding:clamp(1.4rem,2.6vw,1.9rem); border-radius:16px; }
+.compara__col--sim{ background:var(--green-soft); border:1px solid var(--green-line); }
+.compara__col--nao{ background:var(--bg-raise); border:1px solid var(--line); }
+.compara__col h3{ font-size:1.1rem; text-transform:uppercase; letter-spacing:.02em; margin-bottom:1rem; }
+.compara__col--sim h3{ color:var(--mint); }
+.compara__col--nao h3{ color:var(--ink-3); }
+.compara__lista{ display:flex; flex-direction:column; gap:.55rem; }
+.compara__lista span{ display:block; font-size:.86rem; line-height:1.45; color:var(--ink-2); }
+.compara__nota{ font-size:var(--t-small); color:var(--ink-3); margin-top:1rem; line-height:1.55; }
+
+/* -------------------------------------------------------------- relatos -- */
+
+.relatos-grade{ columns:3 220px; column-gap:.9rem; }
+.relatos-grade figure{
+  break-inside:avoid; margin:0 0 .9rem; padding:.55rem; border-radius:16px;
+  background:var(--bg-raise); border:1px solid var(--line);
+  box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+.relatos-grade img{ width:100%; border-radius:11px; display:block; }
+
+/* ------------------------------------------------------------ investir --- */
+
+.investir{
+  position:relative; overflow:hidden; border-radius:24px;
+  background:var(--bg-raise); border:1px solid var(--line);
+  padding:clamp(1.75rem,4vw,3rem);
+}
+.investir__topo{ display:flex; align-items:center; gap:12px; margin-bottom:1.5rem; }
+.investir__topo img{ height:28px; width:auto; }
+.investir__grade{
+  display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:clamp(1.25rem,2.5vw,2rem); align-items:stretch;
+}
+.investir__preco{
+  padding:clamp(1.5rem,2.6vw,2rem); border-radius:16px;
+  background:var(--bg-sink); border:1px solid var(--line);
+}
+.investir__preco span.rotulo{
+  display:block; font-size:var(--t-label); letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink-3); margin-bottom:.6rem;
+}
+.investir__preco .valor{
+  font-family:var(--display); font-weight:800; line-height:1;
+  font-size:clamp(2.4rem,1.4rem + 3.6vw,3.6rem); color:var(--ink); margin:0 0 .4rem;
+}
+.investir__preco .valor em{ font-style:normal; color:var(--mint); }
+.investir__preco .avista{ font-size:.92rem; color:var(--ink-2); margin-bottom:1.35rem; }
+.investir__preco .avista strong{ color:var(--ink); }
+
+.pagamentos{ display:flex; flex-direction:column; gap:.6rem; margin-bottom:1.35rem; }
+.pagamentos div{
+  display:flex; align-items:center; gap:.75rem; padding:.7rem .95rem;
+  border:1px solid var(--line); border-radius:12px; min-width:0;
+}
+.pagamentos svg{ flex:none; color:var(--mint); }
+.pagamentos span{ flex:1; min-width:0; font-size:.88rem; color:var(--ink-2); }
+.pagamentos strong{ color:var(--ink); }
+.investir__preco .btn{ width:100%; justify-content:center; }
+.investir__preco .nota{ font-size:var(--t-label); color:var(--ink-3); margin-top:.85rem; text-align:center; }
+
+.investir__prazo{
+  position:relative; padding:clamp(1.5rem,2.6vw,2rem); border-radius:16px;
+  background:radial-gradient(circle at 78% 18%,rgba(63,94,91,.55),transparent 60%), var(--bg-sink);
+  border:1px solid var(--green-line);
+  display:flex; flex-direction:column; justify-content:center;
+}
+.investir__prazo > span.rotulo{
+  font-size:var(--t-label); letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:.9rem; display:block;
+}
+.contagem{ display:flex; gap:.6rem; margin-bottom:1.1rem; }
+.contagem div{
+  flex:1; text-align:center; padding:.85rem .3rem; border-radius:12px;
+  background:rgba(240,239,225,.06);
+}
+.contagem b{
+  display:block; font-family:var(--display); font-weight:700; line-height:1;
+  font-size:clamp(1.6rem,1.1rem + 2vw,2.3rem); color:var(--mint);
+  font-variant-numeric:tabular-nums;
+}
+.contagem span{ display:block; font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); margin-top:.4rem; }
+.investir__prazo p{ font-size:.88rem; color:var(--ink-2); line-height:1.5; margin:0 0 .6rem; }
+.investir__prazo .frase-forte{ font-size:1.05rem; margin-top:.4rem; }
+
+/* ------------------------------------------------------------------ P.S. */
+
+.psblocos{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:clamp(1.5rem,3vw,2.5rem); }
+.psblocos .olho{ margin-bottom:.75rem; }
+
+/* ==========================================================================
+   Responsivo
+   ========================================================================== */
+
+@media (max-width:1000px){
+  .metodo-grade{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .investir__grade{ grid-template-columns:minmax(0,1fr); }
+}
+@media (max-width:760px){
+  .citas{ grid-template-columns:1fr; }
+  .cita:last-child{ grid-column:auto; }
+  .linha-grade{ grid-template-columns:1fr; }
+  .compara{ grid-template-columns:1fr; }
+  .psblocos{ grid-template-columns:1fr; }
+  .relatos-grade{ columns:2 180px; }
+}
+@media (max-width:560px){
+  .metodo-grade{ grid-template-columns:1fr; }
+  .relatos-grade{ columns:1; }
+  .contagem b{ font-size:1.5rem; }
+}
