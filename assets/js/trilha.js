@@ -148,6 +148,53 @@
     pecas.forEach(function (el){ io.observe(el); });
   }
 
+  /* ----------------------------------------------------- ANEL (MOBILE) */
+  /* O anel de CSS já posiciona as peças no círculo (ver home.css). Aqui só
+     coreografamos a ENTRADA: o selo Método BC (o hub) aparece primeiro, e os
+     5 assuntos entram um por um, voando do centro para o lugar deles no
+     anel — a trilha se formando, não só surgindo pronta. */
+  function entradaAnel(){
+    pecas.forEach(function (el){ el.style.cssText = ''; });
+    svg.style.display = 'none';
+    if (mReduz.matches || !('IntersectionObserver' in window)) return;
+
+    var hub = pecas.filter(function (el){ return el.getAttribute('data-pos') === 'low-center'; })[0];
+    var anel = pecas.filter(function (el){ return el.getAttribute('data-pos') !== 'low-center'; });
+    var disparado = false;
+
+    var io = new IntersectionObserver(function (ents){
+      ents.forEach(function (e){
+        if (!e.isIntersecting || disparado) return;
+        disparado = true;
+        io.disconnect();
+
+        if (hub){
+          hub.animate(
+            [ { opacity:0, transform:'translate(-50%,-50%) scale(.4)' },
+              { opacity:1, transform:'translate(-50%,-50%) scale(1)' } ],
+            { duration:480, easing:'cubic-bezier(.16,1,.3,1)', fill:'backwards' }
+          );
+        }
+        var centroHub = hub ? hub.getBoundingClientRect() : null;
+        var origem = centroHub ? { x:centroHub.left + centroHub.width/2, y:centroHub.top + centroHub.height/2 } : null;
+
+        anel.forEach(function (el, i){
+          var r = el.getBoundingClientRect();
+          var centro = { x:r.left + r.width/2, y:r.top + r.height/2 };
+          var dx = origem ? (origem.x - centro.x) : 0;
+          var dy = origem ? (origem.y - centro.y) : 0;
+
+          el.animate(
+            [ { opacity:0, transform:'translate(-50%,-50%) translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px) scale(.3)' },
+              { opacity:1, transform:'translate(-50%,-50%) translate(0,0) scale(1)' } ],
+            { duration:560, delay:340 + i * 180, easing:'cubic-bezier(.16,1,.3,1)', fill:'backwards' }
+          );
+        });
+      });
+    }, { threshold:0.3 });
+    io.observe(alvo);
+  }
+
   /* ---------------------------------------------------------- MOTOR SCRUB */
 
   var tick = false, ligado = false;
@@ -217,7 +264,8 @@
         window.removeEventListener('resize', refazFio);
         ligado = false;
       }
-      semPin();
+      if (mMobile.matches && !mReduz.matches) entradaAnel();
+      else semPin();
     } else {
       comPin();
     }

@@ -367,7 +367,7 @@
   /* ordem da trilha, agora ao redor do anel (sentido horário a partir do topo) */
   .peca[data-pos="left"]      { left:50% !important; top:15% !important; transform:translate(-50%,-50%) !important; }
   .peca[data-pos="mid-left"]  { left:83% !important; top:39% !important; transform:translate(-50%,-50%) !important; }
-  .peca[data-pos="feature"]   { left:70% !important; top:78% !important; transform:translate(-50%,-50%) !important; width:35% !important; }
+  .peca[data-pos="feature"]   { left:70% !important; top:78% !important; transform:translate(-50%,-50%) !important; }
   .peca[data-pos="mid-right"] { left:30% !important; top:78% !important; transform:translate(-50%,-50%) !important; }
   .peca[data-pos="right"]     { left:17% !important; top:39% !important; transform:translate(-50%,-50%) !important; }
   /* selo Método BC: sai do anel e vira o centro (o "hub") */
@@ -379,7 +379,6 @@
   .peca[data-pos="low-center"] h3{ display:none; }
   .peca[data-pos] .peca__n{ left:.3rem; right:auto; top:.2rem; font-size:.7rem; }
   .peca h3,.peca[data-size="feature"] h3{ font-size:.72rem; line-height:1.22; }
-  .peca[data-pos="feature"] h3{ font-size:.78rem; }
   .peca p{ display:none; }
   .provas__grade{ grid-template-columns:1fr; }
   .provas__col:nth-child(2){ margin-top:0; }
