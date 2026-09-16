@@ -338,24 +338,49 @@
   .beat__acoes{ gap:1rem; }
   .hero-rolar{ display:none; }
 
-  /* Trilha: sem pin, composição empilhada (mesmo fallback do mecanismo) */
+  /* Trilha no mobile: sem pin nem arco — os assuntos se conectam em ANEL,
+     com o selo Método BC no centro (ele está por trás de todos os
+     capítulos, não é um deles — igual na composição desktop, só que aqui
+     isso vira literalmente o centro do círculo). O .fio (SVG do arco
+     desktop) continua escondido pelo JS (semPin) e não é usado aqui: o
+     anel é só CSS, um ::before no .pecas. */
   .trilha-wrap{ height:auto; }
   .trilha-palco{ position:relative; height:auto; min-height:0; display:block; padding:5rem 0 3rem; }
-  .trilha-topo{ position:relative; top:auto; left:auto; transform:none; width:auto; padding:0 var(--gut); margin-bottom:3rem; }
+  .trilha-topo{ position:relative; top:auto; left:auto; transform:none; width:auto; padding:0 var(--gut); margin-bottom:2.5rem; }
   /* .pecas é `position:absolute` no desktop — sem este reset o palco do
      capítulo fica sem altura e as peças saem do fluxo. */
   .pecas{
     position:relative; top:auto; left:auto; transform:none;
-    width:min(88vw,420px); height:auto; margin:0 auto;
-    display:flex; flex-direction:column; align-items:center; gap:2.75rem;
+    width:min(84vw,340px); aspect-ratio:1; height:auto; margin:0 auto;
+    display:block;
+  }
+  .pecas::before{
+    content:""; position:absolute; inset:7%; border-radius:50%;
+    border:1.5px solid var(--green); opacity:.45; pointer-events:none;
   }
   .peca,.peca[data-pos]{
-    position:relative !important; inset:auto !important; transform:none !important;
+    position:absolute !important; right:auto !important; bottom:auto !important;
     opacity:1 !important; filter:none !important;
-    width:100% !important; align-items:center !important; text-align:center !important;
+    width:29% !important; align-items:center !important; text-align:center !important;
+    gap:.4rem;
   }
-  .peca[data-pos] .peca__n{ left:.5rem; right:auto; }
-  .peca p{ max-width:32ch; }
+  /* ordem da trilha, agora ao redor do anel (sentido horário a partir do topo) */
+  .peca[data-pos="left"]      { left:50% !important; top:15% !important; transform:translate(-50%,-50%) !important; }
+  .peca[data-pos="mid-left"]  { left:83% !important; top:39% !important; transform:translate(-50%,-50%) !important; }
+  .peca[data-pos="feature"]   { left:70% !important; top:78% !important; transform:translate(-50%,-50%) !important; width:35% !important; }
+  .peca[data-pos="mid-right"] { left:30% !important; top:78% !important; transform:translate(-50%,-50%) !important; }
+  .peca[data-pos="right"]     { left:17% !important; top:39% !important; transform:translate(-50%,-50%) !important; }
+  /* selo Método BC: sai do anel e vira o centro (o "hub") */
+  .peca[data-pos="low-center"]{
+    left:50% !important; top:50% !important; transform:translate(-50%,-50%) !important;
+    width:22% !important;
+  }
+  .peca[data-pos] .peca__art{ width:100%; }
+  .peca[data-pos="low-center"] h3{ display:none; }
+  .peca[data-pos] .peca__n{ left:.3rem; right:auto; top:.2rem; font-size:.7rem; }
+  .peca h3,.peca[data-size="feature"] h3{ font-size:.72rem; line-height:1.22; }
+  .peca[data-pos="feature"] h3{ font-size:.78rem; }
+  .peca p{ display:none; }
   .provas__grade{ grid-template-columns:1fr; }
   .provas__col:nth-child(2){ margin-top:0; }
   .chamada__meses{ grid-template-columns:1fr; }
