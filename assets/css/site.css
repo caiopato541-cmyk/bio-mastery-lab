@@ -173,16 +173,19 @@ button{ font:inherit; color:inherit; background:none; border:0; cursor:pointer; 
 .nav__link{
   position:relative; display:block; overflow:hidden;
   font-size:var(--t-label); font-weight:600; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--ink-2); padding:.35rem 0;
+  text-transform:uppercase; color:var(--ink-2);
 }
 /* deslocamento de texto: o rótulo sobe e um duplicado entra por baixo */
 /* .22s, não .5s: esse efeito passa o texto por uma máscara (metade sobe,
    metade entra por baixo) — em 500ms a meia-frase cortada fica visível por
    tempo suficiente pra parecer quebrado; rápido, "pisca" como um flip de
    painel de embarque e ninguém enxerga o corte. */
-.nav__link span{ display:block; transition:transform .22s var(--ease); }
+/* o respiro vertical mora no span (e no duplicado), não no link: com padding
+   no link, o overflow:hidden deixava uma faixa do texto original e do
+   duplicado aparecendo — o "cortezinho" no hover. */
+.nav__link span{ display:block; padding:.35rem 0; transition:transform .22s var(--ease); }
 .nav__link span::after{
-  content:attr(data-txt); position:absolute; left:0; top:100%;
+  content:attr(data-txt); position:absolute; left:0; top:100%; padding:.35rem 0;
   color:var(--ink); white-space:nowrap;
 }
 .nav__link:hover span,
