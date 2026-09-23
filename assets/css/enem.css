@@ -30,6 +30,7 @@
 
 /* fileira de palavras soltas (ex.: "Eu localizo. Eu relaciono...") */
 .fileira{ display:flex; flex-wrap:wrap; gap:clamp(1rem,3vw,2.5rem); }
+.fileira .frase-forte + .frase-forte{ margin-top:0; }
 
 /* -------------------------------------------------------------- citações -- */
 
