@@ -18,6 +18,9 @@
 .capa h1 b{ color:var(--mint); font-weight:700; }
 .capa .texto{ margin-top:1.35rem; }
 .capa__grade--solo{ grid-template-columns:minmax(0,1fr); }
+/* metade do mark atrás do retrato (mesmo motivo do hero da Home): centrada na
+   altura da capa, que é bem mais baixa que o hero — o excesso é cortado */
+.capa .motivo{ top:50%; transform:translateY(-50%); width:min(520px,44vw); }
 .capa__acoes{ display:flex; flex-wrap:wrap; gap:1.5rem; align-items:center; margin-top:2rem; }
 
 /* retrato grande com deslocamento suave dentro da moldura */
@@ -351,6 +354,7 @@
 @media (max-width:1000px){
   .capa__grade{ grid-template-columns:1fr; }
   .capa__grade .retrato{ max-width:420px; }
+  .capa .motivo{ display:none; }
   .prosa{ grid-template-columns:1fr; gap:1.25rem; }
   .legenda{ grid-template-columns:repeat(2,minmax(0,1fr)); }
   .mes-bloco{ grid-template-columns:1fr; }
