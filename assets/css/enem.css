@@ -25,6 +25,11 @@
 }
 .vsl__player{ display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; }
 
+/* Esta página tem várias seções de texto corrido, sem card/grade ao lado
+   pra ocupar a largura — em telas grandes, os 56ch padrão do site sobram
+   muito espaço vazio à direita. Aqui só, um pouco mais largo. */
+.medida{ max-width:68ch; }
+
 /* CTA de texto longo ("Quero entrar na Missão Fecha Bio") — o padrão do
    site deixa botões em nowrap porque os rótulos são curtos; este é
    propositalmente mais longo, então quebra em vez de estourar/cortar em
