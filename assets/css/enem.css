@@ -15,6 +15,7 @@
    desce pra a seção logo abaixo, como reforço de quem já assistiu. */
 .vsl-hero .env{ text-align:center; }
 .vsl-hero h1{ margin-inline:auto; }
+.vsl-hero .env > .medida{ margin-inline:auto; }
 .vsl-hero .capa__acoes{ justify-content:center; margin-top:clamp(1.75rem,3vw,2.25rem); }
 
 .vsl{
