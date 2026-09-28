@@ -14,7 +14,7 @@
 <script>document.documentElement.classList.add('js')</script>
 <link rel="stylesheet" href="assets/css/site.css?v=20260915c">
 <link rel="stylesheet" href="assets/css/paginas.css?v=20260915h">
-<link rel="stylesheet" href="assets/css/enem.css?v=20260915c">
+<link rel="stylesheet" href="assets/css/enem.css?v=20260915d">
 </head>
 <body>
 
@@ -53,42 +53,48 @@
 <main>
 
 <!-- ========================================================= CAPA ======== -->
-<section class="capa" id="topo-enem">
+<section class="capa vsl-hero" id="topo-enem">
   <div class="ambient" aria-hidden="true"><span class="a1"></span><span class="a2"></span></div>
 
-  <div class="env capa__grade">
-    <div>
-      <span class="pilula" data-revelar>Revisão ENEM · Bio em Casa</span>
-      <h1 style="margin-top:1.2rem; --atraso:80ms" data-revelar>Missão <b>Fecha Bio</b></h1>
-      <p class="frase-forte" data-revelar style="--atraso:140ms; max-width:30ch; margin-top:1rem">
-        Para vestibulandos que estudaram Biologia durante o ano… mas chegam à reta final com a sensação de que esqueceram metade de tudo.
-      </p>
-      <div class="texto medida" data-revelar style="--atraso:200ms; margin-top:1.5rem">
-        <p>Você já estudou. Já assistiu aula. Já fez resumo. Já resolveu questão. Já salvou PDF. Já abriu vídeo no YouTube às 23h47 porque lembrou, do nada, que talvez não saiba Botânica.</p>
-        <p style="margin-top:1rem">E mesmo depois de tudo isso, existe uma frase insistindo dentro da sua cabeça: <strong>"Parece que ainda falta tudo."</strong></p>
-        <p style="margin-top:1rem">Esse é o problema. Não necessariamente falta conteúdo. Pode estar faltando <strong>fechamento</strong>.</p>
-      </div>
-      <div class="capa__acoes" data-revelar style="--atraso:260ms">
-        <a class="btn btn--solido btn--longo" href="https://bioemcasa.eveclass.com/pt/comprar/produto/revisao-enem" target="_blank" rel="noopener">Quero entrar na Missão Fecha Bio <span class="seta" aria-hidden="true">→</span></a>
-        <a class="link-seta" href="#metodo">Ver o Método BC <i aria-hidden="true">↓</i></a>
-      </div>
+  <div class="env">
+    <span class="pilula" data-revelar>Revisão ENEM · Bio em Casa</span>
+    <h1 data-revelar style="margin-top:1.2rem; --atraso:80ms">Missão <b>Fecha Bio</b></h1>
+
+    <div class="vsl" data-revelar-img style="--atraso:140ms">
+      <video class="vsl__player" controls playsinline preload="metadata"
+             poster="assets/img/professor/vsl-enem-poster.jpg"
+             width="1920" height="1080">
+        <source src="assets/video/vsl-enem.mp4" type="video/mp4">
+      </video>
     </div>
 
-    <figure class="retrato" data-revelar-img data-parallax>
-      <img src="assets/img/professor/enem-reta-final.jpg?v=20260915b" alt="O professor Vitor Hugo, visto de cima, cercado por um modelo de dupla-hélice de DNA, modelos moleculares, tablet e planta" width="1080" height="1440" fetchpriority="high">
-      <figcaption>Prof. Vitor Hugo · Método BC</figcaption>
-    </figure>
+    <div class="capa__acoes" data-revelar style="--atraso:200ms">
+      <a class="btn btn--solido btn--longo" href="https://bioemcasa.eveclass.com/pt/comprar/produto/revisao-enem" target="_blank" rel="noopener">Quero entrar na Missão Fecha Bio <span class="seta" aria-hidden="true">→</span></a>
+      <a class="link-seta" href="#metodo">Ver o Método BC <i aria-hidden="true">↓</i></a>
+    </div>
   </div>
 </section>
 
 <!-- ==================================================== ABRIU x FECHOU === -->
-<section class="sec env" aria-labelledby="fechar-tit">
+<section class="sec env" aria-label="Para quem é essa revisão">
+  <p class="frase-forte" data-revelar style="max-width:34ch">
+    Para vestibulandos que estudaram Biologia durante o ano… mas chegam à reta final com a sensação de que esqueceram metade de tudo.
+  </p>
+  <div class="texto medida" data-revelar style="--atraso:80ms; margin-top:1.5rem">
+    <p>Você já estudou. Já assistiu aula. Já fez resumo. Já resolveu questão. Já salvou PDF. Já abriu vídeo no YouTube às 23h47 porque lembrou, do nada, que talvez não saiba Botânica.</p>
+    <p style="margin-top:1rem">E mesmo depois de tudo isso, existe uma frase insistindo dentro da sua cabeça: <strong>"Parece que ainda falta tudo."</strong></p>
+    <p style="margin-top:1rem">Esse é o problema. Não necessariamente falta conteúdo. Pode estar faltando <strong>fechamento</strong>.</p>
+  </div>
+</section>
+
+<!-- ==================================================== ABRIU x FECHOU === -->
+<section class="sec env" aria-labelledby="fechar-tit-2">
   <p class="texto medida" data-revelar>
     O aluno central do Bio em Casa não é quem nunca viu Biologia. É justamente quem já teve
     contato com boa parte da matéria, mas não confia plenamente no que consegue recuperar e
     usar quando a questão aparece.
   </p>
-  <h2 id="fechar-tit" class="tit-secao" data-revelar style="--atraso:80ms; margin-top:1.75rem; margin-bottom:.3rem">
+  <h2 id="fechar-tit-2" class="tit-secao" data-revelar style="--atraso:80ms; margin-top:1.75rem; margin-bottom:.3rem">
     Você passou o ano abrindo conteúdos.
   </h2>
   <p class="frase-forte" data-revelar style="--atraso:140ms; margin-bottom:1.75rem">Agora é hora de fechar.</p>

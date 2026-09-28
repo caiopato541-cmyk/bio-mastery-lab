@@ -9,6 +9,21 @@
    de relato, investimento com contagem).
    ========================================================================== */
 
+/* ------------------------------------------------------------------ VSL -- */
+/* capa vira vídeo: headline curta e centralizada, o vídeo é quem vende —
+   o texto que antes ficava ao lado dele (frase de impacto + parágrafos)
+   desce pra a seção logo abaixo, como reforço de quem já assistiu. */
+.vsl-hero .env{ text-align:center; }
+.vsl-hero h1{ margin-inline:auto; }
+.vsl-hero .capa__acoes{ justify-content:center; margin-top:clamp(1.75rem,3vw,2.25rem); }
+
+.vsl{
+  max-width:920px; margin:clamp(2rem,4.5vw,3rem) auto 0; border-radius:20px;
+  overflow:hidden; background:#000; border:1px solid var(--line-2);
+  box-shadow:0 34px 90px rgba(0,0,0,.5);
+}
+.vsl__player{ display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; }
+
 /* CTA de texto longo ("Quero entrar na Missão Fecha Bio") — o padrão do
    site deixa botões em nowrap porque os rótulos são curtos; este é
    propositalmente mais longo, então quebra em vez de estourar/cortar em
