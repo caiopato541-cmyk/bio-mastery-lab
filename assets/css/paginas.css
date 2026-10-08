@@ -119,6 +119,29 @@
 .atalho__nome{ font-family:var(--display); font-size:1.12rem; font-weight:700; margin-bottom:.5rem; }
 .atalho__desc{ font-size:var(--t-small); color:var(--ink-2); line-height:1.55; margin-bottom:1.2rem; }
 .atalho .link-seta{ margin-top:auto; }
+.atalho__quem{
+  display:block; margin-bottom:.45rem; font-size:var(--t-label); font-weight:700;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--mint);
+}
+.atalho__preco{ display:block; margin-bottom:1rem; font-size:var(--t-small); color:var(--ink-3); }
+.atalho__preco b{ color:var(--ink); font-weight:600; }
+
+/* selo "ao vivo" / "gravado" nos extensivos: o nome SINAPSES/DNA sozinho não diz */
+.plano__modo{
+  display:inline-block; margin-bottom:.4rem; padding:.2rem .6rem; border-radius:100px;
+  border:1px solid var(--green-line); background:var(--green-soft);
+  font-size:var(--t-label); font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--mint);
+}
+
+/* botão de curso sem link ainda: visivelmente desativado, nunca um beco silencioso */
+.btn--breve{ opacity:.5; cursor:not-allowed; pointer-events:none; }
+
+/* módulos recolhidos até ganharem preço e link */
+.modulos-detalhe summary{ cursor:pointer; list-style:none; width:fit-content; }
+.modulos-detalhe summary::-webkit-details-marker{ display:none; }
+.modulos-detalhe summary i{ font-style:normal; color:var(--mint); transition:transform .35s var(--ease); }
+.modulos-detalhe[open] summary i{ transform:rotate(180deg); }
+.modulos-detalhe .modulos{ margin-top:clamp(1.25rem,2.5vw,1.75rem); }
 
 /* --- módulos isolados --- */
 .modulos{
