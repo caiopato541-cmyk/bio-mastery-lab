@@ -38,3 +38,37 @@
   atualiza();
   setInterval(atualiza, 1000);
 })();
+
+
+/* barra fixa de CTA (mobile): aparece depois do CTA do topo sair da tela e some
+   quando o bloco de investimento, uma faixa de CTA, o fecho ou o rodapé estão à vista */
+(function () {
+  'use strict';
+  var barra = document.getElementById('cta-fixa');
+  var topo = document.querySelector('.vsl-hero .capa__acoes');
+  if (!barra || !topo || !('IntersectionObserver' in window)) return;
+
+  var heroFora = false;
+  var visiveis = {};
+  function aplica() {
+    var fim = Object.keys(visiveis).some(function (k) { return visiveis[k]; });
+    var on = heroFora && !fim;
+    barra.setAttribute('data-on', on ? '1' : '0');
+    if (on) barra.removeAttribute('inert'); else barra.setAttribute('inert', '');
+  }
+
+  new IntersectionObserver(function (es) {
+    var r = es[0];
+    heroFora = !r.isIntersecting && r.boundingClientRect.top < 0;
+    aplica();
+  }).observe(topo);
+
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { visiveis[e.target.getAttribute('data-fim')] = e.isIntersecting; });
+    aplica();
+  });
+  [].slice.call(document.querySelectorAll('#investimento, .fecho, .rodape, .cta-faixa')).forEach(function (el, i) {
+    el.setAttribute('data-fim', i);
+    io.observe(el);
+  });
+})();
