@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-09-16T00:33:13.905Z",
+        "reason": "Established site-wide body typeface (Baloo 2 + Inter pairing) set at project start, unrelated to this mobile-only trilha CSS change; not a new design decision to relitigate here"
+      }
+    ]
+  }
+}

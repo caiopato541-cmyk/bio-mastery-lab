@@ -101,7 +101,7 @@
 /* --- atalhos (3 cards de navegação, logo após a capa — cada um rola até
    sua seção correspondente mais abaixo na mesma página) --- */
 .atalhos{
-  display:grid; grid-template-columns:repeat(3,minmax(0,1fr));
+  display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
   gap:clamp(.9rem,1.8vw,1.4rem);
 }
 .atalho{
@@ -383,7 +383,7 @@
   .mes-bloco{ grid-template-columns:1fr; }
   .categorias{ grid-template-columns:repeat(2,minmax(0,1fr)); }
   .planos{ grid-template-columns:1fr; }
-  .atalhos{ grid-template-columns:1fr; }
+  .atalhos{ grid-template-columns:repeat(2,minmax(0,1fr)); }
 }
 @media (max-width:640px){
   .tira{ grid-template-columns:1fr; }
@@ -421,3 +421,19 @@
 /* Sem JS, com movimento reduzido ou antes do primeiro quadro: o logo já está
    montado. A animação é um ganho, nunca a condição para o logo existir. */
 .marca-viva:not(.viva) span{ transform:none; opacity:1; filter:none; }
+
+/* mapas mentais: um produto só, então um card largo em vez de grade */
+.mapas-card{
+  display:flex; align-items:center; gap:clamp(1.1rem,2.5vw,2rem); flex-wrap:wrap;
+  padding:clamp(1.4rem,3vw,2.1rem); border-radius:20px;
+  background:linear-gradient(150deg,rgba(63,94,91,.38),var(--bg-raise) 70%);
+  border:1px solid var(--green-line);
+}
+.mapas-card__txt{ flex:1 1 22rem; min-width:0; }
+.mapas-card__txt p{ margin:.35rem 0 0; max-width:52ch; font-size:var(--t-small); color:var(--ink-2); line-height:1.6; }
+.mapas-card__acao{ display:flex; align-items:center; gap:1.25rem; flex-wrap:wrap; }
+.mapas-card__preco{ font-family:var(--display); font-weight:800; font-size:clamp(1.7rem,1.3rem + 1.4vw,2.2rem); color:var(--mint); line-height:1; }
+@media (max-width:640px){
+  .atalhos{ grid-template-columns:1fr; }
+  .mapas-card__acao{ width:100%; justify-content:space-between; }
+}
