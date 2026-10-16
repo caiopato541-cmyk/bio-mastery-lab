@@ -437,3 +437,19 @@
   .atalhos{ grid-template-columns:1fr; }
   .mapas-card__acao{ width:100%; justify-content:space-between; }
 }
+
+/* vitrine dos mapas: o mosaico vai desfocado de propósito (o arquivo já é
+   borrado) — dá a ideia do material sem entregar o conteúdo */
+.mapas-topo{ display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.05fr); gap:clamp(1.5rem,4vw,3.5rem); align-items:center; margin-bottom:clamp(1.6rem,3vw,2.4rem); }
+.mapas-topo .tit-secao{ margin-bottom:0; }
+.mapas-vitrine{
+  position:relative; height:clamp(260px,29vw,400px); overflow:hidden; border-radius:20px;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 22%,#000 100%),linear-gradient(to bottom,#000 70%,transparent);
+  -webkit-mask-composite:source-in; mask-image:linear-gradient(to right,transparent,#000 22%,#000 100%),linear-gradient(to bottom,#000 70%,transparent);
+  mask-composite:intersect; pointer-events:none; user-select:none;
+}
+.mapas-vitrine img{ position:absolute; left:0; top:50%; width:100%; height:auto; transform:translateY(-47%); opacity:.9; -webkit-user-drag:none; }
+@media (max-width:760px){
+  .mapas-topo{ grid-template-columns:1fr; }
+  .mapas-vitrine{ height:200px; }
+}
