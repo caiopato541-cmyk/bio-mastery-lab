@@ -285,6 +285,31 @@
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { transition: none !important; animation: none !important; }
   }
+
+  /* ============ Painel do professor (#painel) ============ */
+  .painel { max-width: 1100px; margin: 0 auto; padding: 32px 20px 80px; }
+  .painel h1 { font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -.02em; margin: .4rem 0 .4rem; }
+  .painel .sub { color: var(--tinta-2); margin: 0 0 20px; }
+  .painel-chave { max-width: 380px; display: grid; gap: 14px; margin-top: 18px; }
+  .painel-resumo { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 18px 0; }
+  .painel-resumo > div { background: var(--folha); border: 1px solid var(--linha); border-radius: var(--raio-m); padding: 14px 16px; }
+  .painel-resumo strong { display: block; font-family: var(--serif); font-size: 1.9rem; line-height: 1.1; }
+  .painel-resumo span { color: var(--tinta-3); font-size: .875rem; }
+  .painel-filtros { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; margin: 8px 0 16px; }
+  .painel-filtros input[type="search"], .painel-filtros select { min-height: 42px; padding: 8px 12px; border: 1.5px solid var(--linha-forte); border-radius: var(--raio-s); background: var(--folha); font: inherit; }
+  .painel-filtros input[type="search"] { flex: 1 1 220px; }
+  .painel-filtros label { display: inline-flex; gap: 8px; align-items: center; font-size: .9375rem; }
+  .painel-tabela { overflow-x: auto; background: var(--folha); border: 1px solid var(--linha); border-radius: var(--raio-m); }
+  .painel-tabela table { width: 100%; border-collapse: collapse; font-size: .9375rem; }
+  .painel-tabela th, .painel-tabela td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--linha); white-space: nowrap; }
+  .painel-tabela th { font-size: .8125rem; color: var(--tinta-2); background: var(--papel); }
+  .painel-tabela tr:last-child td { border-bottom: 0; }
+  .painel-tabela a { color: var(--clorofila); font-weight: 700; }
+  .painel-tabela .btn { min-height: 34px; padding: 4px 12px; font-size: .875rem; }
+  .painel-vazio { padding: 28px; text-align: center; color: var(--tinta-3); }
+  .painel-status { color: var(--tinta-2); margin: 12px 0; }
+  .barra-prof { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; margin: 0 0 18px; padding: 12px 14px; border: 1px solid var(--linha); background: var(--clorofila-claro); border-radius: var(--raio-m); font-size: .9375rem; }
+  @media print { .barra-prof { display: none; } }
 </style>
 </head>
 <body>
@@ -329,7 +354,9 @@
       envio: 'pendente'
     };
   }
+  var modoProf = false;
   function guardar() {
+    if (modoProf) return;
     try { localStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) { /* navegador sem armazenamento: segue sem salvar */ }
   }
   function recuperar() {
@@ -845,6 +872,7 @@
 
   // ------------------------------------------------------------------ envio para a planilha
   function enviarResultado() {
+    if (modoProf) return;
     if (estado.envio === 'enviado') return;
     if (!NO_APPS_SCRIPT) { estado.envio = 'previa'; guardar(); pintarEnvio(); return; }
     estado.envio = 'enviando'; pintarEnvio();
@@ -875,8 +903,173 @@
     } else p.textContent = '';
   }
 
-  render();
-  if (estado.etapa === 'resultado' && (estado.envio === 'pendente' || estado.envio === 'enviando')) enviarResultado();
+  // ================================================================== PAINEL DO PROFESSOR (#painel)
+  var linhasPainel = [], reqPainel = 0;
+  var CHAVE_SESSAO = 'bioemcasa-painel-chave';
+  function dataHora(iso) {
+    var d = new Date(iso);
+    if (isNaN(d)) return '';
+    return doisDig(d.getDate()) + '/' + doisDig(d.getMonth() + 1) + '/' + d.getFullYear() + ' ' + doisDig(d.getHours()) + ':' + doisDig(d.getMinutes());
+  }
+  function cabecalhoPainel() {
+    return '<p class="marca-curso">' + esc(CFG.curso) + '</p><h1>Painel do professor</h1><p class="sub">Resultados do ' + esc(CFG.titulo) + '.</p>';
+  }
+  function renderPainel() {
+    modoProf = true;
+    document.title = 'Painel do professor | Teste ENEM Bio';
+    var salva = '';
+    try { salva = sessionStorage.getItem(CHAVE_SESSAO) || ''; } catch (e) {}
+    app.innerHTML =
+      '<main class="painel">' + cabecalhoPainel() +
+      '<form id="form-chave" class="painel-chave" novalidate>' +
+        campo('chave', 'Chave de acesso', 'password', salva, 'current-password', '') +
+        '<button class="btn" type="submit">Entrar</button>' +
+      '</form><div id="painel-corpo"></div></main>';
+    document.getElementById('form-chave').addEventListener('submit', function (e) {
+      e.preventDefault();
+      limparErros();
+      var c = val('chave');
+      if (!c) { erroCampo('chave', 'Digite a chave de acesso.'); return; }
+      carregarPainel(c);
+    });
+    if (salva) carregarPainel(salva);
+  }
+  function carregarPainel(chave) {
+    var corpo = document.getElementById('painel-corpo');
+    if (!corpo) return;
+    var req = ++reqPainel;
+    corpo.innerHTML = '<p class="painel-status" role="status">Carregando resultados…</p>';
+    fetch(ENDPOINT + '?acao=listar&chave=' + encodeURIComponent(chave) + '&_=' + Date.now(), { redirect: 'follow' })
+      .then(function (r) { return r.json(); })
+      .then(function (j) {
+        if (req !== reqPainel) return;
+        if (!j || !j.ok) {
+          try { sessionStorage.removeItem(CHAVE_SESSAO); } catch (e) {}
+          corpo.innerHTML = '';
+          erroCampo('chave', j && j.erro === 'chave' ? 'Chave incorreta.' : 'Não foi possível carregar os resultados agora.');
+          return;
+        }
+        try { sessionStorage.setItem(CHAVE_SESSAO, chave); } catch (e) {}
+        linhasPainel = (j.linhas || []).slice().reverse();
+        var f = document.getElementById('form-chave'); if (f) f.hidden = true;
+        montarPainel();
+      })
+      .catch(function () {
+        if (req !== reqPainel) return;
+        corpo.innerHTML = '';
+        erroCampo('chave', 'Não foi possível carregar os resultados. Confira a conexão e tente de novo.');
+      });
+  }
+  function montarPainel() {
+    var corpo = document.getElementById('painel-corpo');
+    var n = linhasPainel.length;
+    var media = n ? linhasPainel.reduce(function (s, l) { return s + Number(l.acertos || 0); }, 0) / n : 0;
+    var aceitam = linhasPainel.filter(function (l) { return l.contato === 'Sim'; }).length;
+    var faixas = CFG.faixas.map(function (f) { return f.nome; });
+    corpo.innerHTML =
+      '<div class="painel-resumo">' +
+        '<div><strong>' + n + '</strong><span>testes concluídos</span></div>' +
+        '<div><strong>' + (n ? media.toFixed(1).replace('.', ',') : '–') + '</strong><span>média de acertos (de ' + QS.length + ')</span></div>' +
+        '<div><strong>' + aceitam + '</strong><span>aceitam receber contato</span></div>' +
+      '</div>' +
+      '<div class="painel-filtros">' +
+        '<input type="search" id="p-busca" placeholder="Buscar por nome, e-mail ou WhatsApp" aria-label="Buscar aluno">' +
+        '<select id="p-faixa" aria-label="Filtrar por faixa"><option value="">Todas as faixas</option>' +
+          faixas.map(function (f) { return '<option>' + esc(f) + '</option>'; }).join('') + '</select>' +
+        '<label><input type="checkbox" id="p-contato"> Só quem aceita contato</label>' +
+        '<button type="button" class="btn btn-sec" id="p-csv">Baixar planilha (CSV)</button>' +
+        '<button type="button" class="btn btn-sec" id="p-atualizar">Atualizar</button>' +
+      '</div>' +
+      '<div class="painel-tabela"><table><thead><tr><th>Data</th><th>Aluno</th><th>E-mail</th><th>WhatsApp</th><th>Acertos</th><th>Faixa</th><th>Contato</th><th></th></tr></thead>' +
+      '<tbody id="p-linhas"></tbody></table><p class="painel-vazio" id="p-vazio" hidden></p></div>';
+    ['p-busca', 'p-faixa', 'p-contato'].forEach(function (id) {
+      document.getElementById(id).addEventListener('input', pintarLinhasPainel);
+    });
+    document.getElementById('p-csv').addEventListener('click', baixarCsv);
+    document.getElementById('p-atualizar').addEventListener('click', function () {
+      var c = ''; try { c = sessionStorage.getItem(CHAVE_SESSAO) || ''; } catch (e) {}
+      if (c) carregarPainel(c); else location.reload();
+    });
+    document.getElementById('p-linhas').addEventListener('click', function (e) {
+      var b = e.target.closest('button[data-i]');
+      if (b) verLaudoAluno(Number(b.getAttribute('data-i')));
+    });
+    pintarLinhasPainel();
+  }
+  function filtrarPainel() {
+    var q = document.getElementById('p-busca').value.trim().toLowerCase();
+    var f = document.getElementById('p-faixa').value;
+    var so = document.getElementById('p-contato').checked;
+    var out = [];
+    linhasPainel.forEach(function (l, i) {
+      if (f && l.faixa !== f) return;
+      if (so && l.contato !== 'Sim') return;
+      if (q && (l.nome + ' ' + l.email + ' ' + l.whatsapp).toLowerCase().indexOf(q) < 0) return;
+      out.push(i);
+    });
+    return out;
+  }
+  function pintarLinhasPainel() {
+    var idx = filtrarPainel();
+    document.getElementById('p-linhas').innerHTML = idx.map(function (i) {
+      var l = linhasPainel[i], dig = String(l.whatsapp || '').replace(/\D/g, '');
+      var zap = dig.length >= 10 ? '<a href="https://wa.me/' + (dig.length <= 11 ? '55' + dig : dig) + '" target="_blank" rel="noopener">' + esc(l.whatsapp) + '</a>' : esc(l.whatsapp);
+      return '<tr><td>' + dataHora(l.data) + '</td><td><strong>' + esc(l.nome) + '</strong></td>' +
+        '<td><a href="mailto:' + esc(l.email) + '">' + esc(l.email) + '</a></td><td>' + zap + '</td>' +
+        '<td>' + esc(l.acertos) + ' de ' + QS.length + ' <span class="vazio pct">(' + esc(l.pct) + '%)</span></td>' +
+        '<td>' + esc(l.faixa) + '</td><td>' + esc(l.contato) + '</td>' +
+        '<td><button type="button" class="btn btn-sec" data-i="' + i + '">Ver laudo</button></td></tr>';
+    }).join('');
+    var vazio = document.getElementById('p-vazio');
+    vazio.hidden = idx.length > 0;
+    vazio.textContent = linhasPainel.length ? 'Nenhum aluno com esses filtros.' : 'Ainda não há testes concluídos.';
+  }
+  function baixarCsv() {
+    var cab = ['Data', 'Nome', 'E-mail', 'WhatsApp', 'Aceita contato', 'Acertos', '% de acertos', 'Faixa', 'Tempo (min)'];
+    var cel = function (v) { v = String(v == null ? '' : v); return '"' + v.replace(/"/g, '""') + '"'; };
+    var linhas = filtrarPainel().map(function (i) {
+      var l = linhasPainel[i];
+      return [dataHora(l.data), l.nome, l.email, l.whatsapp, l.contato, l.acertos, l.pct, l.faixa, l.tempo].map(cel).join(';');
+    });
+    var blob = new Blob(['﻿' + [cab.map(cel).join(';')].concat(linhas).join('\r\n')], { type: 'text/csv;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = 'resultados-teste-enem-bio.csv';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  }
+  function verLaudoAluno(i) {
+    var l = linhasPainel[i];
+    if (!l) return;
+    var resp = QS.map(function (q, k) { var c = String(l.respostas || '').charAt(k); return LETRAS.indexOf(c) >= 0 ? c : null; });
+    var fim = new Date(l.data).getTime() || Date.now();
+    estado = {
+      etapa: 'resultado',
+      aluno: { nome: l.nome, email: l.email, whatsapp: l.whatsapp, contato: l.contato === 'Sim' },
+      respostas: resp, riscadas: QS.map(function () { return []; }), revisar: QS.map(function () { return false; }),
+      atual: 0, inicio: fim - (Number(l.tempo) || 0) * 60000, fim: fim, envio: 'enviado'
+    };
+    filtroGabarito = 'todas';
+    window.scrollTo(0, 0);
+    renderLaudo();
+    var refazer = document.getElementById('refazer'); if (refazer) refazer.remove();
+    var env = document.getElementById('envio'); if (env) env.remove();
+    app.querySelector('.laudo-folha').insertAdjacentHTML('afterbegin',
+      '<div class="barra-prof"><button type="button" class="btn btn-sec" id="voltar-lista">← Voltar à lista de alunos</button>' +
+      '<span><strong>' + esc(l.nome) + '</strong> · ' + esc(l.email) + ' · ' + esc(l.whatsapp) + '</span></div>');
+    document.getElementById('voltar-lista').addEventListener('click', function () {
+      app.innerHTML = '<main class="painel">' + cabecalhoPainel() + '<div id="painel-corpo"></div></main>';
+      window.scrollTo(0, 0);
+      montarPainel();
+    });
+  }
+  window.addEventListener('hashchange', function () { location.reload(); });
+
+  if (location.hash === '#painel') {
+    renderPainel();
+  } else {
+    render();
+    if (estado.etapa === 'resultado' && (estado.envio === 'pendente' || estado.envio === 'enviando')) enviarResultado();
+  }
 })();
 </script>
 </body>
