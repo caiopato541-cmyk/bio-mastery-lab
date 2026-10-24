@@ -319,7 +319,7 @@
   function novoEstado(aluno) {
     return {
       etapa: 'inicio',
-      aluno: aluno || { nome: '', email: '', whatsapp: '', contato: true },
+      aluno: aluno || { nome: '', email: '', whatsapp: '', contato: false },
       respostas: QS.map(function () { return null; }),
       riscadas: QS.map(function () { return []; }),
       revisar: QS.map(function () { return false; }),
@@ -403,7 +403,7 @@
             campo('nome', 'Nome completo', 'text', a.nome, 'name', '') +
             campo('email', 'E-mail', 'email', a.email, 'email', '') +
             campo('whatsapp', 'WhatsApp', 'tel', a.whatsapp, 'tel', '') +
-            '<label class="aceite"><input type="checkbox" id="contato"' + (a.contato !== false ? ' checked' : '') + '> <span>Aceito receber o meu resultado e conteúdos do ' + esc(CFG.curso) + ' por e-mail e WhatsApp.</span></label>' +
+            '<label class="aceite"><input type="checkbox" id="contato"' + (a.contato ? ' checked' : '') + '> <span>Aceito receber o meu resultado e conteúdos do ' + esc(CFG.curso) + ' por e-mail e WhatsApp.</span></label>' +
             '<button class="btn" type="submit">Começar o teste</button>' +
             '<p class="dica">Faça sem consultar material: assim o laudo mostra o seu nível real. Se precisar sair, o progresso fica salvo neste navegador.</p>' +
           '</form>' +
